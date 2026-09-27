@@ -30,16 +30,16 @@ export const HERO = {
   line2: "Natural Materials",
   scrollCue: "Scroll to Explore",
   media: {
-    src: "/assets/stones/hero/realistic/hero-cinematic.jpg",
-    alt: "Cinematic macro photograph of rough Persian turquoise, lit against a dark studio background",
+    src: "/assets/stones/hero/photo/hero-cinematic.jpg",
+    alt: "Natural Persian turquoise cabochons with dark matrix veining, macro photograph",
     width: 1920,
     height: 2400,
     isPlaceholder: true,
   } satisfies MediaAsset,
   video: {
-    src: "/assets/stones/hero/realistic/hero-cinematic.mp4",
-    poster: "/assets/stones/hero/realistic/hero-cinematic.jpg",
-    alt: "Slow cinematic zoom across a macro turquoise specimen under studio light",
+    src: "/assets/stones/hero/photo/hero-cinematic.mp4",
+    poster: "/assets/stones/hero/photo/hero-cinematic.jpg",
+    alt: "Slow cinematic zoom across natural Persian turquoise specimens under studio light",
     isPlaceholder: true,
   } satisfies VideoAsset,
 };
