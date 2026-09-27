@@ -17,7 +17,7 @@ export const STONES: StoneMaterial[] = [
     ],
     highlights: ["Historic Neyshabur origin", "Distinctive matrix patterning", "Selected for bespoke settings"],
     heroImage: {
-      src: "/assets/stones/turquoise/turquoise-hero-placeholder.svg",
+      src: "/assets/stones/turquoise/realistic/turquoise-hero.jpg",
       alt: "Placeholder studio image of Persian turquoise rough specimen with natural matrix veining",
       width: 1600,
       height: 2000,
@@ -35,7 +35,7 @@ export const STONES: StoneMaterial[] = [
         availability: "limited",
         documentation: "available-on-request",
         mainImage: {
-          src: "/assets/stones/turquoise/turquoise-specimen-01-main-placeholder.svg",
+          src: "/assets/stones/turquoise/realistic/turquoise-specimen-01-main.jpg",
           alt: "Placeholder image of turquoise specimen, lot 01, main view",
           width: 1200,
           height: 1200,
@@ -43,14 +43,14 @@ export const STONES: StoneMaterial[] = [
         },
         gallery: [
           {
-            src: "/assets/stones/turquoise/turquoise-specimen-01-detail-a-placeholder.svg",
+            src: "/assets/stones/turquoise/realistic/turquoise-specimen-01-detail-a.jpg",
             alt: "Placeholder detail image of turquoise specimen 01, angle A",
             width: 1200,
             height: 1200,
             isPlaceholder: true,
           },
           {
-            src: "/assets/stones/turquoise/turquoise-specimen-01-detail-b-placeholder.svg",
+            src: "/assets/stones/turquoise/realistic/turquoise-specimen-01-detail-b.jpg",
             alt: "Placeholder detail image of turquoise specimen 01, angle B",
             width: 1200,
             height: 1200,
@@ -70,7 +70,7 @@ export const STONES: StoneMaterial[] = [
         availability: "inquire",
         documentation: "available-on-request",
         mainImage: {
-          src: "/assets/stones/turquoise/turquoise-specimen-02-main-placeholder.svg",
+          src: "/assets/stones/turquoise/realistic/turquoise-specimen-02-main.jpg",
           alt: "Placeholder image of turquoise specimen, lot 02, main view",
           width: 1200,
           height: 1200,
@@ -78,7 +78,7 @@ export const STONES: StoneMaterial[] = [
         },
         gallery: [
           {
-            src: "/assets/stones/turquoise/turquoise-specimen-02-detail-a-placeholder.svg",
+            src: "/assets/stones/turquoise/realistic/turquoise-specimen-02-detail-a.jpg",
             alt: "Placeholder detail image of turquoise specimen 02, angle A",
             width: 1200,
             height: 1200,
@@ -99,7 +99,7 @@ export const STONES: StoneMaterial[] = [
     ],
     highlights: ["Natural banding, no two alike", "Earthy tonal range", "Rough & cut specimens available"],
     heroImage: {
-      src: "/assets/stones/agate/agate-hero-placeholder.svg",
+      src: "/assets/stones/agate/realistic/agate-hero.jpg",
       alt: "Placeholder studio image of banded Iranian agate specimen",
       width: 1600,
       height: 2000,
@@ -117,7 +117,7 @@ export const STONES: StoneMaterial[] = [
         availability: "in-stock",
         documentation: "available-on-request",
         mainImage: {
-          src: "/assets/stones/agate/agate-specimen-01-main-placeholder.svg",
+          src: "/assets/stones/agate/realistic/agate-specimen-01-main.jpg",
           alt: "Placeholder image of agate specimen, lot 01, main view",
           width: 1200,
           height: 1200,
@@ -125,7 +125,7 @@ export const STONES: StoneMaterial[] = [
         },
         gallery: [
           {
-            src: "/assets/stones/agate/agate-specimen-01-detail-a-placeholder.svg",
+            src: "/assets/stones/agate/realistic/agate-specimen-01-detail-a.jpg",
             alt: "Placeholder detail image of agate specimen 01, angle A",
             width: 1200,
             height: 1200,
@@ -146,7 +146,7 @@ export const STONES: StoneMaterial[] = [
     ],
     highlights: ["Deep, saturated red tones", "Historic jewelry association", "Suited to contemporary settings"],
     heroImage: {
-      src: "/assets/stones/garnet/garnet-hero-placeholder.svg",
+      src: "/assets/stones/garnet/realistic/garnet-hero.jpg",
       alt: "Placeholder studio image of deep red Iranian garnet specimen",
       width: 1600,
       height: 2000,
@@ -164,7 +164,7 @@ export const STONES: StoneMaterial[] = [
         availability: "limited",
         documentation: "available-on-request",
         mainImage: {
-          src: "/assets/stones/garnet/garnet-specimen-01-main-placeholder.svg",
+          src: "/assets/stones/garnet/realistic/garnet-specimen-01-main.jpg",
           alt: "Placeholder image of garnet specimen, lot 01, main view",
           width: 1200,
           height: 1200,
@@ -172,7 +172,7 @@ export const STONES: StoneMaterial[] = [
         },
         gallery: [
           {
-            src: "/assets/stones/garnet/garnet-specimen-01-detail-a-placeholder.svg",
+            src: "/assets/stones/garnet/realistic/garnet-specimen-01-detail-a.jpg",
             alt: "Placeholder detail image of garnet specimen 01, angle A",
             width: 1200,
             height: 1200,
@@ -194,7 +194,7 @@ export const STONES: StoneMaterial[] = [
     highlights: ["Extraterrestrial origin", "Unusual material character", "For experimental & contemporary work"],
     isExperimental: true,
     heroImage: {
-      src: "/assets/stones/meteorite/meteorite-hero-placeholder.svg",
+      src: "/assets/stones/meteorite/realistic/meteorite-hero.jpg",
       alt: "Placeholder studio image of meteorite specimen with Widmanstätten-like surface pattern",
       width: 1600,
       height: 2000,
@@ -212,7 +212,7 @@ export const STONES: StoneMaterial[] = [
         availability: "inquire",
         documentation: "pending-verification",
         mainImage: {
-          src: "/assets/stones/meteorite/meteorite-specimen-01-main-placeholder.svg",
+          src: "/assets/stones/meteorite/realistic/meteorite-specimen-01-main.jpg",
           alt: "Placeholder image of meteorite specimen, lot 01, main view",
           width: 1200,
           height: 1200,
@@ -220,7 +220,7 @@ export const STONES: StoneMaterial[] = [
         },
         gallery: [
           {
-            src: "/assets/stones/meteorite/meteorite-specimen-01-detail-a-placeholder.svg",
+            src: "/assets/stones/meteorite/realistic/meteorite-specimen-01-detail-a.jpg",
             alt: "Placeholder detail image of meteorite specimen 01, angle A",
             width: 1200,
             height: 1200,

@@ -24,12 +24,12 @@ export default function Header() {
     const el = headerRef.current;
     if (!el) return;
     gsap.to(el, {
-      paddingTop: isCompact ? "0.85rem" : "1.75rem",
-      paddingBottom: isCompact ? "0.85rem" : "1.75rem",
-      backgroundColor: isCompact ? "rgba(8,8,10,0.88)" : "rgba(8,8,10,0)",
-      backdropFilter: isCompact ? "blur(14px)" : "blur(0px)",
-      borderBottomColor: isCompact ? "rgba(242,237,228,0.1)" : "rgba(242,237,228,0)",
-      duration: 0.6,
+      paddingTop: isCompact ? "1rem" : "2rem",
+      paddingBottom: isCompact ? "1rem" : "2rem",
+      backgroundColor: isCompact ? "rgba(7,7,7,0.86)" : "rgba(7,7,7,0)",
+      backdropFilter: isCompact ? "blur(16px)" : "blur(0px)",
+      borderBottomColor: isCompact ? "rgba(232,226,215,0.06)" : "rgba(232,226,215,0)",
+      duration: 0.7,
       ease: "power3.out",
       overwrite: "auto",
     });
@@ -87,14 +87,14 @@ export default function Header() {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 inset-x-0 z-50 border-b border-transparent px-6 sm:px-10 lg:px-16 py-7"
-        style={{ backgroundColor: "rgba(8,8,10,0)" }}
+        className="fixed top-0 inset-x-0 z-50 border-b border-transparent px-6 sm:px-10 lg:px-16 py-8"
+        style={{ backgroundColor: "rgba(7,7,7,0)" }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link
             ref={logoRef}
             href="#top"
-            className="font-serif text-lg sm:text-xl tracking-[0.14em] text-bone transition-colors hover:text-gold-soft"
+            className="font-serif text-[0.95rem] tracking-[0.32em] text-bone/90 transition-colors hover:text-bronze-soft sm:text-base"
             style={{ transformOrigin: "left center" }}
           >
             {SITE.name.toUpperCase()}
@@ -105,10 +105,9 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative text-[0.8rem] tracking-[0.12em] uppercase text-bone-dim transition-colors hover:text-gold-soft"
+                className="text-[0.68rem] tracking-[0.22em] uppercase text-bone-dim/90 transition-colors duration-300 hover:text-bronze-soft"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold-soft transition-transform duration-400 ease-out group-hover:scale-x-100" />
               </Link>
             ))}
           </nav>
@@ -159,7 +158,7 @@ export default function Header() {
               menuLinksRef.current[i] = el;
             }}
             onClick={() => setIsMenuOpen(false)}
-            className="font-serif text-2xl text-bone transition-colors hover:text-gold-soft"
+            className="font-serif text-2xl text-bone transition-colors hover:text-bronze-soft"
           >
             {link.label}
           </Link>

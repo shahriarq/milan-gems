@@ -26,21 +26,20 @@ export const NAV_LINKS = [
 
 export const HERO = {
   eyebrow: "Milan Gems",
-  headline: "Rare Materials. Ancient Origins. Exceptional Craft.",
-  sub: "Selected Iranian gemstones and natural materials, sourced for bespoke jewelry makers and professional buyers.",
-  primaryCta: { label: "View the Collection", href: "#collection" },
-  secondaryCta: { label: "Request a Sample Box", href: "#contact" },
+  line1: "Iranian Gemstones",
+  line2: "Natural Materials",
+  scrollCue: "Scroll to Explore",
   media: {
-    src: "/assets/stones/hero/hero-gemstone-placeholder.svg",
-    alt: "Placeholder cinematic studio image of a rough gemstone specimen on a dark surface",
+    src: "/assets/stones/hero/realistic/hero-cinematic.jpg",
+    alt: "Cinematic macro photograph of rough Persian turquoise, lit against a dark studio background",
     width: 1920,
     height: 2400,
     isPlaceholder: true,
   } satisfies MediaAsset,
   video: {
-    src: "",
-    poster: "/assets/stones/hero/hero-gemstone-placeholder.svg",
-    alt: "Placeholder video of a gemstone specimen slowly rotating under studio light",
+    src: "/assets/stones/hero/realistic/hero-cinematic.mp4",
+    poster: "/assets/stones/hero/realistic/hero-cinematic.jpg",
+    alt: "Slow cinematic zoom across a macro turquoise specimen under studio light",
     isPlaceholder: true,
   } satisfies VideoAsset,
 };
@@ -79,9 +78,9 @@ export const ADVANTAGE = {
 
 export const B2B_CTA = {
   kicker: "B2B Sample Program",
-  heading: "Request a Physical Sample Box in Milan",
-  body: "Tell us what you are looking for and we will prepare a curated selection for professional review.",
-  ctaLabel: "Request the Collection",
+  heading: "Request the Collection",
+  body: "Curated gemstone samples available for professional review in Milan.",
+  ctaLabel: "Request a Sample Box",
 };
 
 export const CONTACT_FORM_FIELDS = {

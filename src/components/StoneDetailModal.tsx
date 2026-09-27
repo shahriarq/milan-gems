@@ -119,26 +119,28 @@ export default function StoneDetailModal({ specimen, onClose }: StoneDetailModal
       role="dialog"
       aria-modal="true"
       aria-label={rendered.name}
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-8"
+      className="fixed inset-0 z-[60] flex items-center justify-center"
       onClick={onClose}
     >
-      <div ref={backdropRef} className="absolute inset-0 bg-ink/92 backdrop-blur-md" />
+      <div ref={backdropRef} className="absolute inset-0 bg-ink/95 backdrop-blur-md" />
 
+      {/* Near-full-viewport presentation — the specimen as an object in a
+          dark room, not a bounded dialog box. */}
       <div
         ref={panelRef}
-        className="relative grid w-full max-w-5xl grid-cols-1 overflow-hidden border border-line bg-slate shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)] md:grid-cols-2"
+        className="relative flex h-full w-full flex-col overflow-hidden sm:h-[92vh] sm:w-[94vw] sm:max-w-6xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close specimen detail"
-          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center border border-line-soft bg-ink/60 text-bone transition-colors duration-300 hover:border-gold-soft hover:text-gold-soft"
+          className="absolute right-5 top-5 z-20 flex h-9 w-9 items-center justify-center text-bone-dim transition-colors duration-300 hover:text-bronze-soft"
         >
           ✕
         </button>
 
-        <div className="relative bg-ink-soft">
+        <div className="relative flex-1 bg-ink-soft">
           <Swiper
             modules={[Navigation, Pagination, Keyboard, EffectFade]}
             effect={slides.length > 1 ? "fade" : undefined}
@@ -146,55 +148,52 @@ export default function StoneDetailModal({ specimen, onClose }: StoneDetailModal
             navigation
             pagination={{ clickable: true }}
             keyboard={{ enabled: true }}
-            className="h-full min-h-[280px] w-full [--swiper-navigation-color:var(--color-gold-soft)] [--swiper-navigation-size:20px] [--swiper-pagination-color:var(--color-gold-soft)]"
+            className="h-full w-full [--swiper-navigation-color:var(--color-bronze-soft)] [--swiper-navigation-size:18px] [--swiper-pagination-color:var(--color-bronze-soft)]"
           >
             {slides.map((img, i) => (
               <SwiperSlide key={img.src + i}>
-                <div className="relative aspect-square w-full">
+                <div className="relative h-full w-full">
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
+                    sizes="94vw"
+                    className="object-contain sm:object-cover"
                   />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
 
-        <div className="flex flex-col gap-6 p-6 sm:p-10">
-          <div>
-            <p className="text-xs uppercase tracking-[0.14em] text-gold-soft">{rendered.origin}</p>
-            <h3 className="mt-2 font-serif text-2xl text-bone sm:text-3xl">{rendered.name}</h3>
-          </div>
-
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line-soft pt-6">
-            {specRows.map(([label, value]) => (
-              <div key={label}>
-                <dt className="text-[0.66rem] uppercase tracking-[0.12em] text-bone-dim">{label}</dt>
-                <dd className="mt-1.5 font-serif text-base text-bone">{value}</dd>
+          {/* Minimal metadata, laid quietly over the image rather than in a
+              separate panel — a museum label, not a spec sheet. */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent px-6 pb-6 pt-16 sm:px-10 sm:pb-8">
+            <div className="pointer-events-auto flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-bronze-soft">{rendered.origin}</p>
+                <h3 className="mt-1.5 font-serif text-xl text-bone sm:text-2xl">{rendered.name}</h3>
+                <dl className="mt-3 flex flex-wrap gap-x-6 gap-y-1.5">
+                  {specRows.map(([label, value]) => (
+                    <div key={label} className="flex items-baseline gap-1.5">
+                      <dt className="text-[0.62rem] uppercase tracking-[0.1em] text-bone-dim">{label}</dt>
+                      <dd className="text-[0.78rem] text-bone">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {rendered.notes && (
+                  <p className="mt-3 max-w-md text-xs italic leading-relaxed text-bone-dim">{rendered.notes}</p>
+                )}
               </div>
-            ))}
-          </dl>
 
-          {rendered.notes && (
-            <p className="border-t border-line-soft pt-6 text-xs italic leading-relaxed text-bone-dim">
-              {rendered.notes}
-            </p>
-          )}
-
-          <a
-            href="#contact"
-            onClick={onClose}
-            className="group relative mt-auto inline-flex items-center justify-center overflow-hidden border border-gold px-6 py-3.5 text-center text-[0.75rem] uppercase tracking-[0.14em] text-gold-soft transition-colors duration-500"
-          >
-            <span className="absolute inset-0 -translate-x-full bg-gold transition-transform duration-500 ease-out group-hover:translate-x-0" />
-            <span className="relative transition-colors duration-500 group-hover:text-ink">
-              Inquire About This Specimen
-            </span>
-          </a>
+              <a
+                href="#contact"
+                onClick={onClose}
+                className="shrink-0 border-b border-bronze-dim pb-1 text-[0.72rem] uppercase tracking-[0.16em] text-bronze-soft transition-colors duration-300 hover:border-bronze-soft hover:text-bone"
+              >
+                Inquire About This Specimen
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
