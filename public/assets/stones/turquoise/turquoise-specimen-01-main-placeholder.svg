@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Turquoise · Lot 01">
+  <defs>
+    <radialGradient id="bg-turquoise-specimen-01-main-placeholder.svg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#1c3b3d" />
+      <stop offset="55%" stop-color="#0c1e20" />
+      <stop offset="100%" stop-color="#08080a" />
+    </radialGradient>
+    <linearGradient id="sheen-turquoise-specimen-01-main-placeholder.svg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c5a059" stop-opacity="0.16" />
+      <stop offset="45%" stop-color="#c5a059" stop-opacity="0" />
+      <stop offset="100%" stop-color="#c5a059" stop-opacity="0" />
+    </linearGradient>
+    <filter id="grain-turquoise-specimen-01-main-placeholder.svg">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise" />
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0" />
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg-turquoise-specimen-01-main-placeholder.svg)" />
+  <polygon points="578.6,567.3 388.9,854.8 242.8,592.9 218.3,247.4 528.1,335.0" fill="#5fa8a0" fill-opacity="0.08" stroke="#5fa8a0" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="883.0,618.5 703.4,763.2 533.5,812.4 401.9,664.3 508.7,486.7 653.9,311.5 750.6,456.0" fill="#c5a059" fill-opacity="0.16" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="574.6,523.5 439.0,700.2 237.4,548.1 295.5,289.6 519.6,250.1" fill="#c5a059" fill-opacity="0.08" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="913.6,838.0 803.8,975.0 558.8,994.9 473.4,748.0 647.9,550.5 819.2,529.3" fill="#5fa8a0" fill-opacity="0.14" stroke="#5fa8a0" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="941.0,620.3 746.7,822.1 554.2,739.6 549.6,440.5 866.6,415.8" fill="#c5a059" fill-opacity="0.09" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="793.8,602.0 652.3,850.6 395.6,637.1 488.9,386.5 676.8,364.2" fill="#c5a059" fill-opacity="0.06" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <rect width="1200" height="1200" fill="url(#sheen-turquoise-specimen-01-main-placeholder.svg)" />
+  <rect width="1200" height="1200" filter="url(#grain-turquoise-specimen-01-main-placeholder.svg)" opacity="0.6" />
+  <rect x="0.5" y="0.5" width="1199" height="1199" fill="none" stroke="#c5a059" stroke-opacity="0.14" stroke-width="1" />
+  <text x="600" y="1164" text-anchor="middle" font-family="Georgia, serif" font-size="19.2" fill="#c5a059" fill-opacity="0.55" letter-spacing="2">TURQUOISE · LOT 01</text>
+  <text x="600" y="1186" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f2ede4" fill-opacity="0.32" letter-spacing="3">PLACEHOLDER — REPLACE WITH PHOTOGRAPHY</text>
+</svg>

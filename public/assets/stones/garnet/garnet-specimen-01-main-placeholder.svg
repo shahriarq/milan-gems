@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Garnet · Lot 01">
+  <defs>
+    <radialGradient id="bg-garnet-specimen-01-main-placeholder.svg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a1216" />
+      <stop offset="55%" stop-color="#170708" />
+      <stop offset="100%" stop-color="#08080a" />
+    </radialGradient>
+    <linearGradient id="sheen-garnet-specimen-01-main-placeholder.svg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c5a059" stop-opacity="0.16" />
+      <stop offset="45%" stop-color="#c5a059" stop-opacity="0" />
+      <stop offset="100%" stop-color="#c5a059" stop-opacity="0" />
+    </linearGradient>
+    <filter id="grain-garnet-specimen-01-main-placeholder.svg">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise" />
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0" />
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg-garnet-specimen-01-main-placeholder.svg)" />
+  <polygon points="935.3,575.9 760.8,954.4 358.4,822.4 333.5,537.6 446.8,283.9 715.4,331.2" fill="#c5a059" fill-opacity="0.07" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="1006.7,604.3 869.4,695.5 716.6,837.6 639.4,551.3 673.4,368.2 806.6,273.9 932.5,410.8" fill="#c5a059" fill-opacity="0.15" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="926.4,500.0 762.2,676.9 642.2,504.2 663.4,255.3 829.4,258.5" fill="#c5a059" fill-opacity="0.10" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="885.3,740.0 775.7,1029.0 510.8,939.3 393.7,590.5 554.7,413.0 840.5,475.6" fill="#c5a059" fill-opacity="0.11" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="815.1,566.0 728.1,667.9 582.4,732.0 474.3,514.0 544.3,427.8 656.7,293.9 788.5,422.9" fill="#8f2430" fill-opacity="0.15" stroke="#8f2430" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="693.2,497.7 504.7,667.0 316.6,691.1 166.8,436.8 409.3,253.0 555.6,295.6" fill="#c5a059" fill-opacity="0.08" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="796.6,559.6 596.8,978.2 366.0,729.6 197.6,491.3 479.5,221.9 770.1,220.1" fill="#c5a059" fill-opacity="0.13" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="708.6,562.2 443.5,751.9 145.8,612.3 235.4,184.8 591.7,169.5" fill="#c5a059" fill-opacity="0.06" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <rect width="1200" height="1200" fill="url(#sheen-garnet-specimen-01-main-placeholder.svg)" />
+  <rect width="1200" height="1200" filter="url(#grain-garnet-specimen-01-main-placeholder.svg)" opacity="0.6" />
+  <rect x="0.5" y="0.5" width="1199" height="1199" fill="none" stroke="#c5a059" stroke-opacity="0.14" stroke-width="1" />
+  <text x="600" y="1164" text-anchor="middle" font-family="Georgia, serif" font-size="19.2" fill="#c5a059" fill-opacity="0.55" letter-spacing="2">GARNET · LOT 01</text>
+  <text x="600" y="1186" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f2ede4" fill-opacity="0.32" letter-spacing="3">PLACEHOLDER — REPLACE WITH PHOTOGRAPHY</text>
+</svg>

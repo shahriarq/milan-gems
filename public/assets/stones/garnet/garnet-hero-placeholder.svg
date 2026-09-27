@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2000" viewBox="0 0 1600 2000" role="img" aria-label="Iranian Garnet">
+  <defs>
+    <radialGradient id="bg-garnet-hero-placeholder.svg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a1216" />
+      <stop offset="55%" stop-color="#170708" />
+      <stop offset="100%" stop-color="#08080a" />
+    </radialGradient>
+    <linearGradient id="sheen-garnet-hero-placeholder.svg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c5a059" stop-opacity="0.16" />
+      <stop offset="45%" stop-color="#c5a059" stop-opacity="0" />
+      <stop offset="100%" stop-color="#c5a059" stop-opacity="0" />
+    </linearGradient>
+    <filter id="grain-garnet-hero-placeholder.svg">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise" />
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0" />
+    </filter>
+  </defs>
+  <rect width="1600" height="2000" fill="url(#bg-garnet-hero-placeholder.svg)" />
+  <polygon points="818.4,1071.0 705.4,1290.3 507.6,1237.9 376.0,1090.9 478.3,894.1 653.4,833.4 808.1,810.8" fill="#8f2430" fill-opacity="0.14" stroke="#8f2430" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="1220.4,1107.2 958.1,1306.7 702.7,1258.2 780.7,878.6 1083.6,902.9" fill="#8f2430" fill-opacity="0.13" stroke="#8f2430" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="771.5,1034.5 643.4,1209.6 386.2,1150.2 302.7,896.0 474.2,679.3 717.1,724.1" fill="#c5a059" fill-opacity="0.15" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="1199.3,1103.5 1038.4,1409.7 663.7,1209.5 445.3,806.5 773.2,617.1 1152.1,717.9" fill="#8f2430" fill-opacity="0.15" stroke="#8f2430" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="1141.0,839.1 797.1,1283.2 486.0,1355.4 227.5,1005.8 198.0,533.3 681.4,376.0 1024.8,480.8" fill="#8f2430" fill-opacity="0.07" stroke="#8f2430" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="1358.8,1316.3 1047.5,1549.1 740.2,1615.4 653.2,1165.2 803.3,815.7 1284.2,943.2" fill="#c5a059" fill-opacity="0.14" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <rect width="1600" height="2000" fill="url(#sheen-garnet-hero-placeholder.svg)" />
+  <rect width="1600" height="2000" filter="url(#grain-garnet-hero-placeholder.svg)" opacity="0.6" />
+  <rect x="0.5" y="0.5" width="1599" height="1999" fill="none" stroke="#c5a059" stroke-opacity="0.14" stroke-width="1" />
+  <text x="800" y="1964" text-anchor="middle" font-family="Georgia, serif" font-size="25.6" fill="#c5a059" fill-opacity="0.55" letter-spacing="2">IRANIAN GARNET</text>
+  <text x="800" y="1986" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#f2ede4" fill-opacity="0.32" letter-spacing="3">PLACEHOLDER — REPLACE WITH PHOTOGRAPHY</text>
+</svg>

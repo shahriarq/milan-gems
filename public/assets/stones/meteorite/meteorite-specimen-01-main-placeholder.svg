@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Meteorite · Lot 01">
+  <defs>
+    <radialGradient id="bg-meteorite-specimen-01-main-placeholder.svg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#26282c" />
+      <stop offset="55%" stop-color="#0d0e10" />
+      <stop offset="100%" stop-color="#08080a" />
+    </radialGradient>
+    <linearGradient id="sheen-meteorite-specimen-01-main-placeholder.svg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c5a059" stop-opacity="0.16" />
+      <stop offset="45%" stop-color="#c5a059" stop-opacity="0" />
+      <stop offset="100%" stop-color="#c5a059" stop-opacity="0" />
+    </linearGradient>
+    <filter id="grain-meteorite-specimen-01-main-placeholder.svg">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise" />
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0" />
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg-meteorite-specimen-01-main-placeholder.svg)" />
+  <polygon points="658.4,702.3 420.5,952.7 176.8,788.8 255.6,469.4 557.7,403.0" fill="#8a8f99" fill-opacity="0.11" stroke="#8a8f99" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="758.9,710.2 668.8,958.6 441.3,860.8 393.1,664.3 511.5,414.1 757.8,489.1" fill="#c5a059" fill-opacity="0.07" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="763.2,592.4 583.1,730.2 397.3,623.0 423.6,338.5 673.6,370.1" fill="#c5a059" fill-opacity="0.11" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="725.5,652.4 458.7,943.1 233.3,846.0 139.2,601.2 295.1,359.2 562.8,296.6" fill="#8a8f99" fill-opacity="0.14" stroke="#8a8f99" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="721.0,573.4 579.3,710.0 415.4,675.4 272.4,433.0 470.8,305.0 671.4,359.1" fill="#8a8f99" fill-opacity="0.10" stroke="#8a8f99" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="809.2,694.0 501.3,1012.3 201.1,917.2 63.1,572.6 272.4,376.0 683.4,452.2" fill="#c5a059" fill-opacity="0.07" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="928.0,792.8 781.6,972.5 643.2,825.5 665.8,597.5 886.1,618.3" fill="#c5a059" fill-opacity="0.11" stroke="#c5a059" stroke-opacity="0.18" stroke-width="1" />
+  <polygon points="1003.8,722.7 867.7,806.3 663.2,920.9 584.3,692.0 560.6,512.7 730.9,425.7 953.4,491.8" fill="#8a8f99" fill-opacity="0.09" stroke="#8a8f99" stroke-opacity="0.18" stroke-width="1" />
+  <rect width="1200" height="1200" fill="url(#sheen-meteorite-specimen-01-main-placeholder.svg)" />
+  <rect width="1200" height="1200" filter="url(#grain-meteorite-specimen-01-main-placeholder.svg)" opacity="0.6" />
+  <rect x="0.5" y="0.5" width="1199" height="1199" fill="none" stroke="#c5a059" stroke-opacity="0.14" stroke-width="1" />
+  <text x="600" y="1164" text-anchor="middle" font-family="Georgia, serif" font-size="19.2" fill="#c5a059" fill-opacity="0.55" letter-spacing="2">METEORITE · LOT 01</text>
+  <text x="600" y="1186" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#f2ede4" fill-opacity="0.32" letter-spacing="3">PLACEHOLDER — REPLACE WITH PHOTOGRAPHY</text>
+</svg>
