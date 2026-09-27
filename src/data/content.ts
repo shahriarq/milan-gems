@@ -28,6 +28,7 @@ export const HERO = {
   eyebrow: "Milan Gems",
   line1: "Iranian Gemstones",
   line2: "Natural Materials",
+  tagline: "A private digital collection of rare Iranian materials.",
   scrollCue: "Scroll to Explore",
   media: {
     src: "/assets/stones/hero/photo/hero-cinematic.jpg",
@@ -81,6 +82,19 @@ export const B2B_CTA = {
   heading: "Request the Collection",
   body: "Curated gemstone samples available for professional review in Milan.",
   ctaLabel: "Request a Sample Box",
+};
+
+/**
+ * The closing sequence — a short cinematic beat before the sample-request
+ * CTA and footer: "The Collection" → a brand statement → the city → the
+ * CTA (above) → a final editorial line.
+ */
+export const CLOSING_SEQUENCE = {
+  kicker: "The Collection",
+  statement: "From Origin to Atelier.",
+  city: "Milan",
+  finalStatement:
+    "Milan Gems — where rare Iranian materials begin their journey to the atelier.",
 };
 
 export const CONTACT_FORM_FIELDS = {

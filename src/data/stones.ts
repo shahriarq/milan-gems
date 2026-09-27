@@ -11,6 +11,7 @@ export const STONES: StoneMaterial[] = [
     name: "Persian Turquoise",
     kicker: "01 — Materials",
     originSummary: "Neyshabur, Iran",
+    visualTreatment: "macro",
     description: [
       "Ancient turquoise from one of the world's historically significant turquoise-producing regions, selected for its distinctive color, character, and natural individuality.",
       "Each specimen is evaluated on its own terms — matrix pattern, tone, and structure vary by nature, and we present that variation rather than smooth it away.",
@@ -93,6 +94,7 @@ export const STONES: StoneMaterial[] = [
     name: "Iranian Agate",
     kicker: "02 — Materials",
     originSummary: "Regional Iranian deposits",
+    visualTreatment: "horizontal",
     description: [
       "Banded agate selected for the individuality of its natural patterning — no two cross-sections repeat, and each rough specimen carries its own record of formation.",
       "Earthy, layered tones read well in both sculptural and traditional settings, offering designers a material that carries visible natural history.",
@@ -140,6 +142,7 @@ export const STONES: StoneMaterial[] = [
     name: "Iranian Garnet",
     kicker: "03 — Materials",
     originSummary: "Regional Iranian deposits",
+    visualTreatment: "macro",
     description: [
       "Deep red garnet with a natural character shaped by pressure and time, historically associated with jewelry and royal adornment across many cultures.",
       "Its clarity and saturation suit both classical settings and contemporary bespoke work, offering a material with genuine depth rather than uniform perfection.",

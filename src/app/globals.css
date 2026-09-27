@@ -108,6 +108,15 @@ body {
   text-wrap: balance;
 }
 
+/* A quiet legibility panel for type set directly over photography — a
+   soft frosted "museum label" rather than a hard bordered card, used
+   wherever text sits on a busy or light part of an image. */
+.text-scrim {
+  background: rgba(7, 7, 7, 0.52);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
 /* Respect reduced motion globally as a safety net; components also branch in JS */
 @media (prefers-reduced-motion: reduce) {
   *,

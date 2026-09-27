@@ -3,14 +3,16 @@
 import { useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { B2B_CTA, CONTACT_FORM_FIELDS, HERO } from "@/data/content";
+import { B2B_CTA, CLOSING_SEQUENCE, CONTACT_FORM_FIELDS, HERO } from "@/data/content";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
 export default function B2BCTA() {
   const sectionRef = useRef<HTMLElement>(null);
   const bgImageRef = useRef<HTMLDivElement>(null);
+  const statementRef = useRef<HTMLDivElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
+  const finalRef = useRef<HTMLParagraphElement>(null);
   const formWrapRef = useRef<HTMLDivElement>(null);
   const [formOpen, setFormOpen] = useState(false);
   const [state, setState] = useState<SubmitState>("idle");
@@ -30,6 +32,18 @@ export default function B2BCTA() {
       );
 
       gsap.fromTo(
+        statementRef.current,
+        { opacity: 0, y: 26 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 85%" },
+        }
+      );
+
+      gsap.fromTo(
         introRef.current,
         { opacity: 0, y: 30 },
         {
@@ -37,7 +51,19 @@ export default function B2BCTA() {
           y: 0,
           duration: 1.2,
           ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
+          scrollTrigger: { trigger: introRef.current, start: "top 82%" },
+        }
+      );
+
+      gsap.fromTo(
+        finalRef.current,
+        { opacity: 0, y: 18 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: finalRef.current, start: "top 90%" },
         }
       );
     }, sectionRef);
@@ -96,7 +122,7 @@ export default function B2BCTA() {
       ref={sectionRef}
       id="contact"
       aria-labelledby="cta-heading"
-      className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-ink py-28"
+      className="relative flex w-full flex-col items-center overflow-hidden bg-ink py-28 sm:py-36"
     >
       {/* The final scene: a dimmed reprise of the opening material, dark and
           quiet, so the closing moment feels like it belongs to the same
@@ -109,6 +135,19 @@ export default function B2BCTA() {
         <div className="grain absolute inset-0" />
       </div>
 
+      {/* Beat one: the brand statement — "The Collection" → a line of intent
+          → the city. Sets the closing scene before the ask arrives. */}
+      <div ref={statementRef} className="relative z-10 mb-20 flex max-w-2xl flex-col items-center px-6 text-center sm:mb-28">
+        <span className="text-[0.72rem] uppercase tracking-[0.32em] text-bronze-soft">
+          {CLOSING_SEQUENCE.kicker}
+        </span>
+        <p className="mt-6 text-balance font-serif text-4xl leading-[1.1] text-bone sm:text-5xl md:text-6xl">
+          {CLOSING_SEQUENCE.statement}
+        </p>
+        <p className="mt-5 text-sm uppercase tracking-[0.4em] text-bone-dim">{CLOSING_SEQUENCE.city}</p>
+      </div>
+
+      {/* Beat two: the ask. */}
       <div ref={introRef} className="relative z-10 flex max-w-2xl flex-col items-center px-6 text-center">
         <span className="text-[0.72rem] uppercase tracking-[0.32em] text-bronze-soft">{B2B_CTA.kicker}</span>
         <h2
@@ -206,6 +245,14 @@ export default function B2BCTA() {
           </>
         )}
       </div>
+
+      {/* Beat three: the final statement, closing the film. */}
+      <p
+        ref={finalRef}
+        className="relative z-10 mt-24 max-w-md text-balance px-6 text-center font-serif text-base italic leading-relaxed text-bone-dim sm:mt-32"
+      >
+        {CLOSING_SEQUENCE.finalStatement}
+      </p>
     </section>
   );
 }

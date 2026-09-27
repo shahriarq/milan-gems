@@ -18,11 +18,12 @@ export default function Hero() {
   const markRef = useRef<HTMLDivElement>(null);
   const lineARef = useRef<HTMLSpanElement>(null);
   const lineBRef = useRef<HTMLSpanElement>(null);
+  const taglineRef = useRef<HTMLParagraphElement>(null);
   const cueRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const reduced = prefersReducedMotion();
-    const textEls = [markRef.current, lineARef.current, lineBRef.current];
+    const textEls = [markRef.current, lineARef.current, lineBRef.current, taglineRef.current];
 
     const ctx = gsap.context(() => {
       if (reduced) {
@@ -40,7 +41,8 @@ export default function Hero() {
         .to(markRef.current, { opacity: 1, y: 0, duration: 1.4 }, 0.9)
         .to(lineARef.current, { opacity: 1, y: 0, duration: 1.2 }, 1.5)
         .to(lineBRef.current, { opacity: 1, y: 0, duration: 1.2 }, 1.75)
-        .to(cueRef.current, { opacity: 1, duration: 1.2 }, 2.4);
+        .to(taglineRef.current, { opacity: 1, y: 0, duration: 1.1 }, 2.05)
+        .to(cueRef.current, { opacity: 1, duration: 1.2 }, 2.5);
 
       // A continuing, near-imperceptible drift as the visitor scrolls away —
       // camera-like, not a fade-in.
@@ -50,7 +52,7 @@ export default function Hero() {
         scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: 0.6 },
       });
 
-      gsap.to([markRef.current, lineARef.current, lineBRef.current, cueRef.current], {
+      gsap.to([markRef.current, lineARef.current, lineBRef.current, taglineRef.current, cueRef.current], {
         opacity: 0,
         y: -24,
         ease: "none",
@@ -94,12 +96,13 @@ export default function Hero() {
       </div>
 
       {/* Dark cinematic grade: bottom weight, faint top fall-off, a soft
-          centered vignette so the type sits in a pocket of calm. */}
+          centered vignette so the type sits in a pocket of calm even
+          before the legibility panel underneath it. */}
       <div className="absolute inset-0 bg-gradient-to-t from-ink from-5% via-ink/25 via-40% to-ink/35" aria-hidden="true" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_48%,transparent_30%,rgba(7,7,7,0.55)_100%)]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_48%,transparent_20%,rgba(7,7,7,0.62)_100%)]" aria-hidden="true" />
       <div className="grain absolute inset-0" aria-hidden="true" />
 
-      <div className="relative z-10 flex flex-col items-center px-6 text-center">
+      <div className="relative z-10 flex flex-col items-center px-8 py-10 text-center sm:px-14 sm:py-12 text-scrim">
         <div ref={markRef} className="overflow-hidden">
           <span className="block font-serif text-[0.95rem] uppercase tracking-[0.5em] text-bone sm:text-base">
             {HERO.eyebrow}
@@ -124,6 +127,13 @@ export default function Hero() {
             </span>
           </span>
         </h1>
+
+        <p
+          ref={taglineRef}
+          className="mt-6 max-w-xs text-balance font-serif text-sm italic leading-relaxed text-bone-dim sm:max-w-sm sm:text-base"
+        >
+          {HERO.tagline}
+        </p>
       </div>
 
       <div

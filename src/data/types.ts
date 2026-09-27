@@ -74,6 +74,13 @@ export interface StoneMaterial {
   highlights: string[];
   /** Whether this material is framed as experimental/avant-garde (meteorite). */
   isExperimental?: boolean;
+  /**
+   * Which secondary visual treatment follows the chapter's opening shot —
+   * a second full-bleed macro image ("macro", the default) or a horizontal
+   * scrolling gallery of the material's specimen photography ("horizontal").
+   * Purely a display hint; experimental materials ignore it entirely.
+   */
+  visualTreatment?: "macro" | "horizontal";
   heroImage: MediaAsset;
   specimens: StoneSpecimen[];
 }
