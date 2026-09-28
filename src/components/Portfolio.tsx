@@ -1,15 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { STONES } from "@/data/stones";
 import { PORTFOLIO_INTRO } from "@/data/content";
-import type { StoneSpecimen } from "@/data/types";
 import StoneSection from "./StoneSection";
-import StoneDetailModal from "./StoneDetailModal";
 
 export default function Portfolio() {
-  const [selected, setSelected] = useState<StoneSpecimen | null>(null);
-
   return (
     <div id="collection" className="relative">
       <div id="materials" className="mx-auto max-w-4xl px-6 pt-28 text-center sm:pt-36 sm:px-10">
@@ -25,10 +20,8 @@ export default function Portfolio() {
       </div>
 
       {STONES.map((material, i) => (
-        <StoneSection key={material.slug} material={material} index={i} onSelectSpecimen={setSelected} />
+        <StoneSection key={material.slug} material={material} index={i} />
       ))}
-
-      <StoneDetailModal specimen={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }

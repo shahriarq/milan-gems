@@ -82,5 +82,10 @@ export interface StoneMaterial {
    */
   visualTreatment?: "macro" | "horizontal";
   heroImage: MediaAsset;
+  /**
+   * Two vertical (4:5) photographs shown side by side right after the
+   * chapter's opening shot — a swipeable slider on mobile.
+   */
+  showcase: [MediaAsset, MediaAsset];
   specimens: StoneSpecimen[];
 }

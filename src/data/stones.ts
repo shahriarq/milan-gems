@@ -23,6 +23,20 @@ export const STONES: StoneMaterial[] = [
       width: 1600,
       height: 2000,
     },
+    showcase: [
+      {
+        src: "/assets/stones/turquoise/photo/turquoise-showcase-01.jpg",
+        alt: "Natural Persian turquoise cabochons in varied sizes, sky-blue with fine matrix",
+        width: 1200,
+        height: 1500,
+      },
+      {
+        src: "/assets/stones/turquoise/photo/turquoise-showcase-02.jpg",
+        alt: "Macro detail of rough Persian turquoise showing blue patches set in pale natural matrix",
+        width: 1200,
+        height: 1500,
+      },
+    ],
     specimens: [
       {
         id: "turq-001",
@@ -103,6 +117,20 @@ export const STONES: StoneMaterial[] = [
       height: 2000,
       isPlaceholder: true,
     },
+    showcase: [
+      {
+        src: "/assets/stones/agate/photo/agate-showcase-01.jpg",
+        alt: "Polished tumbled stones with blue and golden-brown mottled patterning",
+        width: 1200,
+        height: 1500,
+      },
+      {
+        src: "/assets/stones/agate/photo/agate-showcase-02.jpg",
+        alt: "Macro of a sliced agate showing concentric orange and white fortification banding",
+        width: 1200,
+        height: 1500,
+      },
+    ],
     specimens: [
       {
         id: "agate-001",
@@ -150,6 +178,20 @@ export const STONES: StoneMaterial[] = [
       width: 1600,
       height: 2000,
     },
+    showcase: [
+      {
+        src: "/assets/stones/garnet/photo/garnet-showcase-01.jpg",
+        alt: "Macro of deep red garnet crystals lining a geode with white quartz edges",
+        width: 1200,
+        height: 1500,
+      },
+      {
+        src: "/assets/stones/garnet/photo/garnet-showcase-02.jpg",
+        alt: "Faceted cushion-cut red garnet on dark slate, studio lighting",
+        width: 1200,
+        height: 1500,
+      },
+    ],
     specimens: [
       {
         id: "garnet-001",
@@ -196,6 +238,20 @@ export const STONES: StoneMaterial[] = [
       height: 2000,
       isPlaceholder: true,
     },
+    showcase: [
+      {
+        src: "/assets/stones/meteorite/photo/meteorite-showcase-01.jpg",
+        alt: "Meteorite-like specimen with dark crust and golden metallic surface, grey background",
+        width: 1200,
+        height: 1500,
+      },
+      {
+        src: "/assets/stones/meteorite/photo/meteorite-showcase-02.jpg",
+        alt: "Dark pitted meteorite specimen resting in a sample box, macro photograph",
+        width: 1200,
+        height: 1500,
+      },
+    ],
     specimens: [
       {
         id: "meteorite-001",
