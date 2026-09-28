@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import AdvantageSection from "@/components/AdvantageSection";
 import AboutSection from "@/components/AboutSection";
 import B2BCTA from "@/components/B2BCTA";
-import Footer from "@/components/Footer";
+import SectionProgress from "@/components/SectionProgress";
 import { SITE } from "@/data/content";
 
 const jsonLd = {
@@ -30,7 +29,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Header />
       <main className="flex-1">
         <Hero />
         <Portfolio />
@@ -38,7 +36,7 @@ export default function Home() {
         <AboutSection />
         <B2BCTA />
       </main>
-      <Footer />
+      <SectionProgress />
     </>
   );
 }

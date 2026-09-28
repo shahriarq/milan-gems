@@ -16,13 +16,43 @@ export const SITE = {
   city: "Milan, Italy",
 };
 
+/**
+ * Primary navigation. Hash links point at home-page sections (prefixed with
+ * "/" so they also work from /contact); Contact is its own page.
+ */
 export const NAV_LINKS = [
-  { label: "Collection", href: "#collection" },
-  { label: "Materials", href: "#materials" },
-  { label: "B2B", href: "#advantage" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Collection", href: "/#collection" },
+  { label: "B2B", href: "/#advantage" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/contact" },
 ];
+
+/**
+ * Home-page sections tracked by the section progress indicator, in page
+ * order. Each id must exist on the home page.
+ */
+export const SECTION_INDEX = [
+  { id: "turquoise", label: "Turquoise" },
+  { id: "agate", label: "Agate" },
+  { id: "garnet", label: "Garnet" },
+  { id: "meteorite", label: "Meteorite" },
+  { id: "advantage", label: "B2B" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Sample Box" },
+];
+
+/**
+ * One vocabulary for every call to action on the site, so the same action
+ * is never named two different ways.
+ */
+export const CTA = {
+  sampleBox: "Request a Sample Box",
+  inquiry: "Start a B2B Inquiry",
+  submit: "Send Request",
+  submitting: "Sending…",
+  contact: "Contact Milan Gems",
+  backToTop: "Back to top",
+};
 
 export const HERO = {
   eyebrow: "Milan Gems",
@@ -91,7 +121,7 @@ export const B2B_CTA = {
   kicker: "B2B Sample Program",
   heading: "Request the Collection",
   body: "Curated gemstone samples available for professional review in Milan.",
-  ctaLabel: "Request a Sample Box",
+  ctaLabel: CTA.sampleBox,
 };
 
 /**
@@ -109,6 +139,53 @@ export const CLOSING_SEQUENCE = {
 
 export const CONTACT_FORM_FIELDS = {
   materialsOfInterest: ["Persian Turquoise", "Agate", "Garnet", "Meteorite", "Other / Not sure yet"],
+  requestTypes: [
+    { value: "sample-box", label: "Sample Box" },
+    { value: "b2b-inquiry", label: "General B2B Inquiry" },
+  ],
+};
+
+export type RequestType = "sample-box" | "b2b-inquiry";
+
+/** Copy for the dedicated /contact page. */
+export const CONTACT_PAGE = {
+  metaTitle: "Contact",
+  metaDescription:
+    "Contact Milan Gems for B2B inquiries and sample box requests — Iranian gemstones and natural materials for jewelry professionals, from Milan.",
+  /** Poster for the hero film: the open sample box (brighter than frame 1). */
+  heroPoster: "/assets/cta/photo/contact-hero-poster.jpg",
+  kicker: "Contact",
+  heading: "Begin a Conversation",
+  intro:
+    "For bespoke ateliers, master jewelers, designers and professional buyers. Tell us what you are working on and we will follow up from Milan.",
+  sampleBox: {
+    image: {
+      src: "/assets/cta/photo/sample-box-open.jpg",
+      alt: "An open Milan Gems sample box on a dark marble table holding turquoise, agate, garnet and meteorite specimens",
+      width: 960,
+      height: 1200,
+    } satisfies MediaAsset,
+    kicker: "B2B Sample Program",
+    heading: "The Sample Box",
+    body: "A curated selection of materials for professional review — the most direct way to judge color, matrix and character in hand.",
+    points: [
+      "Curated around your materials of interest",
+      "For ateliers, jewelers and professional buyers",
+      "Arranged individually after we review your request",
+    ],
+  },
+  inquiry: {
+    kicker: "B2B Inquiry",
+    heading: "Tell us about your project",
+    body: "Share the materials, quantities and timing you have in mind. Fields marked * are required.",
+  },
+  details: {
+    kicker: "Milan Gems",
+    heading: "Milan",
+    body: "Based in Milan, working with ateliers and professional buyers across Europe.",
+  },
+  success:
+    "Thank you. We will review your request and follow up regarding a curated selection for professional review.",
 };
 
 export const FOOTER = {

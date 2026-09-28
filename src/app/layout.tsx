@@ -14,6 +14,9 @@ import "@fontsource/inter/600.css";
 import "./globals.css";
 import { SITE } from "@/data/content";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.milangems.com"),
@@ -58,7 +61,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-ink text-bone font-sans">
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <Header />
+          {children}
+          <Footer />
+          <BackToTop />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

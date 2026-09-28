@@ -4,6 +4,8 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { HERO } from "@/data/content";
+import { scrollToTarget } from "@/lib/scroll";
+import CinematicVideo from "./CinematicVideo";
 
 /**
  * The opening shot. Full-bleed cinematic media carries the first viewport —
@@ -13,7 +15,6 @@ import { HERO } from "@/data/content";
  */
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const mediaScaleRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<HTMLDivElement>(null);
   const lineARef = useRef<HTMLSpanElement>(null);
@@ -111,18 +112,7 @@ export default function Hero() {
         className="absolute inset-0 will-change-transform"
       >
         {HERO.video.src ? (
-          <video
-            ref={videoRef}
-            className="h-full w-full object-cover"
-            poster={HERO.video.poster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-hidden="true"
-          >
-            <source src={HERO.video.src} type="video/mp4" />
-          </video>
+          <CinematicVideo src={HERO.video.src} poster={HERO.video.poster} className="h-full w-full object-cover" />
         ) : (
           <Image
             src={HERO.media.src}
@@ -192,6 +182,10 @@ export default function Hero() {
         <div ref={cueRef} aria-hidden="true">
           <a
             href="#collection"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToTarget("#collection");
+          }}
             className="flex flex-col items-center gap-3 text-[0.62rem] uppercase tracking-[0.34em] text-bone-dim transition-colors duration-500 hover:text-bronze-soft"
           >
             <span>{HERO.scrollCue}</span>

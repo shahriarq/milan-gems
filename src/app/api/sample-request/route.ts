@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
 /**
- * Handles B2B sample box requests submitted from the contact form.
+ * Handles B2B inquiries and sample box requests submitted from the shared
+ * inquiry form (home page closing CTA and /contact).
  *
  * This currently validates and logs the submission server-side as a
  * placeholder integration point. Wire this up to a real email/CRM provider
@@ -32,6 +33,7 @@ export async function POST(request: Request) {
 
   // Placeholder: log the submission. Replace with real persistence/notification.
   console.info("[sample-request] received submission", {
+    requestType: body.requestType === "b2b-inquiry" ? "b2b-inquiry" : "sample-box",
     name: body.name,
     company: body.company,
     email: body.email,

@@ -137,3 +137,8 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Native hash navigation (e.g. /contact → /#about) lands below the fixed header */
+html {
+  scroll-padding-top: 64px;
+}
