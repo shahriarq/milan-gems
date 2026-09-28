@@ -25,9 +25,9 @@ export const it: SiteContent = {
   },
 
   META: {
-    title: "Milan Gems — Gemme Iraniane e Materiali Naturali per Professionisti della Gioielleria",
+    title: "Milan Gems — Gemme Iraniane per la Gioielleria",
     description:
-      "Milan Gems seleziona turchese persiano, agata, granato e meteorite iraniani per atelier di alta gioielleria, maestri orafi e buyer professionali in tutta Europa. Fornitura B2B di gemme, Milano.",
+      "Turchese persiano, agata, granato e meteorite iraniani per atelier di gioielleria e buyer professionali. Fornitura B2B di gemme da Milano.",
     keywords: [
       "gemme iraniane",
       "turchese persiano",
@@ -42,6 +42,7 @@ export const it: SiteContent = {
     ogDescription:
       "Materiali rari, origini antiche, lavorazione d'eccellenza. Gemme iraniane selezionate per orafi su misura e buyer professionali.",
     ogLocale: "it_IT",
+    ogImageAlt: "Milan Gems — gemme e materiali naturali iraniani, Milano. Un nodulo di turchese persiano lucidato su ardesia scura.",
     orgDescription:
       "Fornitura B2B di gemme e materiali naturali iraniani — turchese persiano, agata, granato e meteorite — per atelier di gioielleria e buyer professionali.",
   },
@@ -146,7 +147,7 @@ export const it: SiteContent = {
     sampleBox: {
       image: {
         ...en.CONTACT_PAGE.sampleBox.image,
-        alt: "Un cofanetto campionario Milan Gems aperto su un tavolo di marmo scuro, con esemplari di turchese, agata, granato e meteorite",
+        alt: "Un cofanetto campionario Milan Gems aperto con granati sfaccettati, pepite di turchese, una fetta di agata a bande, frammenti di meteorite e agate lucidate in scomparti di velluto nero",
       },
       kicker: "Programma Campionari B2B",
       heading: "Il Campionario",
@@ -178,6 +179,12 @@ export const it: SiteContent = {
 
   UI: {
     homeLabel: "home",
+    notFound: {
+      title: "Pagina non trovata",
+      heading: "Questa pagina non esiste.",
+      body: "La pagina che cerchi potrebbe essere stata spostata. Torna alla collezione o contattaci.",
+      home: "Torna alla collezione",
+    },
     menu: { open: "Apri menu", close: "Chiudi menu", label: "Menu", primary: "Principale", mobile: "Mobile" },
     language: { label: "Lingua", names: { it: "Italiano", en: "English" } },
     sectionProgress: { label: "Avanzamento sezioni", goTo: "Vai a" },
@@ -218,7 +225,8 @@ export const it: SiteContent = {
     contact: {
       email: "Email",
       phone: "Telefono",
-      instagram: "Instagram",
+      whatsapp: "WhatsApp",
+      whatsappMessage: "Buongiorno Milan Gems, vorrei ricevere informazioni sui vostri materiali.",
       linkedin: "LinkedIn",
       localTime: "Ora locale",
     },

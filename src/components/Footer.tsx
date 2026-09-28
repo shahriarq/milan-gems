@@ -1,6 +1,8 @@
 import { getContent } from "@/data/content";
 import type { Locale } from "@/i18n/config";
 import SmartLink from "./SmartLink";
+import { LinkedInIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon, whatsappHref } from "./ContactIcons";
+import type { ReactNode } from "react";
 
 /**
  * The brand signature: a quiet three-column index (navigation, contact,
@@ -10,7 +12,6 @@ import SmartLink from "./SmartLink";
 export default function Footer({ locale }: { locale: Locale }) {
   const { CTA, NAV_LINKS, SITE, UI } = getContent(locale);
   const year = new Date().getFullYear();
-  const handle = SITE.instagram.split("/").pop();
 
   return (
     <footer className="relative overflow-hidden border-t border-line bg-ink-soft">
@@ -48,33 +49,28 @@ export default function Footer({ locale }: { locale: Locale }) {
 
           <div className="md:col-span-3">
             <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">{UI.footer.contact}</p>
-            <ul className="mt-5 flex flex-col gap-3 text-sm text-bone">
-              <li>
-                <a href={`mailto:${SITE.email}`} className="break-all transition-colors hover:text-bronze-soft">
-                  {SITE.email}
-                </a>
-              </li>
-              <li>
-                <a href={SITE.phoneHref} className="transition-colors hover:text-bronze-soft">
-                  {SITE.phone}
-                </a>
-              </li>
-              <li>
-                <a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-bronze-soft">
-                  Instagram <span className="text-bone-dim">@{handle}</span>
-                </a>
-              </li>
-              <li>
-                <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-bronze-soft">
-                  LinkedIn
-                </a>
-              </li>
+            <ul className="mt-5 flex flex-col gap-3.5 text-sm text-bone">
+              <FooterContact href={`mailto:${SITE.email}`} icon={<MailIcon size={15} />} className="break-all">
+                {SITE.email}
+              </FooterContact>
+              <FooterContact href={SITE.phoneHref} icon={<PhoneIcon size={15} />}>
+                {SITE.phone}
+              </FooterContact>
+              <FooterContact href={whatsappHref(SITE.whatsapp, UI.contact.whatsappMessage)} icon={<WhatsAppIcon size={15} />} external>
+                {UI.contact.whatsapp}
+              </FooterContact>
+              <FooterContact href={SITE.linkedin} icon={<LinkedInIcon size={15} />} external>
+                {UI.contact.linkedin}
+              </FooterContact>
             </ul>
           </div>
 
           <div className="col-span-2 md:col-span-2">
             <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">{UI.footer.studio}</p>
-            <p className="mt-5 text-sm leading-relaxed text-bone">{SITE.city}</p>
+            <p className="mt-5 flex items-center gap-3 text-sm leading-relaxed text-bone">
+              <PinIcon size={15} className="shrink-0 text-bronze-soft" />
+              {SITE.city}
+            </p>
             <p className="mt-1 text-sm leading-relaxed text-bone-dim">{UI.footer.studioNote}</p>
           </div>
         </div>
@@ -113,5 +109,32 @@ export default function Footer({ locale }: { locale: Locale }) {
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterContact({
+  href,
+  icon,
+  children,
+  external = false,
+  className = "",
+}: {
+  href: string;
+  icon: ReactNode;
+  children: ReactNode;
+  external?: boolean;
+  className?: string;
+}) {
+  return (
+    <li>
+      <a
+        href={href}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className={`group flex items-center gap-3 transition-colors hover:text-bronze-soft ${className}`}
+      >
+        <span className="shrink-0 text-bronze-soft/80 transition-colors group-hover:text-bronze-soft">{icon}</span>
+        {children}
+      </a>
+    </li>
   );
 }

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-
-const BASE = "https://www.milangems.com";
+import { LOCALES } from "@/i18n/config";
+import { SITE_URL } from "@/lib/site";
 
 /** Both language versions of each page, cross-linked with hreflang. */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -8,13 +8,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "", changeFrequency: "monthly" as const, priority: 1 },
     { path: "/contact", changeFrequency: "yearly" as const, priority: 0.7 },
   ];
+  const lastModified = new Date();
   return pages.flatMap(({ path, changeFrequency, priority }) =>
-    (["it", "en"] as const).map((lang) => ({
-      url: `${BASE}/${lang}${path}`,
-      lastModified: new Date(),
+    LOCALES.map((lang) => ({
+      url: `${SITE_URL}/${lang}${path}`,
+      lastModified,
       changeFrequency,
-      priority,
-      alternates: { languages: { it: `${BASE}/it${path}`, en: `${BASE}/en${path}` } },
+      priority: lang === "it" ? priority : Math.round(priority * 90) / 100,
+      alternates: {
+        languages: Object.fromEntries(LOCALES.map((l) => [l, `${SITE_URL}/${l}${path}`])),
+      },
     }))
   );
 }

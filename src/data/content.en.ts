@@ -14,7 +14,7 @@ const SITE = {
   email: "info@milangems.com",
   phone: "+39 352 024 9244",
   phoneHref: "tel:+393520249244",
-  instagram: "https://instagram.com/milangems",
+  whatsapp: "https://wa.me/393520249244",
   linkedin: "https://linkedin.com/company/milangems",
   city: "Milan, Italy",
 };
@@ -33,9 +33,9 @@ export const en = {
   SITE,
 
   META: {
-    title: "Milan Gems — Iranian Gemstones & Natural Materials for Jewelry Professionals",
+    title: "Milan Gems — Iranian Gemstones for Jewelry Professionals",
     description:
-      "Milan Gems sources Persian turquoise, Iranian agate, garnet, and meteorite for bespoke jewelry ateliers, master jewelers, and professional buyers across Europe. B2B gemstone supply, Milan.",
+      "Persian turquoise, Iranian agate, garnet and meteorite for jewelry ateliers and professional buyers. B2B gemstone sourcing from Milan.",
     keywords: [
       "Iranian gemstones",
       "Persian turquoise",
@@ -50,6 +50,7 @@ export const en = {
     ogDescription:
       "Rare materials, ancient origins, exceptional craft. Selected Iranian gemstones sourced for bespoke jewelry makers and professional buyers.",
     ogLocale: "en_US",
+    ogImageAlt: "Milan Gems — Iranian gemstones and natural materials, Milan. A polished Persian turquoise nodule on dark slate.",
     orgDescription:
       "B2B sourcing of Iranian gemstones and natural materials — Persian turquoise, agate, garnet, and meteorite — for bespoke jewelry ateliers and professional buyers.",
   },
@@ -169,7 +170,7 @@ export const en = {
     sampleBox: {
       image: {
         src: "/assets/cta/photo/sample-box-open.jpg",
-        alt: "An open Milan Gems sample box on a dark marble table holding turquoise, agate, garnet and meteorite specimens",
+        alt: "An open Milan Gems sample box with faceted garnets, turquoise nuggets, a banded agate slice, meteorite fragments and polished agates in black velvet compartments",
         width: 960,
         height: 1200,
       } satisfies MediaAsset,
@@ -204,6 +205,12 @@ export const en = {
   /** Interface labels (buttons, form fields, dialogs, footer headings). */
   UI: {
     homeLabel: "home",
+    notFound: {
+      title: "Page not found",
+      heading: "This page could not be found.",
+      body: "The page you are looking for may have moved. Continue to the collection or get in touch.",
+      home: "Back to the collection",
+    },
     menu: { open: "Open menu", close: "Close menu", label: "Menu", primary: "Primary", mobile: "Mobile" },
     language: { label: "Language", names: { it: "Italiano", en: "English" } },
     sectionProgress: { label: "Section progress", goTo: "Go to" },
@@ -244,7 +251,8 @@ export const en = {
     contact: {
       email: "Email",
       phone: "Phone",
-      instagram: "Instagram",
+      whatsapp: "WhatsApp",
+      whatsappMessage: "Hello Milan Gems, I would like some information about your materials.",
       linkedin: "LinkedIn",
       localTime: "Local time",
     },

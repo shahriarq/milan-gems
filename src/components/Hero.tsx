@@ -157,7 +157,7 @@ export default function Hero() {
             >
               {HERO.line1}
             </span>
-          </span>
+          </span>{" "}
           <span className="overflow-hidden">
             <span
               ref={lineBRef}

@@ -7,6 +7,10 @@ import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { scrollToTarget, setScrollLocked } from "@/lib/scroll";
 import { useContent, useHref, useLocale } from "@/i18n/LocaleProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { MailIcon, PhoneIcon, WhatsAppIcon, whatsappHref } from "./ContactIcons";
+
+const menuIconClass =
+  "flex h-11 w-11 items-center justify-center rounded-full border border-line text-bone-dim transition-colors hover:border-bronze-dim hover:text-bronze-soft";
 
 /**
  * Site header. Transparent and airy over the home hero, then settles into a
@@ -324,12 +328,23 @@ export default function Header() {
           >
             {CTA.sampleBox} →
           </Link>
-          <a href={`mailto:${SITE.email}`} className="mt-3 text-sm text-bone-dim">
-            {SITE.email}
-          </a>
-          <a href={SITE.phoneHref} className="text-sm text-bone-dim">
-            {SITE.phone}
-          </a>
+          <div className="mt-4 flex items-center gap-3">
+            <a href={`mailto:${SITE.email}`} aria-label={`${UI.contact.email}: ${SITE.email}`} className={menuIconClass}>
+              <MailIcon size={17} />
+            </a>
+            <a href={SITE.phoneHref} aria-label={`${UI.contact.phone}: ${SITE.phone}`} className={menuIconClass}>
+              <PhoneIcon size={17} />
+            </a>
+            <a
+              href={whatsappHref(SITE.whatsapp, UI.contact.whatsappMessage)}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={UI.contact.whatsapp}
+              className={menuIconClass}
+            >
+              <WhatsAppIcon size={17} />
+            </a>
+          </div>
           <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bone-dim/70">{SITE.city}</p>
         </div>
       </div>

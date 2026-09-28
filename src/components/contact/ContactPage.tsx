@@ -8,6 +8,7 @@ import type { RequestType } from "@/data/content";
 import { useContent, useLocale } from "@/i18n/LocaleProvider";
 import SampleRequestForm from "../SampleRequestForm";
 import CinematicVideo from "../CinematicVideo";
+import { LinkedInIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon, whatsappHref } from "../ContactIcons";
 
 /**
  * /contact — a cinematic opening (the sample-box film, dimmed), the Sample
@@ -134,28 +135,33 @@ export default function ContactPage() {
             </h2>
             <p className="mt-5 max-w-sm text-base leading-relaxed text-bone-dim">{CONTACT_PAGE.inquiry.body}</p>
 
-            <dl className="mt-12 grid max-w-sm grid-cols-1 gap-7 border-t border-line pt-10">
-              <Detail term={UI.contact.email}>
+            <dl className="mt-12 grid max-w-sm grid-cols-1 gap-6 border-t border-line pt-10">
+              <Detail icon={<MailIcon />} term={UI.contact.email}>
                 <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-bronze-soft">
                   {SITE.email}
                 </a>
               </Detail>
-              <Detail term={UI.contact.phone}>
+              <Detail icon={<PhoneIcon />} term={UI.contact.phone}>
                 <a href={SITE.phoneHref} className="transition-colors hover:text-bronze-soft">
                   {SITE.phone}
                 </a>
               </Detail>
-              <Detail term={UI.contact.instagram}>
-                <a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-bronze-soft">
-                  @{SITE.instagram.split("/").pop()}
+              <Detail icon={<WhatsAppIcon />} term={UI.contact.whatsapp}>
+                <a
+                  href={whatsappHref(SITE.whatsapp, UI.contact.whatsappMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-bronze-soft"
+                >
+                  {SITE.phone}
                 </a>
               </Detail>
-              <Detail term={UI.contact.linkedin}>
+              <Detail icon={<LinkedInIcon />} term={UI.contact.linkedin}>
                 <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-bronze-soft">
                   {SITE.name}
                 </a>
               </Detail>
-              <Detail term={CONTACT_PAGE.details.heading}>
+              <Detail icon={<PinIcon />} term={CONTACT_PAGE.details.heading}>
                 <span className="block">{SITE.city}</span>
                 <MilanTime />
                 <span className="mt-2 block text-sm leading-relaxed text-bone-dim">{CONTACT_PAGE.details.body}</span>
@@ -193,11 +199,16 @@ function CtaButton({ children, onClick, quiet = false }: { children: ReactNode; 
   );
 }
 
-function Detail({ term, children }: { term: string; children: ReactNode }) {
+function Detail({ icon, term, children }: { icon: ReactNode; term: string; children: ReactNode }) {
   return (
-    <div>
-      <dt className="text-[0.62rem] uppercase tracking-[0.24em] text-bone-dim">{term}</dt>
-      <dd className="mt-2 font-serif text-lg text-bone">{children}</dd>
+    <div className="grid grid-cols-[2.5rem_1fr] items-start gap-4">
+      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-bronze-soft">
+        {icon}
+      </span>
+      <div>
+        <dt className="text-[0.62rem] uppercase tracking-[0.24em] text-bone-dim">{term}</dt>
+        <dd className="mt-1.5 font-serif text-lg text-bone">{children}</dd>
+      </div>
     </div>
   );
 }
