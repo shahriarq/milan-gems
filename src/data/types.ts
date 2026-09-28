@@ -44,6 +44,27 @@ export interface VideoAsset {
   isPlaceholder?: boolean;
 }
 
+/**
+ * Specification shown in a showcase piece's detail box. Every field is
+ * optional: anything left empty is displayed as "to be announced", so the
+ * box can go live before the data is final. Values are free text so they
+ * can carry units and currency, e.g. "12.4 ct", "18 × 14 × 6 mm", "€ 1.200".
+ */
+export interface SpecimenFacts {
+  reference?: string;
+  weight?: string;
+  dimensions?: string;
+  price?: string;
+  origin?: string;
+  treatment?: string;
+  availability?: string;
+}
+
+export interface ShowcaseItem {
+  image: MediaAsset;
+  facts: SpecimenFacts;
+}
+
 export interface StoneSpecimen {
   id: string;
   name: string;
@@ -84,8 +105,9 @@ export interface StoneMaterial {
   heroImage: MediaAsset;
   /**
    * Two vertical (4:5) photographs shown side by side right after the
-   * chapter's opening shot — a swipeable slider on mobile.
+   * chapter's opening shot — a swipeable slider on mobile. Each opens a
+   * detail box with that piece's specification.
    */
-  showcase: [MediaAsset, MediaAsset];
+  showcase: [ShowcaseItem, ShowcaseItem];
   specimens: StoneSpecimen[];
 }

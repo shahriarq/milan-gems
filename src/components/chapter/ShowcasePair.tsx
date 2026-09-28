@@ -3,22 +3,27 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import type { MediaAsset } from "@/data/types";
+import { useContent } from "@/i18n/LocaleProvider";
+import type { StoneMaterial } from "@/data/types";
+import SpecimenDialog from "./SpecimenDialog";
 
 interface ShowcasePairProps {
-  images: [MediaAsset, MediaAsset];
-  label: string;
+  material: StoneMaterial;
 }
 
 /**
  * Two vertical photographs following a chapter's opening shot. Side by side
  * on larger screens (staggered reveal + slow inner drift); a swipeable,
- * snap-scrolling slider with position dots on mobile.
+ * snap-scrolling slider with position markers on mobile. Each photograph
+ * opens that piece's detail box; a small "Details" mark signals it.
  */
-export default function ShowcasePair({ images, label }: ShowcasePairProps) {
+export default function ShowcasePair({ material }: ShowcasePairProps) {
+  const { UI } = useContent();
+  const items = material.showcase;
   const wrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useLayoutEffect(() => {
     if (prefersReducedMotion()) return;
@@ -56,7 +61,7 @@ export default function ShowcasePair({ images, label }: ShowcasePairProps) {
   function handleScroll() {
     const track = trackRef.current;
     if (!track) return;
-    const idx = Math.round(track.scrollLeft / (track.scrollWidth / images.length));
+    const idx = Math.round(track.scrollLeft / (track.scrollWidth / items.length));
     if (idx !== active) setActive(idx);
   }
 
@@ -67,6 +72,8 @@ export default function ShowcasePair({ images, label }: ShowcasePairProps) {
     if (child) track.scrollTo({ left: child.offsetLeft - track.offsetLeft, behavior: "smooth" });
   }
 
+  const pieceLabel = (i: number) => `${UI.detail.piece} ${String(i + 1).padStart(2, "0")}`;
+
   return (
     <div ref={wrapRef} className="w-full bg-ink py-10 sm:py-16 lg:py-20">
       <div
@@ -74,39 +81,49 @@ export default function ShowcasePair({ images, label }: ShowcasePairProps) {
         onScroll={handleScroll}
         role="region"
         aria-roledescription="carousel"
-        aria-label={label}
-        className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 sm:mx-auto sm:max-w-7xl sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-10 lg:gap-10 lg:px-16"
+        aria-label={`${material.name} — ${UI.showcase.photos}`}
+        className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 sm:mx-auto sm:grid sm:max-w-7xl sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-10 lg:gap-10 lg:px-16"
       >
-        {images.map((img, i) => (
+        {items.map((item, i) => (
           <figure
-            key={img.src}
+            key={item.image.src}
             data-frame
-            aria-label={`${i + 1} of ${images.length}`}
-            className={`relative aspect-[4/5] w-[84%] shrink-0 snap-center overflow-hidden bg-ink-soft sm:w-auto ${
+            className={`group relative aspect-[4/5] w-[84%] shrink-0 snap-center overflow-hidden bg-ink-soft sm:w-auto ${
               i === 1 ? "sm:mt-24 lg:mt-32" : ""
             }`}
           >
             <div data-inner className="absolute inset-0 will-change-transform">
               <Image
-                src={img.src}
-                alt={img.alt}
+                src={item.image.src}
+                alt={item.image.alt}
                 fill
                 sizes="(min-width: 640px) 50vw, 84vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.035]"
               />
             </div>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,transparent_45%,rgba(7,7,7,0.4)_100%)]" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+
+            <button
+              type="button"
+              onClick={() => setOpenIndex(i)}
+              aria-haspopup="dialog"
+              aria-label={`${UI.showcase.viewDetails} ${material.name} — ${pieceLabel(i)}`}
+              className="absolute inset-0 z-10 cursor-pointer focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-8 focus-visible:outline-bronze-soft"
+            >
+              <DetailsMark label={UI.showcase.details} />
+            </button>
           </figure>
         ))}
       </div>
 
       <div className="mt-6 flex justify-center gap-3 sm:hidden">
-        {images.map((_, i) => (
+        {items.map((_, i) => (
           <button
             key={i}
             type="button"
             onClick={() => goTo(i)}
-            aria-label={`Show image ${i + 1}`}
+            aria-label={`${UI.showcase.showImage} ${i + 1}`}
             aria-current={active === i}
             className="py-3"
           >
@@ -116,6 +133,46 @@ export default function ShowcasePair({ images, label }: ShowcasePairProps) {
           </button>
         ))}
       </div>
+
+      {openIndex !== null && (
+        <SpecimenDialog
+          material={material}
+          items={items}
+          index={openIndex}
+          onClose={() => setOpenIndex(null)}
+          onNavigate={setOpenIndex}
+        />
+      )}
     </div>
+  );
+}
+
+/**
+ * The "there is more here" mark: a hairline circle with a plus, breathing
+ * with a slow halo. On hover (mouse) the label slides out and the plus
+ * turns; on touch screens the label is always shown.
+ */
+function DetailsMark({ label }: { label: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="absolute bottom-4 right-4 flex items-center gap-3 sm:bottom-5 sm:right-5"
+    >
+      <span className="translate-x-2 text-[0.62rem] uppercase tracking-[0.28em] text-bone opacity-0 transition-all duration-500 [text-shadow:0_1px_10px_rgba(0,0,0,0.9)] group-hover:translate-x-0 group-hover:opacity-100 pointer-coarse:translate-x-0 pointer-coarse:opacity-100">
+        {label}
+      </span>
+      <span className="relative flex h-10 w-10 items-center justify-center">
+        <span className="details-halo absolute inset-0 rounded-full border border-bronze-soft/60" />
+        <span className="absolute inset-0 rounded-full border border-bone/35 bg-ink/45 backdrop-blur-md transition-colors duration-500 group-hover:border-bronze-soft group-hover:bg-ink/65" />
+        <svg
+          viewBox="0 0 24 24"
+          width="14"
+          height="14"
+          className="relative text-bone transition-transform duration-500 group-hover:rotate-90 group-hover:text-bronze-soft"
+        >
+          <path d="M12 5 V19 M5 12 H19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        </svg>
+      </span>
+    </span>
   );
 }

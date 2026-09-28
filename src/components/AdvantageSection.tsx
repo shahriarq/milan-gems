@@ -2,9 +2,10 @@
 
 import { useLayoutEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { ADVANTAGE } from "@/data/content";
+import { useContent } from "@/i18n/LocaleProvider";
 
 export default function AdvantageSection() {
+  const { ADVANTAGE } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
   const itemsRef = useRef<Array<HTMLLIElement | null>>([]);
 

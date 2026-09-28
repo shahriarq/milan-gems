@@ -2,12 +2,13 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { B2B_CTA, CLOSING_FILM, CLOSING_SEQUENCE, CTA } from "@/data/content";
+import { useContent } from "@/i18n/LocaleProvider";
 import SampleRequestForm from "./SampleRequestForm";
 import SmartLink from "./SmartLink";
 import CinematicVideo from "./CinematicVideo";
 
 export default function B2BCTA() {
+  const { B2B_CTA, CLOSING_FILM, CLOSING_SEQUENCE, CTA } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
   const bgImageRef = useRef<HTMLDivElement>(null);
   const statementRef = useRef<HTMLDivElement>(null);
@@ -139,7 +140,7 @@ export default function B2BCTA() {
             href="/contact#inquiry"
             className="mt-6 text-[0.68rem] uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-bronze-soft"
           >
-            or {CTA.inquiry}
+            {CTA.or} {CTA.inquiry}
           </SmartLink>
         )}
 

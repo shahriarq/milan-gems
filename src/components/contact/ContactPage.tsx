@@ -4,7 +4,8 @@ import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "re
 import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { scrollToTarget } from "@/lib/scroll";
-import { CLOSING_FILM, CONTACT_PAGE, CTA, SITE, type RequestType } from "@/data/content";
+import type { RequestType } from "@/data/content";
+import { useContent, useLocale } from "@/i18n/LocaleProvider";
 import SampleRequestForm from "../SampleRequestForm";
 import CinematicVideo from "../CinematicVideo";
 
@@ -15,6 +16,7 @@ import CinematicVideo from "../CinematicVideo";
  * glide down to it.
  */
 export default function ContactPage() {
+  const { CLOSING_FILM, CONTACT_PAGE, CTA, SITE, UI } = useContent();
   const [requestType, setRequestType] = useState<RequestType>("sample-box");
   const rootRef = useRef<HTMLDivElement>(null);
   const heroMediaRef = useRef<HTMLDivElement>(null);
@@ -54,14 +56,14 @@ export default function ContactPage() {
         <div ref={heroMediaRef} className="absolute inset-0 will-change-transform" aria-hidden="true">
           <CinematicVideo src={CLOSING_FILM.src} poster={CONTACT_PAGE.heroPoster} className="h-full w-full object-cover" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-ink/40" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent via-45% to-ink/30" aria-hidden="true" />
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_55%,transparent_30%,rgba(7,7,7,0.45)_100%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_55%,transparent_40%,rgba(7,7,7,0.35)_100%)]"
           aria-hidden="true"
         />
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-16">
-          <div className="text-scrim inline-block max-w-2xl px-6 py-8 sm:px-10 sm:py-10">
+          <div className="text-scrim-soft inline-block max-w-2xl px-6 py-8 sm:px-10 sm:py-10">
             <p data-hero-line className="text-[0.72rem] uppercase tracking-[0.32em] text-bronze-soft">
               {CONTACT_PAGE.kicker}
             </p>
@@ -133,17 +135,22 @@ export default function ContactPage() {
             <p className="mt-5 max-w-sm text-base leading-relaxed text-bone-dim">{CONTACT_PAGE.inquiry.body}</p>
 
             <dl className="mt-12 grid max-w-sm grid-cols-1 gap-7 border-t border-line pt-10">
-              <Detail term="Email">
+              <Detail term={UI.contact.email}>
                 <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-bronze-soft">
                   {SITE.email}
                 </a>
               </Detail>
-              <Detail term="Instagram">
+              <Detail term={UI.contact.phone}>
+                <a href={SITE.phoneHref} className="transition-colors hover:text-bronze-soft">
+                  {SITE.phone}
+                </a>
+              </Detail>
+              <Detail term={UI.contact.instagram}>
                 <a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-bronze-soft">
                   @{SITE.instagram.split("/").pop()}
                 </a>
               </Detail>
-              <Detail term="LinkedIn">
+              <Detail term={UI.contact.linkedin}>
                 <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-bronze-soft">
                   {SITE.name}
                 </a>
@@ -197,9 +204,11 @@ function Detail({ term, children }: { term: string; children: ReactNode }) {
 
 /** Local time in Milan, rendered after mount to avoid hydration mismatch. */
 function MilanTime() {
+  const locale = useLocale();
+  const { UI } = useContent();
   const [time, setTime] = useState<string | null>(null);
   useEffect(() => {
-    const fmt = new Intl.DateTimeFormat("en-GB", {
+    const fmt = new Intl.DateTimeFormat(locale === "it" ? "it-IT" : "en-GB", {
       timeZone: "Europe/Rome",
       hour: "2-digit",
       minute: "2-digit",
@@ -209,10 +218,10 @@ function MilanTime() {
     tick();
     const t = setInterval(tick, 30_000);
     return () => clearInterval(t);
-  }, []);
+  }, [locale]);
   return (
     <span className="mt-1 block text-sm tracking-[0.08em] text-bone-dim" aria-live="off">
-      {time ? `Local time ${time}` : " "}
+      {time ? `${UI.contact.localTime} ${time}` : "\u00a0"}
     </span>
   );
 }

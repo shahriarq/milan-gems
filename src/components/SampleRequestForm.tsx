@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { CONTACT_FORM_FIELDS, CONTACT_PAGE, CTA, type RequestType } from "@/data/content";
+import type { RequestType } from "@/data/content";
+import { useContent, useLocale } from "@/i18n/LocaleProvider";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
@@ -24,6 +25,8 @@ export default function SampleRequestForm({
   defaultRequestType = "sample-box",
   idPrefix = "req",
 }: SampleRequestFormProps) {
+  const { CONTACT_FORM_FIELDS, CONTACT_PAGE, CTA, UI } = useContent();
+  const locale = useLocale();
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [localType, setLocalType] = useState<RequestType>(defaultRequestType);
@@ -51,6 +54,7 @@ export default function SampleRequestForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           requestType: currentType,
+          locale,
           name: data.get("name"),
           company: data.get("company"),
           email: data.get("email"),
@@ -61,21 +65,20 @@ export default function SampleRequestForm({
         }),
       });
       if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || "Something went wrong. Please try again.");
+        throw new Error(UI.form.genericError);
       }
       setState("success");
       form.reset();
     } catch (err) {
       setState("error");
-      setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setErrorMessage(err instanceof Error ? err.message : UI.form.genericError);
     }
   }
 
   if (state === "success") {
     return (
       <div role="status" className="flex flex-col items-start gap-3 py-6">
-        <span className="text-sm uppercase tracking-[0.18em] text-bronze-soft">Request Received</span>
+        <span className="text-sm uppercase tracking-[0.18em] text-bronze-soft">{UI.form.received}</span>
         <p className="max-w-md text-sm leading-relaxed text-bone-dim">{CONTACT_PAGE.success}</p>
       </div>
     );
@@ -86,7 +89,7 @@ export default function SampleRequestForm({
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-7 text-left sm:grid-cols-2" noValidate>
       <fieldset className="sm:col-span-2">
-        <legend className="mb-3 text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">Request Type</legend>
+        <legend className="mb-3 text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">{UI.form.requestType}</legend>
         <div className="flex flex-wrap gap-3">
           {CONTACT_FORM_FIELDS.requestTypes.map((t) => {
             const checked = currentType === t.value;
@@ -112,13 +115,13 @@ export default function SampleRequestForm({
         </div>
       </fieldset>
 
-      <Field id={id("name")} label="Name" name="name" required autoComplete="name" />
-      <Field id={id("company")} label="Company / Atelier" name="company" required autoComplete="organization" />
-      <Field id={id("email")} label="Email" name="email" type="email" required autoComplete="email" />
-      <Field id={id("country")} label="Country" name="country" required autoComplete="country-name" />
+      <Field id={id("name")} label={UI.form.name} name="name" required autoComplete="name" />
+      <Field id={id("company")} label={UI.form.company} name="company" required autoComplete="organization" />
+      <Field id={id("email")} label={UI.form.email} name="email" type="email" required autoComplete="email" />
+      <Field id={id("country")} label={UI.form.country} name="country" required autoComplete="country-name" />
 
       <fieldset className="sm:col-span-2">
-        <legend className="mb-3 text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">Materials of Interest</legend>
+        <legend className="mb-3 text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">{UI.form.materials}</legend>
         <div className="flex flex-wrap gap-x-6 gap-y-3">
           {CONTACT_FORM_FIELDS.materialsOfInterest.map((m) => (
             <label key={m} className="flex items-center gap-2 text-sm text-bone">
@@ -134,10 +137,10 @@ export default function SampleRequestForm({
         </div>
       </fieldset>
 
-      <Field id={id("quantity")} label="Approximate Quantity" name="quantity" autoComplete="off" />
+      <Field id={id("quantity")} label={UI.form.quantity} name="quantity" autoComplete="off" />
       <div className="sm:col-span-2">
         <label htmlFor={id("message")} className="mb-2 block text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">
-          Message
+          {UI.form.message}
         </label>
         <textarea
           id={id("message")}

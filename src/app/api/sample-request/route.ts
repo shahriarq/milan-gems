@@ -34,6 +34,7 @@ export async function POST(request: Request) {
   // Placeholder: log the submission. Replace with real persistence/notification.
   console.info("[sample-request] received submission", {
     requestType: body.requestType === "b2b-inquiry" ? "b2b-inquiry" : "sample-box",
+    locale: body.locale === "en" ? "en" : "it",
     name: body.name,
     company: body.company,
     email: body.email,

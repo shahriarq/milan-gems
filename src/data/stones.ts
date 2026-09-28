@@ -1,4 +1,5 @@
-import type { StoneMaterial } from "./types";
+import type { StoneMaterial, StoneSlug } from "./types";
+import type { Locale } from "@/i18n/config";
 
 /**
  * All stone/material content lives here. Replace `mainImage` / `gallery` /
@@ -25,16 +26,24 @@ export const STONES: StoneMaterial[] = [
     },
     showcase: [
       {
-        src: "/assets/stones/turquoise/photo/turquoise-showcase-01.jpg",
-        alt: "Natural Persian turquoise cabochons in varied sizes, sky-blue with fine matrix",
-        width: 1200,
-        height: 1500,
+        image: {
+          src: "/assets/stones/turquoise/photo/turquoise-showcase-01.jpg",
+          alt: "Natural Persian turquoise cabochons in varied sizes, sky-blue with fine matrix",
+          width: 1200,
+          height: 1500,
+        },
+        // Fill in when the piece's specification is confirmed.
+        facts: {},
       },
       {
-        src: "/assets/stones/turquoise/photo/turquoise-showcase-02.jpg",
-        alt: "Macro detail of rough Persian turquoise showing blue patches set in pale natural matrix",
-        width: 1200,
-        height: 1500,
+        image: {
+          src: "/assets/stones/turquoise/photo/turquoise-showcase-02.jpg",
+          alt: "Polished Persian turquoise nodule with dark spiderweb matrix on dark slate, studio lighting",
+          width: 1200,
+          height: 1500,
+        },
+        // Fill in when the piece's specification is confirmed.
+        facts: {},
       },
     ],
     specimens: [
@@ -119,16 +128,24 @@ export const STONES: StoneMaterial[] = [
     },
     showcase: [
       {
-        src: "/assets/stones/agate/photo/agate-showcase-01.jpg",
-        alt: "Polished tumbled stones with blue and golden-brown mottled patterning",
-        width: 1200,
-        height: 1500,
+        image: {
+          src: "/assets/stones/agate/photo/agate-showcase-01.jpg",
+          alt: "Polished tumbled stones with blue and golden-brown mottled patterning",
+          width: 1200,
+          height: 1500,
+        },
+        // Fill in when the piece's specification is confirmed.
+        facts: {},
       },
       {
-        src: "/assets/stones/agate/photo/agate-showcase-02.jpg",
-        alt: "Macro of a sliced agate showing concentric orange and white fortification banding",
-        width: 1200,
-        height: 1500,
+        image: {
+          src: "/assets/stones/agate/photo/agate-showcase-02.jpg",
+          alt: "Polished agate with moss-green, amber and translucent banded zones on dark slate, studio lighting",
+          width: 1200,
+          height: 1500,
+        },
+        // Fill in when the piece's specification is confirmed.
+        facts: {},
       },
     ],
     specimens: [
@@ -180,16 +197,24 @@ export const STONES: StoneMaterial[] = [
     },
     showcase: [
       {
-        src: "/assets/stones/garnet/photo/garnet-showcase-01.jpg",
-        alt: "Macro of deep red garnet crystals lining a geode with white quartz edges",
-        width: 1200,
-        height: 1500,
+        image: {
+          src: "/assets/stones/garnet/photo/garnet-showcase-01.jpg",
+          alt: "Macro of deep red garnet crystals lining a geode with white quartz edges",
+          width: 1200,
+          height: 1500,
+        },
+        // Fill in when the piece's specification is confirmed.
+        facts: {},
       },
       {
-        src: "/assets/stones/garnet/photo/garnet-showcase-02.jpg",
-        alt: "Faceted cushion-cut red garnet on dark slate, studio lighting",
-        width: 1200,
-        height: 1500,
+        image: {
+          src: "/assets/stones/garnet/photo/garnet-showcase-02.jpg",
+          alt: "Faceted cushion-cut red garnet on dark slate, studio lighting",
+          width: 1200,
+          height: 1500,
+        },
+        // Fill in when the piece's specification is confirmed.
+        facts: {},
       },
     ],
     specimens: [
@@ -240,16 +265,24 @@ export const STONES: StoneMaterial[] = [
     },
     showcase: [
       {
-        src: "/assets/stones/meteorite/photo/meteorite-showcase-01.jpg",
-        alt: "Meteorite-like specimen with dark crust and golden metallic surface, grey background",
-        width: 1200,
-        height: 1500,
+        image: {
+          src: "/assets/stones/meteorite/photo/meteorite-showcase-01.jpg",
+          alt: "Meteorite-like specimen with dark crust and golden metallic surface, grey background",
+          width: 1200,
+          height: 1500,
+        },
+        // Fill in when the piece's specification is confirmed.
+        facts: {},
       },
       {
-        src: "/assets/stones/meteorite/photo/meteorite-showcase-02.jpg",
-        alt: "Dark pitted meteorite specimen resting in a sample box, macro photograph",
-        width: 1200,
-        height: 1500,
+        image: {
+          src: "/assets/stones/meteorite/photo/meteorite-showcase-02.jpg",
+          alt: "Dark pitted meteorite specimen resting in a sample box, macro photograph",
+          width: 1200,
+          height: 1500,
+        },
+        // Fill in when the piece's specification is confirmed.
+        facts: {},
       },
     ],
     specimens: [
@@ -286,3 +319,104 @@ export const STONES: StoneMaterial[] = [
 ];
 
 export const getStoneBySlug = (slug: string) => STONES.find((s) => s.slug === slug);
+
+/**
+ * Italian text for each material. Only the visible, translatable fields are
+ * listed; images, specimen data and facts are shared with the English base
+ * above, so a spec entered once appears in both languages.
+ */
+interface StoneTranslation {
+  name: string;
+  kicker: string;
+  originSummary: string;
+  description: string[];
+  highlights: string[];
+  heroAlt: string;
+  showcaseAlts: [string, string];
+}
+
+const STONES_IT: Record<StoneSlug, StoneTranslation> = {
+  turquoise: {
+    name: "Turchese Persiano",
+    kicker: "01 — Materiali",
+    originSummary: "Neyshabur, Iran",
+    description: [
+      "Turchese antico da una delle regioni storicamente più importanti al mondo per la sua estrazione, selezionato per il colore distintivo, il carattere e l'individualità naturale.",
+      "Ogni esemplare è valutato per ciò che è — disegno della matrice, tono e struttura variano per natura, e noi presentiamo questa variazione invece di nasconderla.",
+    ],
+    highlights: ["Storica origine di Neyshabur", "Matrice dal disegno distintivo", "Selezionato per montature su misura"],
+    heroAlt:
+      "Un singolo nodulo di turchese persiano naturale con venature scure a ragnatela, Neyshabur, Iran, isolato su fondo scuro",
+    showcaseAlts: [
+      "Cabochon di turchese persiano naturale di varie dimensioni, azzurro cielo con sottile matrice",
+      "Nodulo di turchese persiano lucidato con matrice scura a ragnatela su ardesia scura, luce da studio",
+    ],
+  },
+  agate: {
+    name: "Agata Iraniana",
+    kicker: "02 — Materiali",
+    originSummary: "Giacimenti regionali iraniani",
+    description: [
+      "Agata a bande selezionata per l'unicità del suo disegno naturale — nessuna sezione si ripete e ogni esemplare grezzo porta con sé la propria storia di formazione.",
+      "I toni terrosi e stratificati si prestano sia a montature scultoree sia tradizionali, offrendo ai designer un materiale che mostra la propria storia naturale.",
+    ],
+    highlights: ["Bande naturali, mai uguali", "Gamma di toni terrosi", "Esemplari grezzi e tagliati"],
+    heroAlt: "Esemplari di agata a bande lucidati con stratificazioni minerali naturali e variazioni di colore",
+    showcaseAlts: [
+      "Pietre burattate lucidate con disegni screziati blu e bruno-dorati",
+      "Agata lucidata con zone verde muschio, ambra e bande traslucide su ardesia scura, luce da studio",
+    ],
+  },
+  garnet: {
+    name: "Granato Iraniano",
+    kicker: "03 — Materiali",
+    originSummary: "Giacimenti regionali iraniani",
+    description: [
+      "Granato rosso intenso dal carattere naturale plasmato da pressione e tempo, storicamente legato alla gioielleria e agli ornamenti regali di molte culture.",
+      "Limpidezza e saturazione si adattano sia a montature classiche sia a creazioni contemporanee su misura: un materiale di vera profondità, non di perfezione uniforme.",
+    ],
+    highlights: ["Toni rossi profondi e saturi", "Storico legame con la gioielleria", "Adatto a montature contemporanee"],
+    heroAlt:
+      "Un gruppo di cristalli di granato rosso intenso sulla matrice naturale accanto a un grande granato sfaccettato, fondo scuro",
+    showcaseAlts: [
+      "Macro di cristalli di granato rosso intenso in un geode con bordi di quarzo bianco",
+      "Granato rosso sfaccettato a taglio cuscino su ardesia scura, luce da studio",
+    ],
+  },
+  meteorite: {
+    name: "Meteorite",
+    kicker: "04 — Materiali · Sperimentale",
+    originSummary: "Origine extraterrestre",
+    description: [
+      "Presentata come materiale sperimentale e d'avanguardia per designer che lavorano oltre le applicazioni gemmologiche convenzionali — la sua storia precede la terra sotto qualsiasi atelier.",
+      "Provenienza e documentazione di autenticità variano da esemplare a esemplare. Presentiamo ogni pezzo con chiarezza, senza considerare verificata alcuna affermazione in assenza di documentazione.",
+    ],
+    highlights: ["Origine extraterrestre", "Carattere materico insolito", "Per lavori sperimentali e contemporanei"],
+    heroAlt: "Esemplare di meteorite con inclusioni metalliche e superficie naturale incisa",
+    showcaseAlts: [
+      "Esemplare simile a una meteorite con crosta scura e superficie metallica dorata, fondo grigio",
+      "Esemplare di meteorite scuro e bucherellato in un cofanetto campionario, fotografia macro",
+    ],
+  },
+};
+
+/** Materials in the requested language (English is the base). */
+export function getStones(locale: Locale): StoneMaterial[] {
+  if (locale === "en") return STONES;
+  return STONES.map((stone) => {
+    const t = STONES_IT[stone.slug];
+    return {
+      ...stone,
+      name: t.name,
+      kicker: t.kicker,
+      originSummary: t.originSummary,
+      description: t.description,
+      highlights: t.highlights,
+      heroImage: { ...stone.heroImage, alt: t.heroAlt },
+      showcase: [
+        { ...stone.showcase[0], image: { ...stone.showcase[0].image, alt: t.showcaseAlts[0] } },
+        { ...stone.showcase[1], image: { ...stone.showcase[1].image, alt: t.showcaseAlts[1] } },
+      ],
+    };
+  });
+}

@@ -1,13 +1,14 @@
 "use client";
 
-import { STONES } from "@/data/stones";
-import { PORTFOLIO_INTRO } from "@/data/content";
+import { useContent, useStones } from "@/i18n/LocaleProvider";
 import StoneSection from "./StoneSection";
 
 export default function Portfolio() {
+  const { PORTFOLIO_INTRO } = useContent();
+  const STONES = useStones();
   return (
     <div id="collection" className="relative">
-      <div id="materials" className="mx-auto max-w-4xl px-6 pt-28 text-center sm:pt-36 sm:px-10">
+      <div id="materials" className="mx-auto max-w-4xl px-6 pb-24 pt-28 text-center sm:px-10 sm:pb-36 sm:pt-36 lg:pb-44">
         <span className="text-[0.75rem] uppercase tracking-[0.28em] text-gold-soft">
           {PORTFOLIO_INTRO.kicker}
         </span>

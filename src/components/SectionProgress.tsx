@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SECTION_INDEX } from "@/data/content";
+import { useContent } from "@/i18n/LocaleProvider";
 import { scrollToTarget } from "@/lib/scroll";
 
 /**
@@ -11,6 +11,7 @@ import { scrollToTarget } from "@/lib/scroll";
  * the footer. Hidden below xl so it never crowds the photography.
  */
 export default function SectionProgress() {
+  const { SECTION_INDEX, UI } = useContent();
   const [active, setActive] = useState(-1);
   const [visible, setVisible] = useState(false);
 
@@ -40,11 +41,11 @@ export default function SectionProgress() {
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [SECTION_INDEX]);
 
   return (
     <nav
-      aria-label="Section progress"
+      aria-label={UI.sectionProgress.label}
       className={`fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 transition-opacity duration-700 xl:block 2xl:right-10 ${
         visible ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
@@ -58,7 +59,7 @@ export default function SectionProgress() {
                 type="button"
                 onClick={() => scrollToTarget(`#${s.id}`)}
                 aria-current={isActive ? "true" : undefined}
-                aria-label={`Go to ${s.label}`}
+                aria-label={`${UI.sectionProgress.goTo} ${s.label}`}
                 tabIndex={visible ? 0 : -1}
                 className="group flex items-center gap-3 py-0.5"
               >

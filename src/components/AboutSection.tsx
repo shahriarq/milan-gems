@@ -2,9 +2,10 @@
 
 import { useLayoutEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { ABOUT } from "@/data/content";
+import { useContent } from "@/i18n/LocaleProvider";
 
 export default function AboutSection() {
+  const { ABOUT } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {

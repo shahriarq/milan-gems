@@ -18,7 +18,7 @@ export default function StoneSection({ material, index }: StoneSectionProps) {
   return (
     <>
       <ChapterIntro material={material} index={index} />
-      <ShowcasePair images={material.showcase} label={`${material.name} — photographs`} />
+      <ShowcasePair material={material} />
     </>
   );
 }

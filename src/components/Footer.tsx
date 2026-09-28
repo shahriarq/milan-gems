@@ -1,4 +1,5 @@
-import { CTA, FOOTER, NAV_LINKS, SITE } from "@/data/content";
+import { getContent } from "@/data/content";
+import type { Locale } from "@/i18n/config";
 import SmartLink from "./SmartLink";
 
 /**
@@ -6,7 +7,8 @@ import SmartLink from "./SmartLink";
  * Milan) above a full-width MILAN GEMS wordmark set like a jeweller's
  * hallmark, then a single hairline legal line.
  */
-export default function Footer() {
+export default function Footer({ locale }: { locale: Locale }) {
+  const { CTA, NAV_LINKS, SITE, UI } = getContent(locale);
   const year = new Date().getFullYear();
   const handle = SITE.instagram.split("/").pop();
 
@@ -15,11 +17,11 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 pt-20 sm:px-10 sm:pt-24 lg:px-16">
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-12">
           <div className="col-span-2 md:col-span-5">
-            <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bronze-soft">{FOOTER.tagline}</p>
+            <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bronze-soft">{SITE.tagline}</p>
             <p className="mt-5 max-w-xs font-serif text-2xl leading-snug text-bone">
-              From origin to atelier.
+              {UI.footer.line}
             </p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-bone-dim">{FOOTER.body}</p>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-bone-dim">{SITE.description}</p>
             <SmartLink
               href="/contact#inquiry"
               className="group mt-8 inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-bronze-soft hover:text-bronze-soft"
@@ -31,8 +33,8 @@ export default function Footer() {
             </SmartLink>
           </div>
 
-          <nav aria-label="Footer" className="md:col-span-2">
-            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">Navigate</p>
+          <nav aria-label={UI.footer.label} className="md:col-span-2">
+            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">{UI.footer.navigate}</p>
             <ul className="mt-5 flex flex-col gap-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -45,11 +47,16 @@ export default function Footer() {
           </nav>
 
           <div className="md:col-span-3">
-            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">Contact</p>
+            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">{UI.footer.contact}</p>
             <ul className="mt-5 flex flex-col gap-3 text-sm text-bone">
               <li>
                 <a href={`mailto:${SITE.email}`} className="break-all transition-colors hover:text-bronze-soft">
                   {SITE.email}
+                </a>
+              </li>
+              <li>
+                <a href={SITE.phoneHref} className="transition-colors hover:text-bronze-soft">
+                  {SITE.phone}
                 </a>
               </li>
               <li>
@@ -66,9 +73,9 @@ export default function Footer() {
           </div>
 
           <div className="col-span-2 md:col-span-2">
-            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">Studio</p>
+            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">{UI.footer.studio}</p>
             <p className="mt-5 text-sm leading-relaxed text-bone">{SITE.city}</p>
-            <p className="mt-1 text-sm leading-relaxed text-bone-dim">B2B, by request</p>
+            <p className="mt-1 text-sm leading-relaxed text-bone-dim">{UI.footer.studioNote}</p>
           </div>
         </div>
       </div>
@@ -102,7 +109,7 @@ export default function Footer() {
           <p>
             © {year} {SITE.name} · {SITE.city}
           </p>
-          <p>All specifications and availability subject to review.</p>
+          <p>{UI.footer.legal}</p>
         </div>
       </div>
     </footer>

@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CTA } from "@/data/content";
+import { useContent } from "@/i18n/LocaleProvider";
 import { scrollToTarget } from "@/lib/scroll";
 
 /** A small, quiet return-to-top control that appears after the first screen. */
 export default function BackToTop() {
+  const { CTA } = useContent();
   const [show, setShow] = useState(false);
 
   useEffect(() => {

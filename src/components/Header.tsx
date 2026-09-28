@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { scrollToTarget, setScrollLocked } from "@/lib/scroll";
-import { CTA, NAV_LINKS, SITE } from "@/data/content";
+import { useContent, useHref, useLocale } from "@/i18n/LocaleProvider";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 /**
  * Site header. Transparent and airy over the home hero, then settles into a
@@ -20,7 +21,11 @@ import { CTA, NAV_LINKS, SITE } from "@/data/content";
  */
 export default function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const locale = useLocale();
+  const toHref = useHref();
+  const { CTA, NAV_LINKS, SITE, UI } = useContent();
+  const homePath = `/${locale}`;
+  const isHome = pathname === homePath;
 
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
@@ -165,7 +170,7 @@ export default function Header() {
       closeMenu();
     }
     const [path, hash] = href.split("#");
-    if (hash && (path || "/") === pathname) {
+    if (hash && path === pathname) {
       e.preventDefault();
       scrollToTarget(`#${hash}`);
     }
@@ -182,7 +187,7 @@ export default function Header() {
     }
   }
 
-  const isActive = (href: string) => href === pathname;
+  const isActive = (href: string) => toHref(href) === pathname;
 
   return (
     <>
@@ -194,21 +199,21 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link
             ref={logoRef}
-            href="/"
+            href={homePath}
             onClick={handleLogoClick}
-            aria-label={`${SITE.name} — home`}
+            aria-label={`${SITE.name} — ${UI.homeLabel}`}
             className="font-serif text-[0.95rem] tracking-[0.32em] text-bone/90 transition-colors hover:text-bronze-soft sm:text-base"
             style={{ transformOrigin: "left center" }}
           >
             {SITE.name.toUpperCase()}
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-10 md:flex">
+          <nav aria-label={UI.menu.primary} className="hidden items-center gap-10 md:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                href={toHref(link.href)}
+                onClick={(e) => handleNavClick(e, toHref(link.href))}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 className={`text-[0.68rem] uppercase tracking-[0.22em] transition-colors duration-300 hover:text-bronze-soft ${
                   isActive(link.href) ? "text-bronze-soft" : "text-bone-dim/90"
@@ -217,6 +222,8 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <span aria-hidden="true" className="h-3 w-px bg-line" />
+            <LanguageSwitcher />
           </nav>
 
           <button
@@ -225,7 +232,7 @@ export default function Header() {
             onClick={() => setIsMenuOpen(true)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
-            aria-label="Open menu"
+            aria-label={UI.menu.open}
             className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[5px] md:hidden"
           >
             <span className="block h-px w-5 bg-bone" />
@@ -250,7 +257,7 @@ export default function Header() {
         ref={menuPanelRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Menu"
+        aria-label={UI.menu.label}
         inert={!isMenuOpen}
         onClick={(e) => {
           // Backdrop click: anything that isn't a link or button closes.
@@ -262,7 +269,7 @@ export default function Header() {
       >
         <div className="flex items-center justify-between px-6 py-5 sm:px-10">
           <Link
-            href="/"
+            href={homePath}
             onClick={handleLogoClick}
             className="font-serif text-[0.95rem] tracking-[0.32em] text-bone/90"
           >
@@ -272,7 +279,7 @@ export default function Header() {
             ref={closeRef}
             type="button"
             onClick={closeMenu}
-            aria-label="Close menu"
+            aria-label={UI.menu.close}
             className="-mr-2 flex h-11 w-11 items-center justify-center text-bone transition-colors hover:text-bronze-soft"
           >
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
@@ -281,15 +288,15 @@ export default function Header() {
           </button>
         </div>
 
-        <nav aria-label="Mobile" className="flex flex-1 flex-col items-center justify-center gap-9">
+        <nav aria-label={UI.menu.mobile} className="flex flex-1 flex-col items-center justify-center gap-9">
           {NAV_LINKS.map((link, i) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={toHref(link.href)}
               ref={(el) => {
                 menuLinksRef.current[i] = el;
               }}
-              onClick={(e) => handleNavClick(e, link.href)}
+              onClick={(e) => handleNavClick(e, toHref(link.href))}
               aria-current={isActive(link.href) ? "page" : undefined}
               className={`font-serif text-3xl transition-colors hover:text-bronze-soft ${
                 isActive(link.href) ? "text-bronze-soft" : "text-bone"
@@ -301,15 +308,27 @@ export default function Header() {
         </nav>
 
         <div className="flex flex-col items-center gap-3 px-6 pb-10 text-center">
+          <div className="mb-5">
+            <LanguageSwitcher
+              size="lg"
+              onSwitch={() => {
+                setScrollLocked(false);
+                closeMenu();
+              }}
+            />
+          </div>
           <Link
-            href="/contact#inquiry"
-            onClick={(e) => handleNavClick(e, "/contact#inquiry")}
+            href={toHref("/contact#inquiry")}
+            onClick={(e) => handleNavClick(e, toHref("/contact#inquiry"))}
             className="border-b border-bronze-dim pb-1.5 text-[0.72rem] uppercase tracking-[0.22em] text-bone"
           >
             {CTA.sampleBox} →
           </Link>
           <a href={`mailto:${SITE.email}`} className="mt-3 text-sm text-bone-dim">
             {SITE.email}
+          </a>
+          <a href={SITE.phoneHref} className="text-sm text-bone-dim">
+            {SITE.phone}
           </a>
           <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bone-dim/70">{SITE.city}</p>
         </div>

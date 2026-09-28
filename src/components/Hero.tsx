@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { HERO } from "@/data/content";
+import { useContent } from "@/i18n/LocaleProvider";
 import { scrollToTarget } from "@/lib/scroll";
 import CinematicVideo from "./CinematicVideo";
 
@@ -14,6 +14,7 @@ import CinematicVideo from "./CinematicVideo";
  * is the material itself.
  */
 export default function Hero() {
+  const { HERO } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
   const mediaScaleRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<HTMLDivElement>(null);
