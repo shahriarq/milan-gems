@@ -19,10 +19,9 @@ export const STONES: StoneMaterial[] = [
     highlights: ["Historic Neyshabur origin", "Distinctive matrix patterning", "Selected for bespoke settings"],
     heroImage: {
       src: "/assets/stones/turquoise/photo/turquoise-hero.jpg",
-      alt: "Natural Persian turquoise cabochons with dark brown spiderweb matrix veining, Neyshabur, Iran",
+      alt: "A single natural Persian turquoise nodule with dark spiderweb matrix veining, Neyshabur, Iran, isolated on a dark studio background",
       width: 1600,
       height: 2000,
-      isPlaceholder: true,
     },
     specimens: [
       {
@@ -37,10 +36,9 @@ export const STONES: StoneMaterial[] = [
         documentation: "available-on-request",
         mainImage: {
           src: "/assets/stones/turquoise/photo/turquoise-specimen-01-main.jpg",
-          alt: "Persian turquoise cabochon specimen, Neyshabur origin, natural matrix and polished surface",
+          alt: "Persian turquoise nodule specimen, Neyshabur origin, natural matrix and polished surface",
           width: 1200,
           height: 1200,
-          isPlaceholder: true,
         },
         gallery: [
           {
@@ -48,14 +46,12 @@ export const STONES: StoneMaterial[] = [
             alt: "Close-up detail of Persian turquoise matrix veining and surface texture",
             width: 1200,
             height: 1200,
-            isPlaceholder: true,
           },
           {
             src: "/assets/stones/turquoise/photo/turquoise-specimen-01-detail-b.jpg",
             alt: "Persian turquoise specimen detail showing natural color variation and veining",
             width: 1200,
             height: 1200,
-            isPlaceholder: true,
           },
         ],
         notes: "Specification pending verification. Placeholder specimen for layout purposes only.",
@@ -150,10 +146,9 @@ export const STONES: StoneMaterial[] = [
     highlights: ["Deep, saturated red tones", "Historic jewelry association", "Suited to contemporary settings"],
     heroImage: {
       src: "/assets/stones/garnet/photo/garnet-hero.jpg",
-      alt: "Deep red garnet crystal cluster with natural faceting and quartz matrix",
+      alt: "A deep red garnet crystal cluster on its natural matrix beside a large faceted garnet gem, dark studio background",
       width: 1600,
       height: 2000,
-      isPlaceholder: true,
     },
     specimens: [
       {
@@ -168,18 +163,16 @@ export const STONES: StoneMaterial[] = [
         documentation: "available-on-request",
         mainImage: {
           src: "/assets/stones/garnet/photo/garnet-specimen-01-main.jpg",
-          alt: "Faceted transparent Iranian garnet specimen, deep saturated red tone",
+          alt: "Faceted transparent Iranian garnet specimen beside its natural crystal cluster, deep saturated red tone",
           width: 1200,
           height: 1200,
-          isPlaceholder: true,
         },
         gallery: [
           {
             src: "/assets/stones/garnet/photo/garnet-specimen-01-detail-a.jpg",
-            alt: "Close-up detail of garnet crystal facets and natural clarity",
+            alt: "Close-up macro detail of garnet crystal facets on quartz matrix, natural clarity and formation",
             width: 1200,
             height: 1200,
-            isPlaceholder: true,
           },
         ],
       },

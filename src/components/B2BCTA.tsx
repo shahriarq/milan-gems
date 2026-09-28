@@ -1,9 +1,8 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState, type FormEvent } from "react";
-import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { B2B_CTA, CLOSING_SEQUENCE, CONTACT_FORM_FIELDS, HERO } from "@/data/content";
+import { B2B_CTA, CLOSING_FILM, CLOSING_SEQUENCE, CONTACT_FORM_FIELDS } from "@/data/content";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
@@ -124,12 +123,23 @@ export default function B2BCTA() {
       aria-labelledby="cta-heading"
       className="relative flex w-full flex-col items-center overflow-hidden bg-ink py-28 sm:py-36"
     >
-      {/* The final scene: a dimmed reprise of the opening material, dark and
-          quiet, so the closing moment feels like it belongs to the same
-          film rather than dropping into a flat contact form. */}
+      {/* The final scene: a dimmed reprise of the brand film — the sample
+          box opening, then macro cuts of the material — so the closing
+          moment feels like it belongs to the same film rather than
+          dropping into a flat contact form. Trimmed before its own
+          title card so it never duplicates the copy below it. */}
       <div className="absolute inset-0" aria-hidden="true">
         <div ref={bgImageRef} className="absolute inset-0 opacity-[0.22] will-change-transform">
-          <Image src={HERO.media.src} alt="" fill sizes="100vw" className="object-cover" />
+          <video
+            className="h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={CLOSING_FILM.poster}
+          >
+            <source src={CLOSING_FILM.src} type="video/mp4" />
+          </video>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/85 to-ink" />
         <div className="grain absolute inset-0" />

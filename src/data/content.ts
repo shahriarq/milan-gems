@@ -32,18 +32,28 @@ export const HERO = {
   scrollCue: "Scroll to Explore",
   media: {
     src: "/assets/stones/hero/photo/hero-cinematic.jpg",
-    alt: "Natural Persian turquoise cabochons with dark matrix veining, macro photograph",
+    alt: "A single natural Persian turquoise nodule with dark spiderweb matrix veining, isolated on a dark studio background, macro photograph",
     width: 1920,
     height: 2400,
-    isPlaceholder: true,
   } satisfies MediaAsset,
   video: {
     src: "/assets/stones/hero/photo/hero-cinematic.mp4",
     poster: "/assets/stones/hero/photo/hero-cinematic.jpg",
-    alt: "Slow cinematic zoom across natural Persian turquoise specimens under studio light",
-    isPlaceholder: true,
+    alt: "A single natural Persian turquoise nodule slowly rotating under studio light against a dark background",
   } satisfies VideoAsset,
 };
+
+/**
+ * Background film for the closing sequence (B2BCTA) — a short brand film
+ * (a leather sample box opening to reveal stones, then macro cuts of the
+ * agate, meteorite, and garnet material) trimmed to end before its own
+ * baked-in title card, so it never duplicates the on-page closing copy.
+ */
+export const CLOSING_FILM = {
+  src: "/assets/cta/photo/cta-brand-film.mp4",
+  poster: "/assets/cta/photo/cta-brand-film-poster.jpg",
+  alt: "A sample box of Iranian gemstones opening on a dark marble table, followed by macro details of agate, meteorite, and garnet specimens",
+} satisfies VideoAsset;
 
 export const ABOUT = {
   kicker: "About",
