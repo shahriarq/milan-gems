@@ -92,6 +92,7 @@ export default function ChapterIntro({ material, index }: ChapterIntroProps) {
             sizes="100vw"
             priority={index === 0}
             className="object-cover"
+            style={material.heroImage.focus ? { objectPosition: material.heroImage.focus } : undefined}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-ink from-0% via-ink/25 via-40% to-transparent" />

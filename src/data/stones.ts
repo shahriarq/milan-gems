@@ -121,10 +121,9 @@ export const STONES: StoneMaterial[] = [
     highlights: ["Natural banding, no two alike", "Earthy tonal range", "Rough & cut specimens available"],
     heroImage: {
       src: "/assets/stones/agate/photo/agate-hero.jpg",
-      alt: "Polished banded agate specimens showing natural mineral layering and color variation",
-      width: 1600,
-      height: 2000,
-      isPlaceholder: true,
+      alt: "Polished tumbled agates in deep blue, teal and amber with golden veining, laid out on black",
+      width: 1920,
+      height: 815,
     },
     showcase: [
       {
@@ -258,10 +257,11 @@ export const STONES: StoneMaterial[] = [
     isExperimental: true,
     heroImage: {
       src: "/assets/stones/meteorite/photo/meteorite-hero.jpg",
-      alt: "Meteorite specimen with metallic mineral inclusions and etched natural surface",
-      width: 1600,
-      height: 2000,
-      isPlaceholder: true,
+      alt: "Three meteorite specimens on a dark shelf, the rightmost cut to show olivine crystals set in metal",
+      width: 1920,
+      height: 1072,
+      // Keep the cut, olivine-rich specimen in frame on narrow (portrait) screens.
+      focus: "86% 50%",
     },
     showcase: [
       {
@@ -361,7 +361,7 @@ const STONES_IT: Record<StoneSlug, StoneTranslation> = {
       "I toni terrosi e stratificati si prestano sia a montature scultoree sia tradizionali, offrendo ai designer un materiale che mostra la propria storia naturale.",
     ],
     highlights: ["Bande naturali, mai uguali", "Gamma di toni terrosi", "Esemplari grezzi e tagliati"],
-    heroAlt: "Esemplari di agata a bande lucidati con stratificazioni minerali naturali e variazioni di colore",
+    heroAlt: "Agate burattate lucidate in blu profondo, verde acqua e ambra con venature dorate, disposte su fondo nero",
     showcaseAlts: [
       "Pietre burattate lucidate con disegni screziati blu e bruno-dorati",
       "Agata lucidata con zone verde muschio, ambra e bande traslucide su ardesia scura, luce da studio",
@@ -392,7 +392,7 @@ const STONES_IT: Record<StoneSlug, StoneTranslation> = {
       "Provenienza e documentazione di autenticità variano da esemplare a esemplare. Presentiamo ogni pezzo con chiarezza, senza considerare verificata alcuna affermazione in assenza di documentazione.",
     ],
     highlights: ["Origine extraterrestre", "Carattere materico insolito", "Per lavori sperimentali e contemporanei"],
-    heroAlt: "Esemplare di meteorite con inclusioni metalliche e superficie naturale incisa",
+    heroAlt: "Tre esemplari di meteorite su una mensola scura, quello a destra tagliato a mostrare cristalli di olivina nel metallo",
     showcaseAlts: [
       "Esemplare simile a una meteorite con crosta scura e superficie metallica dorata, fondo grigio",
       "Esemplare di meteorite scuro e bucherellato in un cofanetto campionario, fotografia macro",

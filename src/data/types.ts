@@ -35,6 +35,12 @@ export interface MediaAsset {
   height: number;
   /** Marks the file as a placeholder to be replaced with real photography. */
   isPlaceholder?: boolean;
+  /**
+   * Focal point kept in view when the image is cropped to fill a frame of
+   * a different shape (CSS object-position, e.g. "85% 50%"). Defaults to
+   * the center.
+   */
+  focus?: string;
 }
 
 export interface VideoAsset {
