@@ -193,3 +193,16 @@ html {
   opacity: 0.8;
   transition-duration: 90ms;
 }
+
+/*
+ * Hero intro elements start hidden in the server-rendered HTML so they never
+ * flash at full opacity before GSAP takes over (which would otherwise show
+ * the text block for a moment, then hide it, then fade it in). Only when
+ * scripting is available — without JS the hero simply stays visible. GSAP's
+ * inline opacity overrides this once the intro runs.
+ */
+@media (scripting: enabled) {
+  .hero-reveal {
+    opacity: 0;
+  }
+}

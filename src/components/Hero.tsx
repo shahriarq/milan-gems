@@ -39,7 +39,7 @@ export default function Hero() {
       if (reduced) {
         gsap.set([mediaScaleRef.current, ...textEls, cueRef.current], {
           opacity: 1,
-          clearProps: "all",
+          clearProps: "transform",
         });
         return;
       }
@@ -111,7 +111,7 @@ export default function Hero() {
     >
       <div
         ref={mediaScaleRef}
-        className="absolute inset-0 will-change-transform"
+        className="hero-reveal absolute inset-0 will-change-transform"
       >
         {HERO.video.src ? (
           <CinematicVideo src={HERO.video.src} poster={HERO.video.poster} className="h-full w-full object-cover" />
@@ -144,7 +144,7 @@ export default function Hero() {
         ref={contentRef}
         className="relative z-10 flex flex-col items-center px-8 py-10 text-center sm:px-14 sm:py-12 text-scrim"
       >
-        <div ref={markRef} className="overflow-hidden">
+        <div ref={markRef} className="hero-reveal overflow-hidden">
           <span className="block font-serif text-[0.95rem] uppercase tracking-[0.4em] text-bone sm:text-base">
             {HERO.eyebrow}
           </span>
@@ -154,7 +154,7 @@ export default function Hero() {
           <span className="overflow-hidden">
             <span
               ref={lineARef}
-              className="block font-serif text-2xl uppercase leading-tight tracking-[0.1em] sm:tracking-[0.07em] md:tracking-[0.05em] text-bone sm:text-3xl md:text-4xl"
+              className="hero-reveal block font-serif text-2xl uppercase leading-tight tracking-[0.1em] sm:tracking-[0.07em] md:tracking-[0.05em] text-bone sm:text-3xl md:text-4xl"
             >
               {HERO.line1}
             </span>
@@ -162,7 +162,7 @@ export default function Hero() {
           <span className="overflow-hidden">
             <span
               ref={lineBRef}
-              className="block font-serif text-2xl uppercase leading-tight tracking-[0.1em] sm:tracking-[0.07em] md:tracking-[0.05em] text-bronze-soft sm:text-3xl md:text-4xl"
+              className="hero-reveal block font-serif text-2xl uppercase leading-tight tracking-[0.1em] sm:tracking-[0.07em] md:tracking-[0.05em] text-bronze-soft sm:text-3xl md:text-4xl"
             >
               {HERO.line2}
             </span>
@@ -171,7 +171,7 @@ export default function Hero() {
 
         <p
           ref={taglineRef}
-          className="mt-6 max-w-xs text-balance font-serif text-sm italic leading-relaxed text-bone-dim sm:max-w-sm sm:text-base"
+          className="hero-reveal mt-6 max-w-xs text-balance font-serif text-sm italic leading-relaxed text-bone-dim sm:max-w-sm sm:text-base"
         >
           {HERO.tagline}
         </p>
@@ -181,7 +181,7 @@ export default function Hero() {
         ref={cueWrapRef}
         className="absolute bottom-9 left-1/2 z-10 -translate-x-1/2"
       >
-        <div ref={cueRef}>
+        <div ref={cueRef} className="hero-reveal">
           <a
             href={`#${anchor("collection")}`}
             onClick={(e) => {
