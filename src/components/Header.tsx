@@ -84,8 +84,10 @@ export default function Header() {
     gsap.to(logoRef.current, { scale: isSolid ? 0.92 : 1, duration, ease: "power3.out", overwrite: "auto" });
   }, [isSolid]);
 
-  // Initial closed state, set imperatively (a JSX style would be re-applied on
-  // every re-render). The links' hidden pose is set once here — never on open —
+  // Initial closed state. The panel is also clipped by a static class so the
+  // server-rendered HTML never flashes it before hydration; GSAP's inline
+  // clip-path then takes over (a JSX style would be re-applied on every
+  // re-render). The links' hidden pose is set once here — never on open —
   // so reopening mid-close continues from wherever they currently are.
   useLayoutEffect(() => {
     if (menuPanelRef.current) gsap.set(menuPanelRef.current, { clipPath: "inset(0% 0% 100% 0%)" });
@@ -270,7 +272,7 @@ export default function Header() {
           // Backdrop click: anything that isn't a link or button closes.
           if (!(e.target as HTMLElement).closest("a, button")) closeMenu();
         }}
-        className={`fixed inset-0 z-[60] flex flex-col bg-ink md:hidden ${
+        className={`fixed inset-0 z-[60] flex flex-col bg-ink [clip-path:inset(0_0_100%_0)] md:hidden ${
           isMenuOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
       >
