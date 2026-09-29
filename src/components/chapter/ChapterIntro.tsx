@@ -117,7 +117,7 @@ export default function ChapterIntro({ material, index }: ChapterIntroProps) {
 
           <h2
             id={`${material.slug}-heading`}
-            className="mt-3 font-serif text-4xl leading-[1.05] text-bone sm:text-5xl md:text-6xl"
+            className="mt-3 font-serif tracking-[-0.01em] md:tracking-[-0.02em] text-4xl leading-[1.05] text-bone sm:text-5xl md:text-6xl"
           >
             {material.name}
           </h2>
@@ -147,13 +147,13 @@ export default function ChapterIntro({ material, index }: ChapterIntroProps) {
           <dl className="mt-6 grid max-w-lg grid-cols-2 gap-x-6 gap-y-3 border-t border-bone/10 pt-4 sm:grid-cols-3">
             {material.story.facts.map((f) => (
               <div key={f.label}>
-                <dt className="text-[0.6rem] uppercase tracking-[0.22em] text-bone-dim/80">{f.label}</dt>
+                <dt className="text-[0.7rem] uppercase tracking-[0.22em] text-bone-dim">{f.label}</dt>
                 <dd className="mt-1 text-[0.8rem] leading-snug text-bone">{f.value}</dd>
               </div>
             ))}
             {material.coordinates && (
               <div>
-                <dt className="text-[0.6rem] uppercase tracking-[0.22em] text-bone-dim/80">{UI.chapter.coordinates}</dt>
+                <dt className="text-[0.7rem] uppercase tracking-[0.22em] text-bone-dim">{UI.chapter.coordinates}</dt>
                 <dd className="mt-1 font-serif text-[0.85rem] leading-snug tracking-[0.04em] text-bone">
                   {material.coordinates.lat}
                   <br />

@@ -52,8 +52,8 @@ export default function LanguageSwitcher({ size = "sm", onSwitch }: { size?: "sm
             onClick={() => choose(l)}
             aria-pressed={l === locale}
             aria-label={UI.language.names[l]}
-            className={`uppercase transition-colors duration-300 ${
-              size === "lg" ? "px-1 py-2 text-sm tracking-[0.28em]" : "px-0.5 py-1 text-[0.66rem] tracking-[0.22em]"
+            className={`press uppercase transition-colors duration-300 ${
+              size === "lg" ? "px-1 py-2 text-sm tracking-[0.28em]" : "px-0.5 py-1 text-[0.7rem] tracking-[0.22em]"
             } ${l === locale ? "text-bronze-soft" : "text-bone-dim hover:text-bone"}`}
           >
             {l}

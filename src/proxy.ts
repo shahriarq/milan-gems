@@ -51,7 +51,13 @@ export function proxy(request: NextRequest) {
   const locale = pickLocale(request);
   const url = request.nextUrl.clone();
   url.pathname = canonicalPathFor(locale, pathname) ?? (pathname === "/" ? pagePath("home", locale) : `/${locale}${pathname}`);
-  return NextResponse.redirect(url);
+  // The target depends on the visitor's cookie / Accept-Language, so browsers
+  // and CDNs must never reuse this redirect for someone else (or for the same
+  // person after they switch language).
+  const res = NextResponse.redirect(url);
+  res.headers.set("Cache-Control", "private, no-store");
+  res.headers.set("Vary", "Cookie, Accept-Language");
+  return res;
 }
 
 export const config = {

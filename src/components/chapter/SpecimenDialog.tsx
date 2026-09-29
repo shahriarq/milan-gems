@@ -15,6 +15,8 @@ interface SpecimenDialogProps {
   index: number;
   onClose: () => void;
   onNavigate: (index: number) => void;
+  /** Viewport point (px) of the thumbnail that opened the dialog; the panel grows from and returns to it. */
+  origin?: { x: number; y: number };
 }
 
 /** Order of the rows in the specification list. */
@@ -36,12 +38,13 @@ const FACT_ORDER: Array<keyof SpecimenFacts> = [
  * the chapter's pieces. Portaled to <body> so no transformed ancestor can
  * trap its fixed positioning.
  */
-export default function SpecimenDialog({ material, items, index, onClose, onNavigate }: SpecimenDialogProps) {
+export default function SpecimenDialog({ material, items, index, onClose, onNavigate, origin }: SpecimenDialogProps) {
   const { UI, CTA } = useContent();
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
+  const closingRef = useRef(false);
   const item = items[index];
   const lotLabel = `${UI.detail.lot} ${String(index + 1).padStart(2, "0")}`;
 
@@ -57,9 +60,34 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
   }
 
   const go = useCallback(
-    (delta: number) => onNavigate((index + delta + items.length) % items.length),
+    (delta: number) => {
+      if (!closingRef.current) onNavigate((index + delta + items.length) % items.length);
+    },
     [index, items.length, onNavigate]
   );
+
+  /**
+   * Close along the path the dialog arrived on: shrink back toward the
+   * thumbnail, then unmount. Tweens start from the current on-screen values,
+   * so closing mid-open doesn't jump. Reduced motion gets a plain cross-fade.
+   */
+  const requestClose = useCallback(() => {
+    if (closingRef.current) return;
+    closingRef.current = true;
+    const overlay = overlayRef.current;
+    const panel = panelRef.current;
+    if (!overlay || !panel) {
+      onClose();
+      return;
+    }
+    gsap.killTweensOf([overlay, panel]);
+    if (prefersReducedMotion()) {
+      gsap.to(overlay, { opacity: 0, duration: 0.15, ease: "power1.out", onComplete: onClose });
+      return;
+    }
+    gsap.to(panel, { opacity: 0, scale: 0.9, duration: 0.28, ease: "power2.in" });
+    gsap.to(overlay, { opacity: 0, duration: 0.28, ease: "power2.in", onComplete: onClose });
+  }, [onClose]);
 
   // Lock page scroll, remember + restore focus.
   useEffect(() => {
@@ -73,13 +101,22 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
   }, []);
 
   useLayoutEffect(() => {
-    if (prefersReducedMotion()) return;
-    gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" });
-    gsap.fromTo(
-      panelRef.current,
-      { opacity: 0, y: 28, scale: 0.985 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out", delay: 0.05 }
-    );
+    const overlay = overlayRef.current;
+    const panel = panelRef.current;
+    if (!overlay || !panel) return;
+    if (prefersReducedMotion()) {
+      gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" });
+      return;
+    }
+    // Anchor the grow/shrink to the thumbnail that was tapped (spatial
+    // consistency): measure before GSAP applies any transform.
+    if (origin) {
+      const r = panel.getBoundingClientRect();
+      gsap.set(panel, { transformOrigin: `${origin.x - r.left}px ${origin.y - r.top}px` });
+    }
+    gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" });
+    gsap.fromTo(panel, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- plays once, on mount
   }, []);
 
   // Keyboard: Escape, arrows, and a simple focus trap.
@@ -87,7 +124,7 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        onClose();
+        requestClose();
       } else if (e.key === "ArrowRight") {
         go(1);
       } else if (e.key === "ArrowLeft") {
@@ -106,14 +143,14 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go, onClose]);
+  }, [go, requestClose]);
 
   return createPortal(
     <div
       ref={overlayRef}
       className="fixed inset-0 z-[80] flex items-stretch justify-center bg-ink/85 backdrop-blur-md sm:items-center sm:p-6 lg:p-10"
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (e.target === e.currentTarget) requestClose();
       }}
     >
       <div
@@ -127,9 +164,9 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
         <button
           ref={closeRef}
           type="button"
-          onClick={onClose}
+          onClick={requestClose}
           aria-label={UI.detail.close}
-          className="absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-ink/60 text-bone backdrop-blur-md transition-colors hover:text-bronze-soft"
+          className="press absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-ink/60 text-bone backdrop-blur-md transition-colors hover:text-bronze-soft"
         >
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
             <path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
@@ -154,10 +191,10 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
         </div>
 
         <div className="flex flex-col px-6 pb-10 pt-8 sm:px-10 sm:pb-12 sm:pt-12">
-          <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bronze-soft">
+          <p className="text-[0.7rem] uppercase tracking-[0.3em] text-bronze-soft">
             {lotLabel} · {index + 1} / {items.length}
           </p>
-          <h2 id="specimen-title" className="mt-3 font-serif text-3xl leading-tight text-bone sm:text-4xl">
+          <h2 id="specimen-title" className="mt-3 font-serif tracking-[-0.01em] text-3xl leading-tight text-bone sm:text-4xl">
             {material.name}
           </h2>
           <p className="mt-2 flex flex-wrap items-center gap-3 text-[0.72rem] uppercase tracking-[0.18em] text-bone-dim">
@@ -174,8 +211,8 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
               const { text, known } = valueFor(key);
               return (
                 <div key={key} className="flex items-baseline justify-between gap-6 py-3.5">
-                  <dt className="text-[0.66rem] uppercase tracking-[0.2em] text-bone-dim">{UI.detail[key]}</dt>
-                  <dd className={`text-right text-sm ${known ? "text-bone" : "text-bone-dim/70"}`}>{text}</dd>
+                  <dt className="text-[0.7rem] uppercase tracking-[0.2em] text-bone-dim">{UI.detail[key]}</dt>
+                  <dd className={`text-right text-sm ${known ? "text-bone" : "text-bone-dim"}`}>{text}</dd>
                 </div>
               );
             })}
@@ -186,8 +223,8 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
           <div className="mt-auto flex flex-wrap items-center gap-x-8 gap-y-4 pt-10">
             <SmartLink
               href="/contact#inquiry"
-              onClick={onClose}
-              className="group inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone transition-colors hover:border-bronze-soft hover:text-bronze-soft"
+              onClick={requestClose}
+              className="press group inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone transition-colors hover:border-bronze-soft hover:text-bronze-soft"
             >
               {CTA.sampleBox}
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
@@ -208,7 +245,7 @@ function NavButton({ label, onClick, dir }: { label: string; onClick: () => void
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-bone/25 bg-ink/55 text-bone backdrop-blur-md transition-colors hover:border-bronze-soft hover:text-bronze-soft"
+      className="press flex h-10 w-10 items-center justify-center rounded-full border border-bone/25 bg-ink/55 text-bone backdrop-blur-md transition-colors hover:border-bronze-soft hover:text-bronze-soft"
     >
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
         <path

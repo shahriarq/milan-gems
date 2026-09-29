@@ -107,7 +107,7 @@ export default function B2BCTA() {
         <span className="text-[0.72rem] uppercase tracking-[0.32em] text-bronze-soft">
           {CLOSING_SEQUENCE.kicker}
         </span>
-        <p className="mt-6 text-balance font-serif text-4xl leading-[1.1] text-bone sm:text-5xl md:text-6xl">
+        <p className="mt-6 text-balance font-serif tracking-[-0.01em] md:tracking-[-0.02em] text-4xl leading-[1.1] text-bone sm:text-5xl md:text-6xl">
           {CLOSING_SEQUENCE.statement}
         </p>
         {/* Origin → atelier: a small editorial transition, not a new section. */}
@@ -119,7 +119,7 @@ export default function B2BCTA() {
         <span className="text-[0.72rem] uppercase tracking-[0.32em] text-bronze-soft">{B2B_CTA.kicker}</span>
         <h2
           id="cta-heading"
-          className="mt-6 text-balance font-serif text-4xl leading-[1.08] text-bone sm:text-5xl md:text-6xl"
+          className="mt-6 text-balance font-serif tracking-[-0.01em] md:tracking-[-0.02em] text-4xl leading-[1.08] text-bone sm:text-5xl md:text-6xl"
         >
           {B2B_CTA.heading}
         </h2>
@@ -130,7 +130,7 @@ export default function B2BCTA() {
             type="button"
             onClick={() => setFormOpen(true)}
             aria-expanded={formOpen}
-            className="group relative mt-11 inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.78rem] uppercase tracking-[0.2em] text-bone transition-colors duration-400 hover:border-bronze-soft hover:text-bronze-soft"
+            className="press group relative mt-11 inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.78rem] uppercase tracking-[0.2em] text-bone transition-colors duration-400 hover:border-bronze-soft hover:text-bronze-soft"
           >
             {B2B_CTA.ctaLabel}
             <span aria-hidden="true" className="transition-transform duration-400 group-hover:translate-x-1">
@@ -141,7 +141,7 @@ export default function B2BCTA() {
         {!formOpen && (
           <SmartLink
             href="/contact#inquiry"
-            className="mt-6 text-[0.68rem] uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-bronze-soft"
+            className="mt-6 text-[0.7rem] uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-bronze-soft"
           >
             {CTA.or} {CTA.inquiry} →
           </SmartLink>

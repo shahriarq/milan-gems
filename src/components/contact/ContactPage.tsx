@@ -72,7 +72,7 @@ export default function ContactPage() {
             <h1
               id="contact-heading"
               data-hero-line
-              className="mt-5 font-serif text-4xl leading-[1.05] text-bone sm:text-5xl md:text-6xl"
+              className="mt-5 font-serif tracking-[-0.01em] md:tracking-[-0.02em] text-4xl leading-[1.05] text-bone sm:text-5xl md:text-6xl"
             >
               {CONTACT_PAGE.heading}
             </h1>
@@ -103,7 +103,7 @@ export default function ContactPage() {
           </div>
           <div data-reveal>
             <p className="text-[0.72rem] uppercase tracking-[0.3em] text-bronze-soft">{CONTACT_PAGE.sampleBox.kicker}</p>
-            <h2 id="sample-box-heading" className="mt-4 font-serif text-3xl leading-tight text-bone sm:text-4xl md:text-5xl">
+            <h2 id="sample-box-heading" className="mt-4 font-serif tracking-[-0.01em] md:tracking-[-0.02em] text-3xl leading-tight text-bone sm:text-4xl md:text-5xl">
               {CONTACT_PAGE.sampleBox.heading}
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-bone-dim">{CONTACT_PAGE.sampleBox.body}</p>
@@ -131,7 +131,7 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-6 sm:px-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24 lg:px-16">
           <aside data-reveal className="lg:sticky lg:top-28 lg:self-start">
             <p className="text-[0.72rem] uppercase tracking-[0.3em] text-bronze-soft">{CONTACT_PAGE.inquiry.kicker}</p>
-            <h2 id="inquiry-heading" className="mt-4 font-serif text-3xl leading-tight text-bone sm:text-4xl">
+            <h2 id="inquiry-heading" className="mt-4 font-serif tracking-[-0.01em] text-3xl leading-tight text-bone sm:text-4xl">
               {CONTACT_PAGE.inquiry.heading}
             </h2>
             <p className="mt-5 max-w-sm text-base leading-relaxed text-bone-dim">{CONTACT_PAGE.inquiry.body}</p>
@@ -188,7 +188,7 @@ function CtaButton({ children, onClick, quiet = false }: { children: ReactNode; 
     <button
       type="button"
       onClick={onClick}
-      className={`group inline-flex items-center gap-3 border-b pb-2 text-[0.76rem] uppercase tracking-[0.2em] transition-colors duration-300 hover:border-bronze-soft hover:text-bronze-soft ${
+      className={`press group inline-flex items-center gap-3 border-b pb-2 text-[0.76rem] uppercase tracking-[0.2em] transition-colors duration-300 hover:border-bronze-soft hover:text-bronze-soft ${
         quiet ? "border-line text-bone-dim" : "border-bronze-dim text-bone"
       }`}
     >
@@ -207,7 +207,7 @@ function Detail({ icon, term, children }: { icon: ReactNode; term: string; child
         {icon}
       </span>
       <div>
-        <dt className="text-[0.62rem] uppercase tracking-[0.24em] text-bone-dim">{term}</dt>
+        <dt className="text-[0.7rem] uppercase tracking-[0.24em] text-bone-dim">{term}</dt>
         <dd className="mt-1.5 font-serif text-lg text-bone">{children}</dd>
       </div>
     </div>

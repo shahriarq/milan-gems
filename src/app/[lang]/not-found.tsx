@@ -14,12 +14,12 @@ export default function NotFound() {
     <main className="flex flex-1 items-center justify-center px-6 py-40 text-center">
       <div className="max-w-lg">
         <p className="text-[0.72rem] uppercase tracking-[0.32em] text-bronze-soft">404</p>
-        <h1 className="mt-5 font-serif text-4xl leading-tight text-bone sm:text-5xl">{UI.notFound.heading}</h1>
+        <h1 className="mt-5 font-serif tracking-[-0.01em] text-4xl leading-tight text-bone sm:text-5xl">{UI.notFound.heading}</h1>
         <p className="mt-6 text-base leading-relaxed text-bone-dim">{UI.notFound.body}</p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
           <SmartLink
             href="/"
-            className="border-b border-bronze-dim pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone transition-colors hover:border-bronze-soft hover:text-bronze-soft"
+            className="press border-b border-bronze-dim pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone transition-colors hover:border-bronze-soft hover:text-bronze-soft"
           >
             {CTA.explore} →
           </SmartLink>
