@@ -19,14 +19,14 @@ export default function Footer({ locale }: { locale: Locale }) {
       <div className="mx-auto max-w-7xl px-6 pt-20 sm:px-10 sm:pt-24 lg:px-16">
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-12">
           <div className="col-span-2 md:col-span-5">
-            <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bronze-soft">{SITE.tagline}</p>
+            <p className="text-[0.7rem] uppercase tracking-[0.3em] text-bronze-soft">{SITE.tagline}</p>
             <p className="mt-5 max-w-xs font-serif text-2xl leading-snug text-bone">
               {UI.footer.line}
             </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-bone-dim">{SITE.description}</p>
             <SmartLink
               href="/contact#inquiry"
-              className="group mt-8 inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-bronze-soft hover:text-bronze-soft"
+              className="press group mt-8 inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-bronze-soft hover:text-bronze-soft"
             >
               {CTA.sampleBox}
               <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
@@ -36,7 +36,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           </div>
 
           <nav aria-label={UI.footer.label} className="md:col-span-2">
-            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">{UI.footer.navigate}</p>
+            <p className="text-[0.7rem] uppercase tracking-[0.26em] text-bone-dim">{UI.footer.navigate}</p>
             <ul className="mt-5 flex flex-col gap-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -49,7 +49,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           </nav>
 
           <div className="md:col-span-3">
-            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">{UI.footer.contact}</p>
+            <p className="text-[0.7rem] uppercase tracking-[0.26em] text-bone-dim">{UI.footer.contact}</p>
             <ul className="mt-5 flex flex-col gap-3.5 text-sm text-bone">
               <FooterContact href={`mailto:${SITE.email}`} icon={<MailIcon size={15} />} className="break-all">
                 {SITE.email}
@@ -67,7 +67,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           </div>
 
           <div className="col-span-2 md:col-span-2">
-            <p className="text-[0.62rem] uppercase tracking-[0.26em] text-bone-dim/80">{UI.footer.studio}</p>
+            <p className="text-[0.7rem] uppercase tracking-[0.26em] text-bone-dim">{UI.footer.studio}</p>
             <p className="mt-5 flex items-center gap-3 text-sm leading-relaxed text-bone">
               <PinIcon size={15} className="shrink-0 text-bronze-soft" />
               {SITE.city}

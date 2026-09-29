@@ -145,7 +145,7 @@ export default function Hero() {
         className="relative z-10 flex flex-col items-center px-8 py-10 text-center sm:px-14 sm:py-12 text-scrim"
       >
         <div ref={markRef} className="overflow-hidden">
-          <span className="block font-serif text-[0.95rem] uppercase tracking-[0.5em] text-bone sm:text-base">
+          <span className="block font-serif text-[0.95rem] uppercase tracking-[0.4em] text-bone sm:text-base">
             {HERO.eyebrow}
           </span>
         </div>
@@ -154,7 +154,7 @@ export default function Hero() {
           <span className="overflow-hidden">
             <span
               ref={lineARef}
-              className="block font-serif text-2xl uppercase leading-tight tracking-[0.14em] text-bone sm:text-3xl md:text-4xl"
+              className="block font-serif text-2xl uppercase leading-tight tracking-[0.1em] sm:tracking-[0.07em] md:tracking-[0.05em] text-bone sm:text-3xl md:text-4xl"
             >
               {HERO.line1}
             </span>
@@ -162,7 +162,7 @@ export default function Hero() {
           <span className="overflow-hidden">
             <span
               ref={lineBRef}
-              className="block font-serif text-2xl uppercase leading-tight tracking-[0.14em] text-bronze-soft sm:text-3xl md:text-4xl"
+              className="block font-serif text-2xl uppercase leading-tight tracking-[0.1em] sm:tracking-[0.07em] md:tracking-[0.05em] text-bronze-soft sm:text-3xl md:text-4xl"
             >
               {HERO.line2}
             </span>
@@ -181,17 +181,17 @@ export default function Hero() {
         ref={cueWrapRef}
         className="absolute bottom-9 left-1/2 z-10 -translate-x-1/2"
       >
-        <div ref={cueRef} aria-hidden="true">
+        <div ref={cueRef}>
           <a
             href={`#${anchor("collection")}`}
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToTarget(`#${anchor("collection")}`);
-          }}
-            className="flex flex-col items-center gap-3 text-[0.62rem] uppercase tracking-[0.34em] text-bone-dim transition-colors duration-500 hover:text-bronze-soft"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToTarget(`#${anchor("collection")}`);
+            }}
+            className="press flex flex-col items-center gap-3 text-[0.7rem] uppercase tracking-[0.34em] text-bone-dim transition-colors duration-500 hover:text-bronze-soft"
           >
             <span>{HERO.scrollCue}</span>
-            <span className="h-9 w-px bg-gradient-to-b from-bone-dim/70 to-transparent" />
+            <span aria-hidden="true" className="h-9 w-px bg-gradient-to-b from-bone-dim/70 to-transparent" />
           </a>
         </div>
       </div>

@@ -40,7 +40,7 @@ export default function AboutSection() {
     >
       <div className="mx-auto max-w-3xl px-6 text-center sm:px-10">
         <span className="text-[0.75rem] uppercase tracking-[0.28em] text-gold-soft">{ABOUT.kicker}</span>
-        <h2 id="about-heading" className="mt-4 text-balance font-serif text-3xl leading-tight text-bone sm:text-4xl md:text-5xl">
+        <h2 id="about-heading" className="mt-4 text-balance font-serif tracking-[-0.01em] md:tracking-[-0.02em] text-3xl leading-tight text-bone sm:text-4xl md:text-5xl">
           {ABOUT.heading}
         </h2>
         <div className="mx-auto mt-6 flex max-w-2xl flex-col gap-4">
@@ -55,7 +55,7 @@ export default function AboutSection() {
         <div className="mx-auto mt-16 flex max-w-2xl flex-col items-center gap-6 border-t border-line pt-12 text-left sm:flex-row sm:items-start sm:gap-10">
           <div className="flex shrink-0 flex-col items-center gap-3 sm:w-28">
             <IranMark className="h-14 w-16 text-bronze-soft/70" />
-            <span className="text-[0.66rem] uppercase tracking-[0.28em] text-gold-soft">{ABOUT.whyIran.kicker}</span>
+            <span className="text-[0.7rem] uppercase tracking-[0.28em] text-gold-soft">{ABOUT.whyIran.kicker}</span>
           </div>
           <div className="flex flex-col gap-3 text-center sm:text-left">
             {ABOUT.whyIran.body.map((p, i) => (

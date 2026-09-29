@@ -89,14 +89,14 @@ export default function SampleRequestForm({
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-7 text-left sm:grid-cols-2" noValidate>
       <fieldset className="sm:col-span-2">
-        <legend className="mb-3 text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">{UI.form.requestType}</legend>
+        <legend className="mb-3 text-[0.7rem] uppercase tracking-[0.14em] text-bone-dim">{UI.form.requestType}</legend>
         <div className="flex flex-wrap gap-3">
           {CONTACT_FORM_FIELDS.requestTypes.map((t) => {
             const checked = currentType === t.value;
             return (
               <label
                 key={t.value}
-                className={`cursor-pointer border px-4 py-2.5 text-[0.72rem] uppercase tracking-[0.16em] transition-colors duration-300 has-[:focus-visible]:outline has-[:focus-visible]:outline-1 has-[:focus-visible]:outline-bronze-soft ${
+                className={`press cursor-pointer border px-4 py-2.5 text-[0.72rem] uppercase tracking-[0.16em] transition-colors duration-300 has-[:focus-visible]:outline has-[:focus-visible]:outline-1 has-[:focus-visible]:outline-bronze-soft ${
                   checked ? "border-bronze-soft text-bone" : "border-line text-bone-dim hover:border-bronze-dim"
                 }`}
               >
@@ -121,7 +121,7 @@ export default function SampleRequestForm({
       <Field id={id("country")} label={UI.form.country} name="country" required autoComplete="country-name" />
 
       <fieldset className="sm:col-span-2">
-        <legend className="mb-3 text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">{UI.form.materials}</legend>
+        <legend className="mb-3 text-[0.7rem] uppercase tracking-[0.14em] text-bone-dim">{UI.form.materials}</legend>
         <div className="flex flex-wrap gap-x-6 gap-y-3">
           {CONTACT_FORM_FIELDS.materialsOfInterest.map((m) => (
             <label key={m} className="flex items-center gap-2 text-sm text-bone">
@@ -139,7 +139,7 @@ export default function SampleRequestForm({
 
       <Field id={id("quantity")} label={UI.form.quantity} name="quantity" autoComplete="off" />
       <div className="sm:col-span-2">
-        <label htmlFor={id("message")} className="mb-2 block text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">
+        <label htmlFor={id("message")} className="mb-2 block text-[0.7rem] uppercase tracking-[0.14em] text-bone-dim">
           {UI.form.message}
         </label>
         <textarea
@@ -160,7 +160,7 @@ export default function SampleRequestForm({
         <button
           type="submit"
           disabled={state === "submitting"}
-          className="group relative mt-2 inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.78rem] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-bronze-soft hover:text-bronze-soft disabled:opacity-60"
+          className="press group relative mt-2 inline-flex items-center gap-3 border-b border-bronze-dim pb-2 text-[0.78rem] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-bronze-soft hover:text-bronze-soft disabled:opacity-60"
         >
           {state === "submitting" ? CTA.submitting : CTA.submit}
           <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
@@ -189,7 +189,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block text-[0.66rem] uppercase tracking-[0.14em] text-bone-dim">
+      <label htmlFor={id} className="mb-2 block text-[0.7rem] uppercase tracking-[0.14em] text-bone-dim">
         {label}
         {required && <span className="text-bronze-soft"> *</span>}
       </label>

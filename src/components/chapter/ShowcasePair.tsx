@@ -24,6 +24,7 @@ export default function ShowcasePair({ material }: ShowcasePairProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [origin, setOrigin] = useState<{ x: number; y: number } | undefined>();
 
   useLayoutEffect(() => {
     if (prefersReducedMotion()) return;
@@ -106,17 +107,21 @@ export default function ShowcasePair({ material }: ShowcasePairProps) {
 
             {/* Specimen label: lot, material, origin. */}
             <div className="pointer-events-none absolute bottom-4 left-4 z-10 max-w-[60%] sm:bottom-5 sm:left-5 [text-shadow:0_1px_12px_rgba(0,0,0,0.8)]">
-              <p className="text-[0.58rem] uppercase tracking-[0.3em] text-bronze-soft">{lotLabel(i)}</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] text-bronze-soft">{lotLabel(i)}</p>
               <p className="mt-1.5 font-serif text-lg leading-tight text-bone sm:text-xl">{material.name}</p>
-              <p className="mt-1 text-[0.58rem] uppercase tracking-[0.24em] text-bone-dim">{material.originSummary}</p>
-              <p className="mt-3 text-[0.62rem] uppercase tracking-[0.24em] text-bone transition-colors duration-500 group-hover:text-bronze-soft">
+              <p className="mt-1 text-[0.7rem] uppercase tracking-[0.24em] text-bone-dim">{material.originSummary}</p>
+              <p className="mt-3 text-[0.7rem] uppercase tracking-[0.24em] text-bone transition-colors duration-500 group-hover:text-bronze-soft">
                 {CTA.viewSpecimen} <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">→</span>
               </p>
             </div>
 
             <button
               type="button"
-              onClick={() => setOpenIndex(i)}
+              onClick={(e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                setOrigin({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+                setOpenIndex(i);
+              }}
               aria-haspopup="dialog"
               aria-label={`${CTA.viewSpecimen}: ${material.name} — ${lotLabel(i)}`}
               className="absolute inset-0 z-10 cursor-pointer focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-8 focus-visible:outline-bronze-soft"
@@ -135,7 +140,7 @@ export default function ShowcasePair({ material }: ShowcasePairProps) {
             onClick={() => goTo(i)}
             aria-label={`${UI.showcase.showImage} ${i + 1}`}
             aria-current={active === i}
-            className="py-3"
+            className="press py-3"
           >
             <span
               className={`block h-px transition-all duration-500 ${active === i ? "w-10 bg-bronze-soft" : "w-5 bg-bone-dim/50"}`}
@@ -151,6 +156,7 @@ export default function ShowcasePair({ material }: ShowcasePairProps) {
           index={openIndex}
           onClose={() => setOpenIndex(null)}
           onNavigate={setOpenIndex}
+          origin={origin}
         />
       )}
     </div>

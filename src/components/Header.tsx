@@ -10,7 +10,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { MailIcon, PhoneIcon, WhatsAppIcon, whatsappHref } from "./ContactIcons";
 
 const menuIconClass =
-  "flex h-11 w-11 items-center justify-center rounded-full border border-line text-bone-dim transition-colors hover:border-bronze-dim hover:text-bronze-soft";
+  "press flex h-11 w-11 items-center justify-center rounded-full border border-line text-bone-dim transition-colors hover:border-bronze-dim hover:text-bronze-soft";
 
 /**
  * Site header. Transparent and airy over the home hero, then settles into a
@@ -84,10 +84,12 @@ export default function Header() {
     gsap.to(logoRef.current, { scale: isSolid ? 0.92 : 1, duration, ease: "power3.out", overwrite: "auto" });
   }, [isSolid]);
 
-  // Initial closed clip-path, set imperatively (see note in earlier
-  // revisions: a JSX style would be re-applied on every re-render).
+  // Initial closed state, set imperatively (a JSX style would be re-applied on
+  // every re-render). The links' hidden pose is set once here — never on open —
+  // so reopening mid-close continues from wherever they currently are.
   useLayoutEffect(() => {
     if (menuPanelRef.current) gsap.set(menuPanelRef.current, { clipPath: "inset(0% 0% 100% 0%)" });
+    gsap.set(menuLinksRef.current.filter(Boolean), { opacity: 0, y: 18 });
   }, []);
 
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
@@ -114,16 +116,17 @@ export default function Header() {
       return;
     }
 
+    // Every tween below starts from the value currently on screen (no
+    // gsap.set of a start pose), so grabbing the menu mid-flight and
+    // reversing it never jumps. Links leave the way they came in (y: 18).
+    gsap.killTweensOf([panel, ...links]);
     if (isMenuOpen) {
-      gsap.killTweensOf([panel, ...links]);
-      gsap.set(links, { opacity: 0, y: 18 });
       gsap
         .timeline()
         .to(panel, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power4.inOut" })
         .to(links, { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: "power3.out" }, 0.22);
     } else {
-      gsap.killTweensOf([panel, ...links]);
-      gsap.to(links, { opacity: 0, y: -10, duration: 0.2, stagger: 0.02, ease: "power2.in" });
+      gsap.to(links, { opacity: 0, y: 18, duration: 0.2, stagger: 0.02, ease: "power2.in" });
       gsap.to(panel, { clipPath: "inset(0% 0% 100% 0%)", duration: 0.45, ease: "power3.in", delay: 0.08 });
     }
   }, [isMenuOpen]);
@@ -206,7 +209,7 @@ export default function Header() {
             href={homePath}
             onClick={handleLogoClick}
             aria-label={`${SITE.name} — ${UI.homeLabel}`}
-            className="font-serif text-[0.95rem] tracking-[0.32em] text-bone/90 transition-colors hover:text-bronze-soft sm:text-base"
+            className="press font-serif text-[0.95rem] tracking-[0.32em] text-bone/90 transition-colors hover:text-bronze-soft sm:text-base"
             style={{ transformOrigin: "left center" }}
           >
             {SITE.name.toUpperCase()}
@@ -219,7 +222,7 @@ export default function Header() {
                 href={toHref(link.href)}
                 onClick={(e) => handleNavClick(e, toHref(link.href))}
                 aria-current={isActive(link.href) ? "page" : undefined}
-                className={`text-[0.68rem] uppercase tracking-[0.22em] transition-colors duration-300 hover:text-bronze-soft ${
+                className={`press text-[0.7rem] uppercase tracking-[0.22em] transition-colors duration-300 hover:text-bronze-soft ${
                   isActive(link.href) ? "text-bronze-soft" : "text-bone-dim/90"
                 }`}
               >
@@ -237,7 +240,7 @@ export default function Header() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
             aria-label={UI.menu.open}
-            className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[5px] md:hidden"
+            className="press -mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[5px] md:hidden"
           >
             <span className="block h-px w-5 bg-bone" />
             <span className="block h-px w-5 bg-bone" />
@@ -284,7 +287,7 @@ export default function Header() {
             type="button"
             onClick={closeMenu}
             aria-label={UI.menu.close}
-            className="-mr-2 flex h-11 w-11 items-center justify-center text-bone transition-colors hover:text-bronze-soft"
+            className="press -mr-2 flex h-11 w-11 items-center justify-center text-bone transition-colors hover:text-bronze-soft"
           >
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
               <path d="M5 5 L19 19 M19 5 L5 19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
@@ -302,7 +305,7 @@ export default function Header() {
               }}
               onClick={(e) => handleNavClick(e, toHref(link.href))}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className={`font-serif text-3xl transition-colors hover:text-bronze-soft ${
+              className={`press font-serif text-3xl transition-colors hover:text-bronze-soft ${
                 isActive(link.href) ? "text-bronze-soft" : "text-bone"
               }`}
             >
@@ -324,7 +327,7 @@ export default function Header() {
           <Link
             href={toHref("/contact#inquiry")}
             onClick={(e) => handleNavClick(e, toHref("/contact#inquiry"))}
-            className="border-b border-bronze-dim pb-1.5 text-[0.72rem] uppercase tracking-[0.22em] text-bone"
+            className="press border-b border-bronze-dim pb-1.5 text-[0.72rem] uppercase tracking-[0.22em] text-bone"
           >
             {CTA.sampleBox} →
           </Link>
@@ -345,7 +348,7 @@ export default function Header() {
               <WhatsAppIcon size={17} />
             </a>
           </div>
-          <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bone-dim/70">{SITE.city}</p>
+          <p className="text-[0.7rem] uppercase tracking-[0.3em] text-bone-dim">{SITE.city}</p>
         </div>
       </div>
     </>

@@ -13,7 +13,7 @@ export default function Portfolio() {
         <span className="text-[0.75rem] uppercase tracking-[0.28em] text-gold-soft">
           {PORTFOLIO_INTRO.kicker}
         </span>
-        <h2 className="mt-4 text-balance font-serif text-3xl leading-tight text-bone sm:text-4xl md:text-5xl">
+        <h2 className="mt-4 text-balance font-serif tracking-[-0.01em] md:tracking-[-0.02em] text-3xl leading-tight text-bone sm:text-4xl md:text-5xl">
           {PORTFOLIO_INTRO.heading}
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-bone-dim">

@@ -176,3 +176,20 @@ html {
     opacity: 0;
   }
 }
+
+/*
+ * Press feedback: controls respond the instant a finger/pointer goes down and
+ * ease back on release. Uses the individual `scale` property so it composes
+ * with GSAP-driven `transform`s. Unlayered on purpose — it must win over the
+ * per-element `transition-*` utilities so `scale`/`opacity` are transitioned
+ * (transform is deliberately left out: GSAP owns it).
+ */
+.press {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, scale,
+    translate, box-shadow;
+}
+.press:active {
+  scale: 0.97;
+  opacity: 0.8;
+  transition-duration: 90ms;
+}

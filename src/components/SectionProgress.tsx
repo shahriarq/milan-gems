@@ -67,7 +67,7 @@ export default function SectionProgress() {
                 className="group flex items-center gap-3 py-0.5"
               >
                 <span
-                  className={`text-[0.58rem] uppercase tracking-[0.26em] transition-all duration-500 [text-shadow:0_1px_10px_rgba(0,0,0,0.95)] ${
+                  className={`text-[0.7rem] uppercase tracking-[0.26em] transition-all duration-500 [text-shadow:0_1px_10px_rgba(0,0,0,0.95)] ${
                     isActive
                       ? "translate-x-0 text-bronze-soft opacity-100"
                       : "translate-x-1 text-bone-dim opacity-0 group-hover:translate-x-0 group-hover:opacity-100"

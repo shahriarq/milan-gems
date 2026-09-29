@@ -39,7 +39,7 @@ export default function OriginRoute({ originLabel, origin, destinationLabel, des
     <div ref={wrapRef} className="mt-8 flex w-full max-w-md items-center gap-4 sm:gap-6">
       <div className="flex flex-col items-center gap-2">
         <IranMark className="h-9 w-10 text-bronze-soft/80" />
-        <span className="text-[0.58rem] uppercase tracking-[0.3em] text-bone-dim/70">{originLabel}</span>
+        <span className="text-[0.7rem] uppercase tracking-[0.3em] text-bone-dim">{originLabel}</span>
         <span className="text-sm uppercase tracking-[0.34em] text-bone">{origin}</span>
       </div>
 
@@ -57,7 +57,7 @@ export default function OriginRoute({ originLabel, origin, destinationLabel, des
         <span className="flex h-9 items-end font-serif text-2xl leading-none text-bronze-soft/80" aria-hidden="true">
           M
         </span>
-        <span className="text-[0.58rem] uppercase tracking-[0.3em] text-bone-dim/70">{destinationLabel}</span>
+        <span className="text-[0.7rem] uppercase tracking-[0.3em] text-bone-dim">{destinationLabel}</span>
         <span className="text-sm uppercase tracking-[0.34em] text-bone">{destination}</span>
       </div>
     </div>
