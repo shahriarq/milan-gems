@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { useContent } from "@/i18n/LocaleProvider";
+import { useContent, useAnchors } from "@/i18n/LocaleProvider";
 import { scrollToTarget } from "@/lib/scroll";
 import CinematicVideo from "./CinematicVideo";
 
@@ -14,6 +14,7 @@ import CinematicVideo from "./CinematicVideo";
  * is the material itself.
  */
 export default function Hero() {
+  const { anchor } = useAnchors();
   const { HERO } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
   const mediaScaleRef = useRef<HTMLDivElement>(null);
@@ -182,10 +183,10 @@ export default function Hero() {
       >
         <div ref={cueRef} aria-hidden="true">
           <a
-            href="#collection"
+            href={`#${anchor("collection")}`}
           onClick={(e) => {
             e.preventDefault();
-            scrollToTarget("#collection");
+            scrollToTarget(`#${anchor("collection")}`);
           }}
             className="flex flex-col items-center gap-3 text-[0.62rem] uppercase tracking-[0.34em] text-bone-dim transition-colors duration-500 hover:text-bronze-soft"
           >

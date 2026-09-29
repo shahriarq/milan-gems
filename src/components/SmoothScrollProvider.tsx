@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import Lenis from "lenis";
+import { usePathname } from "next/navigation";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 import { registerLenis } from "@/lib/scroll";
 
@@ -48,6 +49,40 @@ export default function SmoothScrollProvider({ children }: { children: ReactNode
       lenisRef.current = null;
     };
   }, []);
+
+  // On every page change: cancel any smooth scroll still in flight (it
+  // would otherwise keep writing the old target over the new page), then
+  // land on the URL's #section once the new page has laid out — twice,
+  // since images and animated sections can still shift the layout.
+  const pathname = usePathname();
+  const firstRender = useRef(true);
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    const lenis = lenisRef.current;
+    lenis?.scrollTo(window.scrollY, { immediate: true, force: true });
+    const land = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      const el = id ? document.getElementById(id) : null;
+      if (!el) return;
+      if (lenis) {
+        // Re-measure first: Lenis still holds the previous page's height and
+        // would clamp the jump to it.
+        lenis.resize();
+        lenis.scrollTo(el, { immediate: true, force: true });
+      }
+      else el.scrollIntoView();
+      ScrollTrigger.refresh();
+    };
+    const raf = requestAnimationFrame(land);
+    const late = window.setTimeout(land, 450);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(late);
+    };
+  }, [pathname]);
 
   return <>{children}</>;
 }

@@ -21,13 +21,13 @@ export default function NotFound() {
             href="/"
             className="border-b border-bronze-dim pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone transition-colors hover:border-bronze-soft hover:text-bronze-soft"
           >
-            {UI.notFound.home} →
+            {CTA.explore} →
           </SmartLink>
           <SmartLink
             href="/contact"
             className="border-b border-line pb-2 text-[0.72rem] uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-bronze-soft"
           >
-            {CTA.contact}
+            {CTA.contact} →
           </SmartLink>
         </div>
       </div>

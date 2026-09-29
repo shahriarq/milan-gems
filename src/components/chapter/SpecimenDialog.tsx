@@ -19,12 +19,12 @@ interface SpecimenDialogProps {
 
 /** Order of the rows in the specification list. */
 const FACT_ORDER: Array<keyof SpecimenFacts> = [
-  "reference",
+  "origin",
+  "form",
   "weight",
   "dimensions",
-  "origin",
   "treatment",
-  "availability",
+  "documentation",
   "price",
 ];
 
@@ -43,7 +43,18 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
   const closeRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const item = items[index];
-  const pieceLabel = `${UI.detail.piece} ${String(index + 1).padStart(2, "0")}`;
+  const lotLabel = `${UI.detail.lot} ${String(index + 1).padStart(2, "0")}`;
+
+  /** Never invent a value: known facts, otherwise an honest placeholder. */
+  function valueFor(key: keyof SpecimenFacts): { text: string; known: boolean } {
+    const v = item.facts[key];
+    if (v) return { text: v, known: true };
+    if (key === "origin" && !material.isExperimental) return { text: material.originSummary, known: true };
+    if (key === "documentation")
+      return { text: material.isExperimental ? UI.detail.perSpecimen : UI.detail.onRequest, known: false };
+    if (key === "price") return { text: UI.detail.onRequest, known: false };
+    return { text: "—", known: false };
+  }
 
   const go = useCallback(
     (delta: number) => onNavigate((index + delta + items.length) % items.length),
@@ -143,23 +154,28 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
         </div>
 
         <div className="flex flex-col px-6 pb-10 pt-8 sm:px-10 sm:pb-12 sm:pt-12">
-          <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bronze-soft">{material.name}</p>
+          <p className="text-[0.66rem] uppercase tracking-[0.3em] text-bronze-soft">
+            {lotLabel} · {index + 1} / {items.length}
+          </p>
           <h2 id="specimen-title" className="mt-3 font-serif text-3xl leading-tight text-bone sm:text-4xl">
-            {pieceLabel}
+            {material.name}
           </h2>
-          <p className="mt-2 text-[0.72rem] uppercase tracking-[0.18em] text-bone-dim">
-            {index + 1} {UI.showcase.of} {items.length}
+          <p className="mt-2 flex flex-wrap items-center gap-3 text-[0.72rem] uppercase tracking-[0.18em] text-bone-dim">
+            {material.persianName && (
+              <span lang="fa" dir="rtl" className="font-persian text-sm font-light normal-case tracking-normal text-bronze-soft/80">
+                {material.persianName}
+              </span>
+            )}
+            <span>{material.originSummary}</span>
           </p>
 
           <dl className="mt-8 divide-y divide-line border-y border-line">
             {FACT_ORDER.map((key) => {
-              const value = item.facts[key];
+              const { text, known } = valueFor(key);
               return (
                 <div key={key} className="flex items-baseline justify-between gap-6 py-3.5">
                   <dt className="text-[0.66rem] uppercase tracking-[0.2em] text-bone-dim">{UI.detail[key]}</dt>
-                  <dd className={`text-right text-sm ${value ? "text-bone" : "font-serif italic text-bone-dim/70"}`}>
-                    {value ?? UI.detail.pending}
-                  </dd>
+                  <dd className={`text-right text-sm ${known ? "text-bone" : "text-bone-dim/70"}`}>{text}</dd>
                 </div>
               );
             })}

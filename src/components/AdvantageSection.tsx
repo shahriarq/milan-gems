@@ -2,9 +2,10 @@
 
 import { useLayoutEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { useContent } from "@/i18n/LocaleProvider";
+import { useContent, useAnchors } from "@/i18n/LocaleProvider";
 
 export default function AdvantageSection() {
+  const { anchorProps } = useAnchors();
   const { ADVANTAGE } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
   const itemsRef = useRef<Array<HTMLLIElement | null>>([]);
@@ -35,7 +36,7 @@ export default function AdvantageSection() {
   return (
     <section
       ref={sectionRef}
-      id="advantage"
+      {...anchorProps("b2b")}
       aria-labelledby="advantage-heading"
       className="border-t border-line-soft bg-ink-soft py-24 sm:py-32"
     >

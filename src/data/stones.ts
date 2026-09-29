@@ -11,13 +11,19 @@ export const STONES: StoneMaterial[] = [
     slug: "turquoise",
     name: "Persian Turquoise",
     kicker: "01 — Materials",
-    originSummary: "Neyshabur, Iran",
+    originSummary: "Neyshabur · Iran",
     visualTreatment: "macro",
-    description: [
-      "Ancient turquoise from one of the world's historically significant turquoise-producing regions, selected for its distinctive color, character, and natural individuality.",
-      "Each specimen is evaluated on its own terms — matrix pattern, tone, and structure vary by nature, and we present that variation rather than smooth it away.",
-    ],
-    highlights: ["Historic Neyshabur origin", "Distinctive matrix patterning", "Selected for bespoke settings"],
+    persianName: "فیروزه",
+    coordinates: { lat: "36° 29′ N", lon: "58° 23′ E" },
+    story: {
+      poeticLine: "Blue born from the mountains of Khorasan.",
+      origin:
+        "Our turquoise comes from Neyshabur, in Iran’s Razavi Khorasan province. The mine lies in the volcanic rock of the mountains north-west of the city, and has supplied most of Iran’s turquoise for more than a thousand years.",
+      facts: [
+        { label: "Mineral", value: "Hydrated copper aluminum phosphate" },
+        { label: "Hardness", value: "5–6 Mohs" },
+      ],
+    },
     heroImage: {
       src: "/assets/stones/turquoise/photo/turquoise-hero.jpg",
       alt: "A single natural Persian turquoise nodule with dark spiderweb matrix veining, Neyshabur, Iran, isolated on a dark studio background",
@@ -112,13 +118,19 @@ export const STONES: StoneMaterial[] = [
     slug: "agate",
     name: "Iranian Agate",
     kicker: "02 — Materials",
-    originSummary: "Regional Iranian deposits",
+    originSummary: "Iran",
     visualTreatment: "horizontal",
-    description: [
-      "Banded agate selected for the individuality of its natural patterning — no two cross-sections repeat, and each rough specimen carries its own record of formation.",
-      "Earthy, layered tones read well in both sculptural and traditional settings, offering designers a material that carries visible natural history.",
-    ],
-    highlights: ["Natural banding, no two alike", "Earthy tonal range", "Rough & cut specimens available"],
+    persianName: "عقیق",
+    story: {
+      poeticLine: "No two lines follow the same path.",
+      origin:
+        "Agate forms slowly inside cavities in volcanic rock, as silica-rich water leaves one fine layer after another. Each band records a change in that water, which is why no two stones share a pattern. Ours is selected from Iranian deposits for the character of its banding.",
+      facts: [
+        { label: "Mineral", value: "Banded chalcedony (microcrystalline quartz)" },
+        { label: "Hardness", value: "6.5–7 Mohs" },
+        { label: "Origin", value: "Iran" },
+      ],
+    },
     heroImage: {
       src: "/assets/stones/agate/photo/agate-hero.jpg",
       alt: "Polished tumbled agates in deep blue, teal and amber with golden veining, laid out on black",
@@ -181,13 +193,19 @@ export const STONES: StoneMaterial[] = [
     slug: "garnet",
     name: "Iranian Garnet",
     kicker: "03 — Materials",
-    originSummary: "Regional Iranian deposits",
+    originSummary: "Iran",
     visualTreatment: "macro",
-    description: [
-      "Deep red garnet with a natural character shaped by pressure and time, historically associated with jewelry and royal adornment across many cultures.",
-      "Its clarity and saturation suit both classical settings and contemporary bespoke work, offering a material with genuine depth rather than uniform perfection.",
-    ],
-    highlights: ["Deep, saturated red tones", "Historic jewelry association", "Suited to contemporary settings"],
+    persianName: "گارنت",
+    story: {
+      poeticLine: "Pressure became color.",
+      origin:
+        "Garnet crystallizes deep in the earth, where heat and pressure transform existing rock. Its color comes from the elements locked into the crystal as it grows. Ours is selected from Iranian deposits for depth and saturation of red.",
+      facts: [
+        { label: "Mineral", value: "Garnet group (silicates)" },
+        { label: "Hardness", value: "6.5–7.5 Mohs" },
+        { label: "Origin", value: "Iran" },
+      ],
+    },
     heroImage: {
       src: "/assets/stones/garnet/photo/garnet-hero.jpg",
       alt: "A deep red garnet crystal cluster on its natural matrix beside a large faceted garnet gem, dark studio background",
@@ -248,12 +266,18 @@ export const STONES: StoneMaterial[] = [
     slug: "meteorite",
     name: "Meteorite",
     kicker: "04 — Materials · Experimental",
-    originSummary: "Extraterrestrial origin",
-    description: [
-      "Presented as an experimental, avant-garde material for designers working beyond conventional gemstone applications — its history predates the earth beneath any atelier.",
-      "Provenance and authenticity documentation vary by specimen. We present each piece plainly, without treating any claim as verified unless supporting documentation exists.",
-    ],
-    highlights: ["Extraterrestrial origin", "Unusual material character", "For experimental & contemporary work"],
+    originSummary: "Provenance stated per specimen",
+    persianName: "شهاب‌سنگ",
+    story: {
+      poeticLine: "Before the atelier.\nBefore the city.\nBefore us.",
+      origin:
+        "Meteorites are fragments of other bodies in the solar system that have reached the Earth. We offer them as an experimental material for contemporary design. Classification, provenance and documentation are stated only for individual specimens, and only where verified.",
+      facts: [
+        { label: "Material", value: "Experimental" },
+        { label: "Classification", value: "Stated per specimen" },
+        { label: "Documentation", value: "Only where verified" },
+      ],
+    },
     isExperimental: true,
     heroImage: {
       src: "/assets/stones/meteorite/photo/meteorite-hero.jpg",
@@ -329,8 +353,7 @@ interface StoneTranslation {
   name: string;
   kicker: string;
   originSummary: string;
-  description: string[];
-  highlights: string[];
+  story: StoneMaterial["story"];
   heroAlt: string;
   showcaseAlts: [string, string];
 }
@@ -339,12 +362,16 @@ const STONES_IT: Record<StoneSlug, StoneTranslation> = {
   turquoise: {
     name: "Turchese Persiano",
     kicker: "01 — Materiali",
-    originSummary: "Neyshabur, Iran",
-    description: [
-      "Turchese antico da una delle regioni storicamente più importanti al mondo per la sua estrazione, selezionato per il colore distintivo, il carattere e l'individualità naturale.",
-      "Ogni esemplare è valutato per ciò che è — disegno della matrice, tono e struttura variano per natura, e noi presentiamo questa variazione invece di nasconderla.",
-    ],
-    highlights: ["Storica origine di Neyshabur", "Matrice dal disegno distintivo", "Selezionato per montature su misura"],
+    originSummary: "Neyshabur · Iran",
+    story: {
+      poeticLine: "Un blu nato dalle montagne del Khorasan.",
+      origin:
+        "Il nostro turchese proviene da Neyshabur, nella provincia iraniana del Khorasan Razavi. La miniera si trova nella roccia vulcanica delle montagne a nord-ovest della città e da oltre mille anni fornisce la maggior parte del turchese iraniano.",
+      facts: [
+        { label: "Minerale", value: "Fosfato idrato di rame e alluminio" },
+        { label: "Durezza", value: "5–6 Mohs" },
+      ],
+    },
     heroAlt:
       "Un singolo nodulo di turchese persiano naturale con venature scure a ragnatela, Neyshabur, Iran, isolato su fondo scuro",
     showcaseAlts: [
@@ -355,12 +382,17 @@ const STONES_IT: Record<StoneSlug, StoneTranslation> = {
   agate: {
     name: "Agata Iraniana",
     kicker: "02 — Materiali",
-    originSummary: "Giacimenti regionali iraniani",
-    description: [
-      "Agata a bande selezionata per l'unicità del suo disegno naturale — nessuna sezione si ripete e ogni esemplare grezzo porta con sé la propria storia di formazione.",
-      "I toni terrosi e stratificati si prestano sia a montature scultoree sia tradizionali, offrendo ai designer un materiale che mostra la propria storia naturale.",
-    ],
-    highlights: ["Bande naturali, mai uguali", "Gamma di toni terrosi", "Esemplari grezzi e tagliati"],
+    originSummary: "Iran",
+    story: {
+      poeticLine: "Nessuna linea segue lo stesso percorso.",
+      origin:
+        "L’agata si forma lentamente nelle cavità della roccia vulcanica, dove acque ricche di silice depositano uno strato sottile dopo l’altro. Ogni banda registra un cambiamento di quell’acqua: per questo nessuna pietra ha lo stesso disegno. La nostra è selezionata da giacimenti iraniani per il carattere delle sue bande.",
+      facts: [
+        { label: "Minerale", value: "Calcedonio a bande (quarzo microcristallino)" },
+        { label: "Durezza", value: "6,5–7 Mohs" },
+        { label: "Origine", value: "Iran" },
+      ],
+    },
     heroAlt: "Agate burattate lucidate in blu profondo, verde acqua e ambra con venature dorate, disposte su fondo nero",
     showcaseAlts: [
       "Pietre burattate lucidate con disegni screziati blu e bruno-dorati",
@@ -370,12 +402,17 @@ const STONES_IT: Record<StoneSlug, StoneTranslation> = {
   garnet: {
     name: "Granato Iraniano",
     kicker: "03 — Materiali",
-    originSummary: "Giacimenti regionali iraniani",
-    description: [
-      "Granato rosso intenso dal carattere naturale plasmato da pressione e tempo, storicamente legato alla gioielleria e agli ornamenti regali di molte culture.",
-      "Limpidezza e saturazione si adattano sia a montature classiche sia a creazioni contemporanee su misura: un materiale di vera profondità, non di perfezione uniforme.",
-    ],
-    highlights: ["Toni rossi profondi e saturi", "Storico legame con la gioielleria", "Adatto a montature contemporanee"],
+    originSummary: "Iran",
+    story: {
+      poeticLine: "La pressione è diventata colore.",
+      origin:
+        "Il granato cristallizza in profondità, dove calore e pressione trasformano la roccia esistente. Il suo colore nasce dagli elementi racchiusi nel cristallo durante la crescita. Il nostro è selezionato da giacimenti iraniani per profondità e saturazione del rosso.",
+      facts: [
+        { label: "Minerale", value: "Gruppo dei granati (silicati)" },
+        { label: "Durezza", value: "6,5–7,5 Mohs" },
+        { label: "Origine", value: "Iran" },
+      ],
+    },
     heroAlt:
       "Un gruppo di cristalli di granato rosso intenso sulla matrice naturale accanto a un grande granato sfaccettato, fondo scuro",
     showcaseAlts: [
@@ -386,13 +423,19 @@ const STONES_IT: Record<StoneSlug, StoneTranslation> = {
   meteorite: {
     name: "Meteorite",
     kicker: "04 — Materiali · Sperimentale",
-    originSummary: "Origine extraterrestre",
-    description: [
-      "Presentata come materiale sperimentale e d'avanguardia per designer che lavorano oltre le applicazioni gemmologiche convenzionali — la sua storia precede la terra sotto qualsiasi atelier.",
-      "Provenienza e documentazione di autenticità variano da esemplare a esemplare. Presentiamo ogni pezzo con chiarezza, senza considerare verificata alcuna affermazione in assenza di documentazione.",
-    ],
-    highlights: ["Origine extraterrestre", "Carattere materico insolito", "Per lavori sperimentali e contemporanei"],
-    heroAlt: "Tre esemplari di meteorite su una mensola scura, quello a destra tagliato a mostrare cristalli di olivina nel metallo",
+    originSummary: "Provenienza indicata per esemplare",
+    story: {
+      poeticLine: "Prima dell’atelier.\nPrima della città.\nPrima di noi.",
+      origin:
+        "Le meteoriti sono frammenti di altri corpi del sistema solare giunti sulla Terra. Le proponiamo come materiale sperimentale per il design contemporaneo. Classificazione, provenienza e documentazione sono indicate solo per i singoli esemplari, e solo se verificate.",
+      facts: [
+        { label: "Materiale", value: "Sperimentale" },
+        { label: "Classificazione", value: "Indicata per esemplare" },
+        { label: "Documentazione", value: "Solo se verificata" },
+      ],
+    },
+    heroAlt:
+      "Tre esemplari di meteorite su una mensola scura, quello a destra tagliato a mostrare cristalli di olivina nel metallo",
     showcaseAlts: [
       "Esemplare simile a una meteorite con crosta scura e superficie metallica dorata, fondo grigio",
       "Esemplare di meteorite scuro e bucherellato in un cofanetto campionario, fotografia macro",
@@ -410,8 +453,7 @@ export function getStones(locale: Locale): StoneMaterial[] {
       name: t.name,
       kicker: t.kicker,
       originSummary: t.originSummary,
-      description: t.description,
-      highlights: t.highlights,
+      story: t.story,
       heroImage: { ...stone.heroImage, alt: t.heroAlt },
       showcase: [
         { ...stone.showcase[0], image: { ...stone.showcase[0].image, alt: t.showcaseAlts[0] } },

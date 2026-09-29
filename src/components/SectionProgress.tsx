@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useContent } from "@/i18n/LocaleProvider";
+import { useContent, useLocale } from "@/i18n/LocaleProvider";
 import { scrollToTarget } from "@/lib/scroll";
+import { anchorId, type AnchorKey } from "@/i18n/config";
 
 /**
  * A quiet vertical index on the right edge of wide screens (home page only):
@@ -11,6 +12,8 @@ import { scrollToTarget } from "@/lib/scroll";
  * the footer. Hidden below xl so it never crowds the photography.
  */
 export default function SectionProgress() {
+  const locale = useLocale();
+  const anchor = (key: AnchorKey) => anchorId(key, locale);
   const { SECTION_INDEX, UI } = useContent();
   const [active, setActive] = useState(-1);
   const [visible, setVisible] = useState(false);
@@ -22,7 +25,7 @@ export default function SectionProgress() {
       const vh = window.innerHeight;
       let idx = -1;
       SECTION_INDEX.forEach((s, i) => {
-        const el = document.getElementById(s.id);
+        const el = document.getElementById(anchorId(s.id as AnchorKey, locale));
         if (el && el.getBoundingClientRect().top <= vh * 0.45) idx = i;
       });
       const footer = document.querySelector("footer");
@@ -41,7 +44,7 @@ export default function SectionProgress() {
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [SECTION_INDEX]);
+  }, [SECTION_INDEX, locale]);
 
   return (
     <nav
@@ -57,7 +60,7 @@ export default function SectionProgress() {
             <li key={s.id}>
               <button
                 type="button"
-                onClick={() => scrollToTarget(`#${s.id}`)}
+                onClick={() => scrollToTarget(`#${anchor(s.id as AnchorKey)}`)}
                 aria-current={isActive ? "true" : undefined}
                 aria-label={`${UI.sectionProgress.goTo} ${s.label}`}
                 tabIndex={visible ? 0 : -1}

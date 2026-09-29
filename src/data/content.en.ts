@@ -20,11 +20,13 @@ const SITE = {
 };
 
 const CTA = {
-  sampleBox: "Request a Sample Box",
-  inquiry: "Start a B2B Inquiry",
-  submit: "Send Request",
-  submitting: "Sending…",
+  explore: "Explore Collection",
+  viewSpecimen: "View Specimen",
+  sampleBox: "Request Sample Box",
+  inquiry: "Make an Inquiry",
   contact: "Contact Milan Gems",
+  submit: "Send Inquiry",
+  submitting: "Sending…",
   backToTop: "Back to top",
   or: "or",
 };
@@ -61,7 +63,7 @@ export const en = {
    */
   NAV_LINKS: [
     { label: "Collection", href: "/#collection" },
-    { label: "B2B", href: "/#advantage" },
+    { label: "B2B", href: "/#b2b" },
     { label: "About", href: "/#about" },
     { label: "Contact", href: "/contact" },
   ],
@@ -72,9 +74,9 @@ export const en = {
     { id: "agate", label: "Agate" },
     { id: "garnet", label: "Garnet" },
     { id: "meteorite", label: "Meteorite" },
-    { id: "advantage", label: "B2B" },
+    { id: "b2b", label: "B2B" },
     { id: "about", label: "About" },
-    { id: "contact", label: "Sample Box" },
+    { id: "request", label: "Sample Box" },
   ],
 
   /** One vocabulary for every call to action on the site. */
@@ -85,7 +87,7 @@ export const en = {
     line1: "Iranian Gemstones",
     line2: "Natural Materials",
     tagline: "A private digital collection of rare Iranian materials.",
-    scrollCue: "Scroll to Explore",
+    scrollCue: "Explore Collection",
     media: {
       src: "/assets/stones/hero/photo/hero-cinematic.jpg",
       alt: "A single natural Persian turquoise nodule with dark spiderweb matrix veining, isolated on a dark studio background, macro photograph",
@@ -117,6 +119,13 @@ export const en = {
       "Milan Gems works between origin and atelier — selecting Iranian gemstones and natural materials for jewelry professionals who need consistency, character, and a partner who understands both trade and craft.",
       "We are based in Milan and work with bespoke ateliers, master jewelers, designers, and professional buyers across Europe.",
     ],
+    whyIran: {
+      kicker: "Why Iran",
+      body: [
+        "For centuries, Iran has been a landscape of mineral diversity, natural materials and stone craftsmanship.",
+        "Milan Gems brings selected materials from that origin closer to the atelier.",
+      ],
+    },
   },
 
   ADVANTAGE: {
@@ -147,6 +156,7 @@ export const en = {
     kicker: "The Collection",
     statement: "From Origin to Atelier.",
     city: "Milan",
+    route: { originLabel: "Origin", origin: "Iran", destinationLabel: "Atelier", destination: "Milan" },
     finalStatement: "Milan Gems — where rare Iranian materials begin their journey to the atelier.",
   },
 
@@ -205,36 +215,35 @@ export const en = {
   /** Interface labels (buttons, form fields, dialogs, footer headings). */
   UI: {
     homeLabel: "home",
+    chapter: { coordinates: "Coordinates" },
     notFound: {
       title: "Page not found",
       heading: "This page could not be found.",
       body: "The page you are looking for may have moved. Continue to the collection or get in touch.",
-      home: "Back to the collection",
     },
     menu: { open: "Open menu", close: "Close menu", label: "Menu", primary: "Primary", mobile: "Mobile" },
     language: { label: "Language", names: { it: "Italiano", en: "English" } },
     sectionProgress: { label: "Section progress", goTo: "Go to" },
     showcase: {
       photos: "photographs",
-      details: "Details",
-      viewDetails: "View details of",
       showImage: "Show image",
       of: "of",
     },
     detail: {
-      piece: "Piece",
-      reference: "Reference",
+      lot: "Lot",
+      origin: "Origin",
+      form: "Form",
       weight: "Weight",
       dimensions: "Dimensions",
-      price: "Price",
-      origin: "Origin",
       treatment: "Treatment",
-      availability: "Availability",
-      pending: "To be announced",
-      note: "Full specifications for this piece will be published soon. Contact us for current details and availability.",
-      close: "Close details",
-      previous: "Previous piece",
-      next: "Next piece",
+      documentation: "Documentation",
+      price: "Price",
+      onRequest: "Available upon request",
+      perSpecimen: "Verified per specimen",
+      note: "Values not yet confirmed for this specimen are shown as —. The full specification is available on request.",
+      close: "Close specimen",
+      previous: "Previous specimen",
+      next: "Next specimen",
     },
     form: {
       requestType: "Request Type",

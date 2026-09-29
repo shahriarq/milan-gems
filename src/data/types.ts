@@ -51,19 +51,22 @@ export interface VideoAsset {
 }
 
 /**
- * Specification shown in a showcase piece's detail box. Every field is
- * optional: anything left empty is displayed as "to be announced", so the
- * box can go live before the data is final. Values are free text so they
- * can carry units and currency, e.g. "12.4 ct", "18 × 14 × 6 mm", "€ 1.200".
+ * Specification shown in a showcase specimen's detail view. Every field is
+ * optional and must only be filled with verified values — never invent a
+ * figure. Empty fields display as "—", except documentation and price,
+ * which display as "Available upon request" (meteorite documentation:
+ * "Verified per specimen"). Values are free text so they can carry units
+ * and currency, e.g. "12.4 ct", "18 × 14 × 6 mm", "€ 1.200". Origin
+ * defaults to the material's origin line when left empty.
  */
 export interface SpecimenFacts {
-  reference?: string;
+  origin?: string;
+  form?: string;
   weight?: string;
   dimensions?: string;
-  price?: string;
-  origin?: string;
   treatment?: string;
-  availability?: string;
+  documentation?: string;
+  price?: string;
 }
 
 export interface ShowcaseItem {
@@ -88,6 +91,26 @@ export interface StoneSpecimen {
   notes?: string;
 }
 
+/** One row of technical information, e.g. { label: "Hardness", value: "5–6 Mohs" }. */
+export interface MaterialFact {
+  label: string;
+  value: string;
+}
+
+/**
+ * Editorial structure for every material: the emotional layer first, then
+ * the factual one. Keep the poetic line short and the origin paragraph
+ * factual; never state anything about a specific specimen here.
+ */
+export interface MaterialStory {
+  /** A single short line. Line breaks ("\n") are kept. */
+  poeticLine: string;
+  /** A short, factual origin paragraph. */
+  origin: string;
+  /** General material facts (mineral, hardness, origin). */
+  facts: MaterialFact[];
+}
+
 export interface StoneMaterial {
   slug: StoneSlug;
   /** Display name, e.g. "Persian Turquoise" */
@@ -95,10 +118,15 @@ export interface StoneMaterial {
   /** Short eyebrow/kicker label used above the section heading. */
   kicker: string;
   originSummary: string;
-  /** Longer editorial copy paragraph(s). */
-  description: string[];
-  /** Short highlight phrases (not absolute claims). */
-  highlights: string[];
+  /** The material's name in Persian, shown as a subtle micro-label (e.g. فیروزه). */
+  persianName?: string;
+  /** The three storytelling layers, in reading order. */
+  story: MaterialStory;
+  /**
+   * Verified geographic coordinates of the origin, shown only when known
+   * (e.g. the Neyshabur turquoise mine). Leave undefined otherwise.
+   */
+  coordinates?: { lat: string; lon: string };
   /** Whether this material is framed as experimental/avant-garde (meteorite). */
   isExperimental?: boolean;
   /**

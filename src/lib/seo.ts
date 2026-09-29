@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getContent } from "@/data/content";
-import type { Locale } from "@/i18n/config";
-import { LOCALES } from "@/i18n/config";
+import { LOCALES, pagePath, type Locale, type PageKey } from "@/i18n/config";
 import { SITE_URL, absoluteUrl } from "./site";
 
 /**
@@ -12,20 +11,19 @@ import { SITE_URL, absoluteUrl } from "./site";
  */
 export function pageMetadata({
   lang,
-  path = "",
+  page = "home",
   title,
   description,
 }: {
   lang: Locale;
-  /** Locale-neutral path, e.g. "" for home or "/contact". */
-  path?: string;
+  page?: PageKey;
   title?: string;
   description: string;
 }): Metadata {
   const { META, SITE } = getContent(lang);
-  const url = `/${lang}${path}`;
+  const url = pagePath(page, lang);
   const ogTitle = title ? `${title} — ${SITE.name}` : META.ogTitle;
-  const languages = Object.fromEntries(LOCALES.map((l) => [l, `/${l}${path}`]));
+  const languages = Object.fromEntries(LOCALES.map((l) => [l, pagePath(page, l)]));
   const image = { url: `/og/og-${lang}.jpg`, width: 1200, height: 630, alt: META.ogImageAlt };
 
   return {
@@ -39,7 +37,7 @@ export function pageMetadata({
     },
     alternates: {
       canonical: url,
-      languages: { ...languages, "x-default": `/it${path}` },
+      languages: { ...languages, "x-default": pagePath(page, "it") },
     },
     openGraph: {
       type: "website",
@@ -112,21 +110,21 @@ export function websiteLd(lang: Locale) {
 
 export function webPageLd({
   lang,
-  path = "",
+  page = "home",
   name,
   description,
   type = "WebPage",
 }: {
   lang: Locale;
-  path?: string;
+  page?: PageKey;
   name: string;
   description: string;
   type?: "WebPage" | "ContactPage";
 }) {
   return {
     "@type": type,
-    "@id": `${absoluteUrl(`/${lang}${path}`)}#webpage`,
-    url: absoluteUrl(`/${lang}${path}`),
+    "@id": `${absoluteUrl(pagePath(page, lang))}#webpage`,
+    url: absoluteUrl(pagePath(page, lang)),
     name,
     description,
     inLanguage: lang,

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { scrollToTarget } from "@/lib/scroll";
 import type { RequestType } from "@/data/content";
-import { useContent, useLocale } from "@/i18n/LocaleProvider";
+import { useContent, useLocale, useAnchors } from "@/i18n/LocaleProvider";
 import SampleRequestForm from "../SampleRequestForm";
 import CinematicVideo from "../CinematicVideo";
 import { LinkedInIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon, whatsappHref } from "../ContactIcons";
@@ -17,6 +17,7 @@ import { LinkedInIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon, whatsappHref 
  * glide down to it.
  */
 export default function ContactPage() {
+  const { anchor, anchorProps } = useAnchors();
   const { CLOSING_FILM, CONTACT_PAGE, CTA, SITE, UI } = useContent();
   const [requestType, setRequestType] = useState<RequestType>("sample-box");
   const rootRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ export default function ContactPage() {
 
   function goToForm(type: RequestType) {
     setRequestType(type);
-    scrollToTarget("#inquiry");
+    scrollToTarget(`#${anchor("inquiry")}`);
   }
 
   useLayoutEffect(() => {
@@ -89,7 +90,7 @@ export default function ContactPage() {
       </section>
 
       {/* Sample Box */}
-      <section id="sample-box" aria-labelledby="sample-box-heading" className="bg-ink py-20 sm:py-28 lg:py-36">
+      <section {...anchorProps("sampleBox")} aria-labelledby="sample-box-heading" className="bg-ink py-20 sm:py-28 lg:py-36">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 sm:px-10 md:grid-cols-2 lg:gap-20 lg:px-16">
           <div data-reveal className="relative aspect-[4/5] w-full overflow-hidden bg-ink-soft">
             <Image
@@ -123,7 +124,7 @@ export default function ContactPage() {
 
       {/* Inquiry form + details */}
       <section
-        id="inquiry"
+        {...anchorProps("inquiry")}
         aria-labelledby="inquiry-heading"
         className="border-t border-line bg-ink-soft py-20 sm:py-28 lg:py-32"
       >

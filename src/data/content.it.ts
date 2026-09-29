@@ -7,11 +7,13 @@ import { en } from "./content.en";
  */
 
 const CTA = {
-  sampleBox: "Richiedi un Campionario",
-  inquiry: "Avvia una Richiesta B2B",
-  submit: "Invia Richiesta",
-  submitting: "Invio in corso…",
+  explore: "Esplora la Collezione",
+  viewSpecimen: "Vedi l’Esemplare",
+  sampleBox: "Richiedi il Campionario",
+  inquiry: "Richiedi Informazioni",
   contact: "Contatta Milan Gems",
+  submit: "Invia la Richiesta",
+  submitting: "Invio in corso…",
   backToTop: "Torna su",
   or: "oppure",
 };
@@ -49,7 +51,7 @@ export const it: SiteContent = {
 
   NAV_LINKS: [
     { label: "Collezione", href: "/#collection" },
-    { label: "B2B", href: "/#advantage" },
+    { label: "B2B", href: "/#b2b" },
     { label: "Chi Siamo", href: "/#about" },
     { label: "Contatti", href: "/contact" },
   ],
@@ -59,9 +61,9 @@ export const it: SiteContent = {
     { id: "agate", label: "Agata" },
     { id: "garnet", label: "Granato" },
     { id: "meteorite", label: "Meteorite" },
-    { id: "advantage", label: "B2B" },
+    { id: "b2b", label: "B2B" },
     { id: "about", label: "Chi Siamo" },
-    { id: "contact", label: "Campionario" },
+    { id: "request", label: "Campionario" },
   ],
 
   CTA,
@@ -71,7 +73,7 @@ export const it: SiteContent = {
     line1: "Gemme Iraniane",
     line2: "Materiali Naturali",
     tagline: "Una collezione digitale privata di rari materiali iraniani.",
-    scrollCue: "Scorri per esplorare",
+    scrollCue: "Esplora la Collezione",
     media: {
       ...en.HERO.media,
       alt: "Un singolo nodulo di turchese persiano naturale con venature scure a ragnatela, isolato su fondo scuro, fotografia macro",
@@ -94,6 +96,13 @@ export const it: SiteContent = {
       "Milan Gems lavora tra l'origine e l'atelier — selezionando gemme e materiali naturali iraniani per professionisti della gioielleria che cercano costanza, carattere e un partner che conosca sia il commercio sia il mestiere.",
       "Abbiamo sede a Milano e collaboriamo con atelier su misura, maestri orafi, designer e buyer professionali in tutta Europa.",
     ],
+    whyIran: {
+      kicker: "Perché l’Iran",
+      body: [
+        "Da secoli l’Iran è un paesaggio di diversità minerale, materiali naturali e lavorazione della pietra.",
+        "Milan Gems avvicina all’atelier materiali selezionati da quell’origine.",
+      ],
+    },
   },
 
   ADVANTAGE: {
@@ -124,6 +133,7 @@ export const it: SiteContent = {
     kicker: "La Collezione",
     statement: "Dall'Origine all'Atelier.",
     city: "Milano",
+    route: { originLabel: "Origine", origin: "Iran", destinationLabel: "Atelier", destination: "Milano" },
     finalStatement: "Milan Gems — dove i rari materiali iraniani iniziano il loro viaggio verso l'atelier.",
   },
 
@@ -179,34 +189,33 @@ export const it: SiteContent = {
 
   UI: {
     homeLabel: "home",
+    chapter: { coordinates: "Coordinate" },
     notFound: {
       title: "Pagina non trovata",
       heading: "Questa pagina non esiste.",
       body: "La pagina che cerchi potrebbe essere stata spostata. Torna alla collezione o contattaci.",
-      home: "Torna alla collezione",
     },
     menu: { open: "Apri menu", close: "Chiudi menu", label: "Menu", primary: "Principale", mobile: "Mobile" },
     language: { label: "Lingua", names: { it: "Italiano", en: "English" } },
     sectionProgress: { label: "Avanzamento sezioni", goTo: "Vai a" },
     showcase: {
       photos: "fotografie",
-      details: "Dettagli",
-      viewDetails: "Vedi i dettagli di",
       showImage: "Mostra immagine",
       of: "di",
     },
     detail: {
-      piece: "Esemplare",
-      reference: "Riferimento",
+      lot: "Lotto",
+      origin: "Origine",
+      form: "Forma",
       weight: "Peso",
       dimensions: "Dimensioni",
-      price: "Prezzo",
-      origin: "Origine",
       treatment: "Trattamento",
-      availability: "Disponibilità",
-      pending: "In arrivo",
-      note: "Le specifiche complete di questo esemplare saranno pubblicate a breve. Contattaci per dettagli e disponibilità aggiornati.",
-      close: "Chiudi dettagli",
+      documentation: "Documentazione",
+      price: "Prezzo",
+      onRequest: "Disponibile su richiesta",
+      perSpecimen: "Verificata per esemplare",
+      note: "I valori non ancora confermati per questo esemplare sono indicati con —. La specifica completa è disponibile su richiesta.",
+      close: "Chiudi esemplare",
       previous: "Esemplare precedente",
       next: "Esemplare successivo",
     },

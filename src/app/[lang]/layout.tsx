@@ -11,6 +11,9 @@ import "@fontsource/inter/300.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
+// Persian micro-labels only (فیروزه, عقیق …); the Arabic-script subset is
+// fetched solely on pages that actually render Persian glyphs.
+import "@fontsource/vazirmatn/300.css";
 import "../globals.css";
 import { notFound } from "next/navigation";
 import { getContent } from "@/data/content";

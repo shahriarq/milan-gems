@@ -1,10 +1,19 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { DEFAULT_LOCALE, LOCALES, LOCALE_COOKIE, hasLocale, type Locale } from "./i18n/config";
+import {
+  DEFAULT_LOCALE,
+  LOCALE_COOKIE,
+  canonicalPathFor,
+  hasLocale,
+  pagePath,
+  type Locale,
+} from "./i18n/config";
 
 /**
- * Sends locale-less URLs ("/", "/contact") to their /it or /en version.
- * Order of preference: the visitor's saved choice (cookie set by the
- * language switcher) → the browser's Accept-Language → Italian.
+ * Keeps every URL in its correct, language-specific form:
+ *  - "/", "/contact", "/contatti" (no locale) → the visitor's language,
+ *    picked from their saved choice (cookie) → Accept-Language → Italian;
+ *  - a page slug in the other language ("/it/contact", "/en/contatti") →
+ *    permanent redirect to the right one ("/it/contatti", "/en/contact").
  */
 function pickLocale(request: NextRequest): Locale {
   const saved = request.cookies.get(LOCALE_COOKIE)?.value;
@@ -21,18 +30,27 @@ function pickLocale(request: NextRequest): Locale {
     .sort((a, b) => b.q - a.q);
 
   for (const { lang } of ranked) {
-    if ((LOCALES as readonly string[]).includes(lang)) return lang as Locale;
+    if (hasLocale(lang)) return lang;
   }
   return DEFAULT_LOCALE;
 }
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const hasPrefix = LOCALES.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`));
-  if (hasPrefix) return;
+  const match = pathname.match(/^\/(it|en)(?=\/|$)(.*)$/);
 
+  if (match) {
+    const locale = match[1] as Locale;
+    const fixed = canonicalPathFor(locale, match[2]);
+    if (!fixed) return;
+    const url = request.nextUrl.clone();
+    url.pathname = fixed;
+    return NextResponse.redirect(url, 308);
+  }
+
+  const locale = pickLocale(request);
   const url = request.nextUrl.clone();
-  url.pathname = `/${pickLocale(request)}${pathname === "/" ? "" : pathname}`;
+  url.pathname = canonicalPathFor(locale, pathname) ?? (pathname === "/" ? pagePath("home", locale) : `/${locale}${pathname}`);
   return NextResponse.redirect(url);
 }
 

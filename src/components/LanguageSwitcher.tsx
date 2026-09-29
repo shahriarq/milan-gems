@@ -1,13 +1,26 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { LOCALES, rememberLocale, switchLocalePath, type Locale } from "@/i18n/config";
+import { LOCALES, anchorId, rememberLocale, switchLocalePath, type AnchorKey, type Locale } from "@/i18n/config";
 import { useContent, useLocale } from "@/i18n/LocaleProvider";
 
 /**
- * IT / EN toggle. Keeps the visitor on the same page (and section) in the
- * other language, and remembers the choice in a cookie that the proxy
- * reads on the next visit.
+ * The section the visitor is currently reading: the last tagged section
+ * (data-anchor, see useAnchors) whose top has passed ~35% of the viewport.
+ */
+function currentSection(): AnchorKey | null {
+  const line = window.innerHeight * 0.35;
+  let found: AnchorKey | null = null;
+  document.querySelectorAll<HTMLElement>("[data-anchor]").forEach((el) => {
+    if (el.getBoundingClientRect().top <= line) found = el.dataset.anchor as AnchorKey;
+  });
+  return found;
+}
+
+/**
+ * IT / EN toggle. Opens the same page in the other language — with its
+ * localized URL (/it/contatti ↔ /en/contact) — on the same section, and
+ * remembers the choice in a cookie that the proxy reads on the next visit.
  */
 export default function LanguageSwitcher({ size = "sm", onSwitch }: { size?: "sm" | "lg"; onSwitch?: () => void }) {
   const locale = useLocale();
@@ -19,7 +32,11 @@ export default function LanguageSwitcher({ size = "sm", onSwitch }: { size?: "sm
     if (to === locale) return;
     rememberLocale(to);
     onSwitch?.();
-    router.push(switchLocalePath(pathname, to) + window.location.hash, { scroll: false });
+    const section = window.scrollY > 40 ? currentSection() : null;
+    const target = switchLocalePath(pathname, to, section ? `#${anchorId(section, to)}` : "");
+    // With a section hash, let the router scroll to it (the new language's
+    // copy can be longer or shorter, so the old pixel offset would drift).
+    router.push(target, { scroll: Boolean(section) });
   }
 
   return (

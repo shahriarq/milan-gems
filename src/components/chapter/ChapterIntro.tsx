@@ -1,5 +1,6 @@
 "use client";
 
+import { useAnchors, useContent } from "@/i18n/LocaleProvider";
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
@@ -17,6 +18,8 @@ interface ChapterIntroProps {
  * regions of the photograph.
  */
 export default function ChapterIntro({ material, index }: ChapterIntroProps) {
+  const { anchorProps } = useAnchors();
+  const { UI } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -79,7 +82,7 @@ export default function ChapterIntro({ material, index }: ChapterIntroProps) {
   return (
     <section
       ref={sectionRef}
-      id={material.slug}
+      {...anchorProps(material.slug)}
       aria-labelledby={`${material.slug}-heading`}
       className="relative flex min-h-[100svh] w-full items-end overflow-hidden bg-ink"
     >
@@ -119,9 +122,46 @@ export default function ChapterIntro({ material, index }: ChapterIntroProps) {
             {material.name}
           </h2>
 
-          <p className="mt-3 text-sm uppercase tracking-[0.16em] text-bone-dim">{material.originSummary}</p>
+          {/* Bilingual moment + origin: Persian name, hairline, place. */}
+          <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm uppercase tracking-[0.16em] text-bone-dim">
+            {material.persianName && (
+              <>
+                <span lang="fa" dir="rtl" className="font-persian text-base font-light normal-case tracking-normal text-bronze-soft/80">
+                  {material.persianName}
+                </span>
+                <span aria-hidden="true" className="h-px w-6 bg-bone-dim/40" />
+              </>
+            )}
+            <span>{material.originSummary}</span>
+          </p>
 
-          <p className="mt-6 max-w-lg text-[0.95rem] leading-relaxed text-bone-dim">{material.description[0]}</p>
+          {/* Emotional layer. */}
+          <p className="mt-6 whitespace-pre-line font-serif text-xl italic leading-snug text-bone sm:text-2xl">
+            {material.story.poeticLine}
+          </p>
+
+          {/* Factual layer. */}
+          <p className="mt-4 max-w-lg text-[0.95rem] leading-relaxed text-bone-dim">{material.story.origin}</p>
+
+          {/* Material facts. */}
+          <dl className="mt-6 grid max-w-lg grid-cols-2 gap-x-6 gap-y-3 border-t border-bone/10 pt-4 sm:grid-cols-3">
+            {material.story.facts.map((f) => (
+              <div key={f.label}>
+                <dt className="text-[0.6rem] uppercase tracking-[0.22em] text-bone-dim/80">{f.label}</dt>
+                <dd className="mt-1 text-[0.8rem] leading-snug text-bone">{f.value}</dd>
+              </div>
+            ))}
+            {material.coordinates && (
+              <div>
+                <dt className="text-[0.6rem] uppercase tracking-[0.22em] text-bone-dim/80">{UI.chapter.coordinates}</dt>
+                <dd className="mt-1 font-serif text-[0.85rem] leading-snug tracking-[0.04em] text-bone">
+                  {material.coordinates.lat}
+                  <br />
+                  {material.coordinates.lon}
+                </dd>
+              </div>
+            )}
+          </dl>
         </div>
       </div>
     </section>

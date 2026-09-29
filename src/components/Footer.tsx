@@ -1,6 +1,7 @@
 import { getContent } from "@/data/content";
 import type { Locale } from "@/i18n/config";
 import SmartLink from "./SmartLink";
+import ProvenanceSeal from "./provenance/ProvenanceSeal";
 import { LinkedInIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon, whatsappHref } from "./ContactIcons";
 import type { ReactNode } from "react";
 
@@ -102,8 +103,11 @@ export default function Footer({ locale }: { locale: Locale }) {
 
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
         <div className="flex flex-col gap-2 border-t border-line pb-20 pt-7 text-[0.7rem] sm:pb-7 tracking-[0.06em] text-bone-dim sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {year} {SITE.name} · {SITE.city}
+          <p className="flex items-center gap-4">
+            <ProvenanceSeal className="h-[72px] w-[72px] shrink-0 text-bronze-soft/75" />
+            <span>
+              © {year} {SITE.name} · {SITE.city}
+            </span>
           </p>
           <p>{UI.footer.legal}</p>
         </div>

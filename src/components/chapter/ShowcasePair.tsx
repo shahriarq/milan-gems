@@ -18,7 +18,7 @@ interface ShowcasePairProps {
  * opens that piece's detail box; a small "Details" mark signals it.
  */
 export default function ShowcasePair({ material }: ShowcasePairProps) {
-  const { UI } = useContent();
+  const { UI, CTA } = useContent();
   const items = material.showcase;
   const wrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -72,7 +72,7 @@ export default function ShowcasePair({ material }: ShowcasePairProps) {
     if (child) track.scrollTo({ left: child.offsetLeft - track.offsetLeft, behavior: "smooth" });
   }
 
-  const pieceLabel = (i: number) => `${UI.detail.piece} ${String(i + 1).padStart(2, "0")}`;
+  const lotLabel = (i: number) => `${UI.detail.lot} ${String(i + 1).padStart(2, "0")}`;
 
   return (
     <div ref={wrapRef} className="w-full bg-ink py-10 sm:py-16 lg:py-20">
@@ -102,16 +102,26 @@ export default function ShowcasePair({ material }: ShowcasePairProps) {
               />
             </div>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,transparent_45%,rgba(7,7,7,0.4)_100%)]" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
+
+            {/* Specimen label: lot, material, origin. */}
+            <div className="pointer-events-none absolute bottom-4 left-4 z-10 max-w-[60%] sm:bottom-5 sm:left-5 [text-shadow:0_1px_12px_rgba(0,0,0,0.8)]">
+              <p className="text-[0.58rem] uppercase tracking-[0.3em] text-bronze-soft">{lotLabel(i)}</p>
+              <p className="mt-1.5 font-serif text-lg leading-tight text-bone sm:text-xl">{material.name}</p>
+              <p className="mt-1 text-[0.58rem] uppercase tracking-[0.24em] text-bone-dim">{material.originSummary}</p>
+              <p className="mt-3 text-[0.62rem] uppercase tracking-[0.24em] text-bone transition-colors duration-500 group-hover:text-bronze-soft">
+                {CTA.viewSpecimen} <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">→</span>
+              </p>
+            </div>
 
             <button
               type="button"
               onClick={() => setOpenIndex(i)}
               aria-haspopup="dialog"
-              aria-label={`${UI.showcase.viewDetails} ${material.name} — ${pieceLabel(i)}`}
+              aria-label={`${CTA.viewSpecimen}: ${material.name} — ${lotLabel(i)}`}
               className="absolute inset-0 z-10 cursor-pointer focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-8 focus-visible:outline-bronze-soft"
             >
-              <DetailsMark label={UI.showcase.details} />
+              <DetailsMark />
             </button>
           </figure>
         ))}
@@ -149,30 +159,21 @@ export default function ShowcasePair({ material }: ShowcasePairProps) {
 
 /**
  * The "there is more here" mark: a hairline circle with a plus, breathing
- * with a slow halo. On hover (mouse) the label slides out and the plus
- * turns; on touch screens the label is always shown.
+ * with a slow halo; the plus turns on hover.
  */
-function DetailsMark({ label }: { label: string }) {
+function DetailsMark() {
   return (
-    <span
-      aria-hidden="true"
-      className="absolute bottom-4 right-4 flex items-center gap-3 sm:bottom-5 sm:right-5"
-    >
-      <span className="translate-x-2 text-[0.62rem] uppercase tracking-[0.28em] text-bone opacity-0 transition-all duration-500 [text-shadow:0_1px_10px_rgba(0,0,0,0.9)] group-hover:translate-x-0 group-hover:opacity-100 pointer-coarse:translate-x-0 pointer-coarse:opacity-100">
-        {label}
-      </span>
-      <span className="relative flex h-10 w-10 items-center justify-center">
-        <span className="details-halo absolute inset-0 rounded-full border border-bronze-soft/60" />
-        <span className="absolute inset-0 rounded-full border border-bone/35 bg-ink/45 backdrop-blur-md transition-colors duration-500 group-hover:border-bronze-soft group-hover:bg-ink/65" />
-        <svg
-          viewBox="0 0 24 24"
-          width="14"
-          height="14"
-          className="relative text-bone transition-transform duration-500 group-hover:rotate-90 group-hover:text-bronze-soft"
-        >
-          <path d="M12 5 V19 M5 12 H19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-        </svg>
-      </span>
+    <span aria-hidden="true" className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center sm:bottom-5 sm:right-5">
+      <span className="details-halo absolute inset-0 rounded-full border border-bronze-soft/60" />
+      <span className="absolute inset-0 rounded-full border border-bone/35 bg-ink/45 backdrop-blur-md transition-colors duration-500 group-hover:border-bronze-soft group-hover:bg-ink/65" />
+      <svg
+        viewBox="0 0 24 24"
+        width="14"
+        height="14"
+        className="relative text-bone transition-transform duration-500 group-hover:rotate-90 group-hover:text-bronze-soft"
+      >
+        <path d="M12 5 V19 M5 12 H19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      </svg>
     </span>
   );
 }

@@ -4,7 +4,7 @@ import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { getContent, type SiteContent } from "@/data/content";
 import { getStones } from "@/data/stones";
 import type { StoneMaterial } from "@/data/types";
-import { localizeHref, type Locale } from "./config";
+import { anchorId, localizeHref, type AnchorKey, type Locale } from "./config";
 
 interface LocaleValue {
   locale: Locale;
@@ -34,4 +34,16 @@ export const useStones = () => useLocaleValue().stones;
 export function useHref() {
   const locale = useLocale();
   return (href: string) => localizeHref(href, locale);
+}
+
+/**
+ * Section anchors in the current language. `anchor(key)` gives the id;
+ * `anchorProps(key)` also tags the element with its neutral key so the
+ * language switcher can keep the visitor on the same section.
+ */
+export function useAnchors() {
+  const locale = useLocale();
+  const anchor = (key: AnchorKey) => anchorId(key, locale);
+  const anchorProps = (key: AnchorKey) => ({ id: anchorId(key, locale), "data-anchor": key });
+  return { anchor, anchorProps };
 }

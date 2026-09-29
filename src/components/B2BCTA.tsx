@@ -2,12 +2,14 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
-import { useContent } from "@/i18n/LocaleProvider";
+import { useContent, useAnchors } from "@/i18n/LocaleProvider";
 import SampleRequestForm from "./SampleRequestForm";
 import SmartLink from "./SmartLink";
 import CinematicVideo from "./CinematicVideo";
+import OriginRoute from "./provenance/OriginRoute";
 
 export default function B2BCTA() {
+  const { anchorProps } = useAnchors();
   const { B2B_CTA, CLOSING_FILM, CLOSING_SEQUENCE, CTA } = useContent();
   const sectionRef = useRef<HTMLElement>(null);
   const bgImageRef = useRef<HTMLDivElement>(null);
@@ -82,7 +84,7 @@ export default function B2BCTA() {
   return (
     <section
       ref={sectionRef}
-      id="contact"
+      {...anchorProps("request")}
       aria-labelledby="cta-heading"
       className="relative flex w-full flex-col items-center overflow-hidden bg-ink py-28 sm:py-36"
     >
@@ -108,7 +110,8 @@ export default function B2BCTA() {
         <p className="mt-6 text-balance font-serif text-4xl leading-[1.1] text-bone sm:text-5xl md:text-6xl">
           {CLOSING_SEQUENCE.statement}
         </p>
-        <p className="mt-5 text-sm uppercase tracking-[0.4em] text-bone-dim">{CLOSING_SEQUENCE.city}</p>
+        {/* Origin → atelier: a small editorial transition, not a new section. */}
+        <OriginRoute {...CLOSING_SEQUENCE.route} />
       </div>
 
       {/* Beat two: the ask. */}
@@ -140,7 +143,7 @@ export default function B2BCTA() {
             href="/contact#inquiry"
             className="mt-6 text-[0.68rem] uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-bronze-soft"
           >
-            {CTA.or} {CTA.inquiry}
+            {CTA.or} {CTA.inquiry} →
           </SmartLink>
         )}
 
