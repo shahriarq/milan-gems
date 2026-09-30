@@ -176,3 +176,26 @@ html {
     opacity: 0;
   }
 }
+
+/*
+ * Pre-hydration states — applied from the very first paint, before any
+ * JavaScript runs, so nothing flashes while the page loads.
+ *
+ * 1. The mobile menu starts closed. GSAP's inline clip-path takes over once
+ *    the menu is used.
+ * 2. Elements that fade in on load (data-intro) start hidden, but only when
+ *    JavaScript is running (html.js, set by an inline script in <head>) and
+ *    the visitor has not asked for reduced motion. Without JS, or with
+ *    reduced motion, they are simply visible.
+ */
+#mobile-nav {
+  clip-path: inset(0% 0% 100% 0%);
+}
+html.js [data-intro] {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-intro] {
+    opacity: 1;
+  }
+}

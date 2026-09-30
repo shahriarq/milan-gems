@@ -55,7 +55,7 @@ export default function ContactPage() {
         aria-labelledby="contact-heading"
         className="relative flex min-h-[88svh] w-full items-end overflow-hidden bg-ink pb-16 pt-32 sm:items-center sm:pb-0"
       >
-        <div ref={heroMediaRef} className="absolute inset-0 will-change-transform" aria-hidden="true">
+        <div ref={heroMediaRef} data-intro className="absolute inset-0 will-change-transform" aria-hidden="true">
           <CinematicVideo src={CLOSING_FILM.src} poster={CONTACT_PAGE.heroPoster} className="h-full w-full object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent via-45% to-ink/30" aria-hidden="true" />
@@ -66,20 +66,20 @@ export default function ContactPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-16">
           <div className="text-scrim-soft inline-block max-w-2xl px-6 py-8 sm:px-10 sm:py-10">
-            <p data-hero-line className="text-[0.72rem] uppercase tracking-[0.32em] text-bronze-soft">
+            <p data-hero-line data-intro className="text-[0.72rem] uppercase tracking-[0.32em] text-bronze-soft">
               {CONTACT_PAGE.kicker}
             </p>
             <h1
               id="contact-heading"
-              data-hero-line
+              data-hero-line data-intro
               className="mt-5 font-serif text-4xl leading-[1.05] text-bone sm:text-5xl md:text-6xl"
             >
               {CONTACT_PAGE.heading}
             </h1>
-            <p data-hero-line className="mt-6 max-w-lg text-base leading-relaxed text-bone-dim">
+            <p data-hero-line data-intro className="mt-6 max-w-lg text-base leading-relaxed text-bone-dim">
               {CONTACT_PAGE.intro}
             </p>
-            <div data-hero-line className="mt-9 flex flex-wrap items-center gap-x-9 gap-y-5">
+            <div data-hero-line data-intro className="mt-9 flex flex-wrap items-center gap-x-9 gap-y-5">
               <CtaButton onClick={() => goToForm("sample-box")}>{CTA.sampleBox}</CtaButton>
               <CtaButton onClick={() => goToForm("b2b-inquiry")} quiet>
                 {CTA.inquiry}

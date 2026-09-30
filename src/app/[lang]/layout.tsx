@@ -63,7 +63,14 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   if (!hasLocale(lang)) notFound();
 
   return (
-    <html lang={lang} className="h-full antialiased">
+    // suppressHydrationWarning: the inline script below adds the "js" class
+    // to <html> before React hydrates; React should keep the DOM's version.
+    <html lang={lang} className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        {/* Runs synchronously before first paint: lets CSS pre-hide the
+            elements that animate in, so they never flash (globals.css). */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="min-h-full flex flex-col bg-ink text-bone font-sans">
         <LocaleProvider locale={lang}>
           <SmoothScrollProvider>

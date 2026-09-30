@@ -111,6 +111,7 @@ export default function Hero() {
     >
       <div
         ref={mediaScaleRef}
+        data-intro
         className="absolute inset-0 will-change-transform"
       >
         {HERO.video.src ? (
@@ -144,7 +145,7 @@ export default function Hero() {
         ref={contentRef}
         className="relative z-10 flex flex-col items-center px-8 py-10 text-center sm:px-14 sm:py-12 text-scrim"
       >
-        <div ref={markRef} className="overflow-hidden">
+        <div ref={markRef} data-intro className="overflow-hidden">
           <span className="block font-serif text-[0.95rem] uppercase tracking-[0.5em] text-bone sm:text-base">
             {HERO.eyebrow}
           </span>
@@ -154,6 +155,7 @@ export default function Hero() {
           <span className="overflow-hidden">
             <span
               ref={lineARef}
+              data-intro
               className="block font-serif text-2xl uppercase leading-tight tracking-[0.14em] text-bone sm:text-3xl md:text-4xl"
             >
               {HERO.line1}
@@ -162,6 +164,7 @@ export default function Hero() {
           <span className="overflow-hidden">
             <span
               ref={lineBRef}
+              data-intro
               className="block font-serif text-2xl uppercase leading-tight tracking-[0.14em] text-bronze-soft sm:text-3xl md:text-4xl"
             >
               {HERO.line2}
@@ -171,6 +174,7 @@ export default function Hero() {
 
         <p
           ref={taglineRef}
+          data-intro
           className="mt-6 max-w-xs text-balance font-serif text-sm italic leading-relaxed text-bone-dim sm:max-w-sm sm:text-base"
         >
           {HERO.tagline}
@@ -181,7 +185,7 @@ export default function Hero() {
         ref={cueWrapRef}
         className="absolute bottom-9 left-1/2 z-10 -translate-x-1/2"
       >
-        <div ref={cueRef} aria-hidden="true">
+        <div ref={cueRef} data-intro aria-hidden="true">
           <a
             href={`#${anchor("collection")}`}
           onClick={(e) => {
