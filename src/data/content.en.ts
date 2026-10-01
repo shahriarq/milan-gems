@@ -215,6 +215,12 @@ export const en = {
   /** Interface labels (buttons, form fields, dialogs, footer headings). */
   UI: {
     homeLabel: "home",
+    consent: {
+      text: "We use analytics cookies to understand how the site is used — only with your consent. You can change your choice at any time from the footer.",
+      accept: "Accept",
+      decline: "Decline",
+      settings: "Cookie preferences",
+    },
     chapter: { coordinates: "Coordinates" },
     notFound: {
       title: "Page not found",

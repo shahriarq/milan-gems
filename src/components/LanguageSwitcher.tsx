@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { LOCALES, anchorId, rememberLocale, switchLocalePath, type AnchorKey, type Locale } from "@/i18n/config";
 import { useContent, useLocale } from "@/i18n/LocaleProvider";
+import { track } from "@/lib/analytics";
 
 /**
  * The section the visitor is currently reading: the last tagged section
@@ -31,6 +32,7 @@ export default function LanguageSwitcher({ size = "sm", onSwitch }: { size?: "sm
   function choose(to: Locale) {
     if (to === locale) return;
     rememberLocale(to);
+    track("language_switch", { from_language: locale, to_language: to });
     onSwitch?.();
     const section = window.scrollY > 40 ? currentSection() : null;
     const target = switchLocalePath(pathname, to, section ? `#${anchorId(section, to)}` : "");

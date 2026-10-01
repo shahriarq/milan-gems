@@ -21,3 +21,16 @@ function resolveSiteUrl(): string {
 export const SITE_URL = resolveSiteUrl();
 
 export const absoluteUrl = (path = "/") => `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+
+/**
+ * Google integrations. Public identifiers (they appear in the page source),
+ * so they can live here; an environment variable of the same purpose in
+ * Vercel takes precedence. Leave empty to keep the integration off.
+ *
+ *  - GA4 Measurement ID, e.g. "G-ABC123XYZ"
+ *    (Analytics → Admin → Data streams → Web → Measurement ID)
+ *  - Search Console HTML-tag verification code: only the content="…" value
+ *    of <meta name="google-site-verification" content="…">
+ */
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-Q790T63WEH";
+export const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION || "";

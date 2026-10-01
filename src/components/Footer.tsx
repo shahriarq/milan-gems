@@ -2,6 +2,8 @@ import { getContent } from "@/data/content";
 import type { Locale } from "@/i18n/config";
 import SmartLink from "./SmartLink";
 import ProvenanceSeal from "./provenance/ProvenanceSeal";
+import ConsentSettingsButton from "./ConsentSettingsButton";
+import { GA_MEASUREMENT_ID } from "@/lib/site";
 import { LinkedInIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon, whatsappHref } from "./ContactIcons";
 import type { ReactNode } from "react";
 
@@ -109,7 +111,10 @@ export default function Footer({ locale }: { locale: Locale }) {
               © {year} {SITE.name} · {SITE.city}
             </span>
           </p>
-          <p>{UI.footer.legal}</p>
+          <p className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <span>{UI.footer.legal}</span>
+            {GA_MEASUREMENT_ID && <ConsentSettingsButton label={UI.consent.settings} />}
+          </p>
         </div>
       </div>
     </footer>

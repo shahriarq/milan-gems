@@ -8,6 +8,7 @@ import { setScrollLocked } from "@/lib/scroll";
 import { useContent } from "@/i18n/LocaleProvider";
 import type { ShowcaseItem, SpecimenFacts, StoneMaterial } from "@/data/types";
 import SmartLink from "../SmartLink";
+import { track } from "@/lib/analytics";
 
 interface SpecimenDialogProps {
   material: StoneMaterial;
@@ -62,6 +63,11 @@ export default function SpecimenDialog({ material, items, index, onClose, onNavi
   );
 
   // Lock page scroll, remember + restore focus.
+  // Analytics: one event per specimen viewed (also when paging with ← →).
+  useEffect(() => {
+    track("view_specimen", { material: material.slug, lot: index + 1 });
+  }, [material.slug, index]);
+
   useEffect(() => {
     returnFocusRef.current = document.activeElement as HTMLElement | null;
     setScrollLocked(true);

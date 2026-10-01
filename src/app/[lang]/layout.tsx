@@ -19,7 +19,8 @@ import { notFound } from "next/navigation";
 import { getContent } from "@/data/content";
 import { LOCALES, hasLocale } from "@/i18n/config";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
-import { SITE_URL } from "@/lib/site";
+import { GA_MEASUREMENT_ID, GSC_VERIFICATION, SITE_URL } from "@/lib/site";
+import Analytics from "@/components/Analytics";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -55,6 +56,8 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     publisher: SITE.name,
     category: "jewelry",
     formatDetection: { telephone: false, email: false, address: false },
+    // Google Search Console ownership (HTML-tag method), when configured.
+    ...(GSC_VERIFICATION ? { verification: { google: GSC_VERIFICATION } } : {}),
   };
 }
 
@@ -78,6 +81,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
             {children}
             <Footer locale={lang} />
             <BackToTop />
+            <Analytics gaId={GA_MEASUREMENT_ID} />
           </SmoothScrollProvider>
         </LocaleProvider>
       </body>

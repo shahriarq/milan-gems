@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import type { RequestType } from "@/data/content";
 import { useContent, useLocale } from "@/i18n/LocaleProvider";
+import { track } from "@/lib/analytics";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
@@ -68,6 +69,7 @@ export default function SampleRequestForm({
         throw new Error(UI.form.genericError);
       }
       setState("success");
+      track("generate_lead", { request_type: currentType, form_location: idPrefix, language: locale });
       form.reset();
     } catch (err) {
       setState("error");

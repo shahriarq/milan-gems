@@ -189,6 +189,12 @@ export const it: SiteContent = {
 
   UI: {
     homeLabel: "home",
+    consent: {
+      text: "Usiamo cookie analitici per capire come viene utilizzato il sito, solo con il tuo consenso. Puoi modificare la scelta in qualsiasi momento dal piè di pagina.",
+      accept: "Accetta",
+      decline: "Rifiuta",
+      settings: "Preferenze cookie",
+    },
     chapter: { coordinates: "Coordinate" },
     notFound: {
       title: "Pagina non trovata",
