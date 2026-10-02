@@ -1,6 +1,6 @@
 //+------------------------------------------------------------------+
 //|                                            MTF_SMC_Gold_EA.mq5   |
-//|  MTF Price Action / Smart Money EA for XAUUSD (M15 + H1/H4 bias) |
+//|  MTF Price Action / Smart Money EA for XAUUSD (M5 + H1/H4 bias) |
 //|                                                                  |
 //|  Flow (all evaluated on closed bars only - no repainting):       |
 //|   1. HTF bias  : Price > EMA50 > EMA200 (bull) / mirror (bear)   |
@@ -36,7 +36,7 @@ enum ENUM_ENTRY2_MODE
 //| Inputs                                                           |
 //+------------------------------------------------------------------+
 input group "=== General ==="
-input ENUM_TIMEFRAMES    InpExecTF            = PERIOD_M15;   // Execution timeframe
+input ENUM_TIMEFRAMES    InpExecTF            = PERIOD_M5;    // Execution timeframe
 input ENUM_TIMEFRAMES    InpHtfTF             = PERIOD_H1;    // HTF bias timeframe (H1 or H4)
 input ulong              InpMagicOrder1       = 770001;       // Magic number - Order 1
 input ulong              InpMagicOrder2       = 770002;       // Magic number - Order 2
