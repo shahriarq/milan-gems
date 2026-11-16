@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Style86 Milano</title>
+  <meta name="description" content="Style86 — parrucchieri e barber a Milano Niguarda. Taglio, barba, colore senza ammoniaca e schiariture. Prenota online.">
+  <meta name="theme-color" content="#0e0c0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap">
+  <link rel="preload" as="image" href="media/hero-1.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Style86",
+    "address": {"@type": "PostalAddress", "streetAddress": "Via Luigi Ornato 59", "postalCode": "20162", "addressLocality": "Milano", "addressCountry": "IT"},
+    "telephone": "+39 366 305 7307",
+    "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "460"},
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "20:00"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "16:00"}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#servizi" data-i18n="skip">Salta al contenuto</a>
+
+  <!-- ───────── Navigation ───────── -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="wordmark" href="#top" aria-label="Style86, torna all'inizio">Style<span>86</span></a>
+      <nav class="nav__links" aria-label="Sezioni">
+        <a href="#servizi" data-i18n="nav.services">Servizi</a>
+        <a href="#studio" data-i18n="nav.studio">Lo studio</a>
+        <a href="#lavori" data-i18n="nav.work">Lavori</a>
+        <a href="#orari" data-i18n="nav.visit">Orari</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="lang" id="lang" type="button" aria-label="Switch to English">EN</button>
+        <a class="btn btn--glass" href="https://www.treatwell.it/salone/style86/" target="_blank" rel="noopener" data-i18n="cta.book">Prenota</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ───────── Hero: scroll film ───────── -->
+    <section class="film" id="film" aria-label="Style86">
+      <div class="film__stage">
+        <canvas class="film__canvas" id="filmCanvas" aria-hidden="true"></canvas>
+        <img class="film__fallback" src="media/hero-1.jpg" alt="" aria-hidden="true">
+        <div class="film__shade" aria-hidden="true"></div>
+        <div class="film__grain" aria-hidden="true"></div>
+
+        <div class="film__chapters">
+          <div class="chapter chapter--open is-active" data-from="0" data-to="0.2">
+            <p class="eyebrow" data-i18n="hero.eyebrow">Parrucchieri &amp; Barber · Milano Niguarda</p>
+            <h1 class="hero-title">Style<em>86</em></h1>
+            <p class="hero-lede" data-i18n="hero.lede">Taglio, barba e colore fatti con calma, precisione e mani esperte.</p>
+            <div class="hero-actions">
+              <a class="btn btn--gold" href="https://www.treatwell.it/salone/style86/" target="_blank" rel="noopener" data-i18n="cta.bookOnline">Prenota online</a>
+              <a class="btn btn--line" href="#servizi" data-i18n="cta.prices">Vedi i prezzi</a>
+            </div>
+          </div>
+
+          <div class="chapter" data-from="0.24" data-to="0.44">
+            <p class="chapter__num">I · <span data-i18n="ch1.k">Barber</span></p>
+            <h2 class="chapter__title" data-i18n-html="ch1.t">Sfumature pulite.<br>Barba a macchina.</h2>
+            <p class="chapter__text" data-i18n="ch1.p">Ogni taglio parte dalla forma del viso e finisce con un contorno netto.</p>
+          </div>
+
+          <div class="chapter chapter--right" data-from="0.48" data-to="0.68">
+            <p class="chapter__num">II · <span data-i18n="ch2.k">Colore</span></p>
+            <h2 class="chapter__title" data-i18n-html="ch2.t">Colore senza<br>ammoniaca.</h2>
+            <p class="chapter__text" data-i18n="ch2.p">Schiariture, balayage e trattamenti con Olaplex e Redken, per capelli che restano sani.</p>
+          </div>
+
+          <div class="chapter" data-from="0.72" data-to="1.01">
+            <p class="chapter__num">III · <span data-i18n="ch3.k">I clienti</span></p>
+            <p class="rating-big"><span class="rating-big__n">4,8</span><span class="rating-big__of">/5</span></p>
+            <h2 class="chapter__title chapter__title--sm" data-i18n-html="ch3.t">Oltre 460 recensioni<br>su Treatwell.</h2>
+            <a class="btn btn--gold" href="https://www.treatwell.it/salone/style86/" target="_blank" rel="noopener" data-i18n="cta.reserve">Prenota il tuo posto</a>
+          </div>
+        </div>
+
+        <div class="film__progress" aria-hidden="true">
+          <span class="film__bar"><span id="filmBar"></span></span>
+          <span class="film__hint" data-i18n="hero.scroll">Scorri</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Specialties strip ───────── -->
+    <div class="strip" aria-label="Specialità">
+      <div class="strip__track">
+        <span data-i18n="strip.1">Colore senza ammoniaca</span><i aria-hidden="true">✦</i>
+        <span data-i18n="strip.2">Barba a macchina</span><i aria-hidden="true">✦</i>
+        <span data-i18n="strip.3">Schiariture</span><i aria-hidden="true">✦</i>
+        <span>Olaplex</span><i aria-hidden="true">✦</i>
+        <span>Redken</span><i aria-hidden="true">✦</i>
+        <span data-i18n="strip.4">Uomo · Donna</span><i aria-hidden="true">✦</i>
+      </div>
+    </div>
+
+    <!-- ───────── Services ───────── -->
+    <section class="section services" id="servizi">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="svc.eyebrow">Listino</p>
+          <h2 class="section__title" data-i18n="svc.title">Servizi e prezzi</h2>
+          <p class="section__sub" data-i18n="svc.sub">Prezzi indicativi. Il listino sempre aggiornato e la disponibilità in tempo reale sono su Treatwell.</p>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="Categorie di servizi">
+          <button class="tab" role="tab" id="tab-uomo" aria-controls="panel-uomo" aria-selected="true" data-i18n="svc.tab1">Uomo</button>
+          <button class="tab" role="tab" id="tab-donna" aria-controls="panel-donna" aria-selected="false" tabindex="-1" data-i18n="svc.tab2">Donna</button>
+          <button class="tab" role="tab" id="tab-colore" aria-controls="panel-colore" aria-selected="false" tabindex="-1" data-i18n="svc.tab3">Colore &amp; trattamenti</button>
+        </div>
+
+        <!-- NOTE: prices marked data-confirm="1" are estimates; confirm with the salon. -->
+        <div class="panel" role="tabpanel" id="panel-uomo" aria-labelledby="tab-uomo">
+          <ul class="menu">
+            <li class="menu__item" data-confirm="1"><span class="menu__name" data-i18n="s.taglioUomo">Taglio uomo</span><span class="menu__dur">30 min</span><span class="menu__dots"></span><span class="menu__price">da €15</span></li>
+            <li class="menu__item" data-confirm="1"><span class="menu__name" data-i18n="s.fade">Skin fade / sfumatura</span><span class="menu__dur">40 min</span><span class="menu__dots"></span><span class="menu__price">da €18</span></li>
+            <li class="menu__item"><span class="menu__name" data-i18n="s.taglioBarba">Taglio + barba</span><span class="menu__dur">45 min</span><span class="menu__dots"></span><span class="menu__price">€20–25</span></li>
+            <li class="menu__item" data-confirm="1"><span class="menu__name" data-i18n="s.barba">Barba a macchina</span><span class="menu__dur">15 min</span><span class="menu__dots"></span><span class="menu__price">da €7</span></li>
+            <li class="menu__item"><span class="menu__name" data-i18n="s.ritoccoUomo">Ritocco colore uomo</span><span class="menu__dur">30 min</span><span class="menu__dots"></span><span class="menu__price">€20–30</span></li>
+          </ul>
+        </div>
+        <div class="panel" role="tabpanel" id="panel-donna" aria-labelledby="tab-donna" hidden>
+          <ul class="menu">
+            <li class="menu__item"><span class="menu__name" data-i18n="s.piega">Shampoo e piega</span><span class="menu__dur">40 min</span><span class="menu__dots"></span><span class="menu__price">€20–25</span></li>
+            <li class="menu__item" data-confirm="1"><span class="menu__name" data-i18n="s.taglioDonna">Taglio, shampoo e piega</span><span class="menu__dur">60 min</span><span class="menu__dots"></span><span class="menu__price">da €35</span></li>
+            <li class="menu__item"><span class="menu__name" data-i18n="s.permanente">Permanente</span><span class="menu__dur">90 min</span><span class="menu__dots"></span><span class="menu__price">da €60</span></li>
+            <li class="menu__item" data-confirm="1"><span class="menu__name" data-i18n="s.acconciatura">Acconciatura per eventi</span><span class="menu__dur">60 min</span><span class="menu__dots"></span><span class="menu__price">da €40</span></li>
+          </ul>
+        </div>
+        <div class="panel" role="tabpanel" id="panel-colore" aria-labelledby="tab-colore" hidden>
+          <ul class="menu">
+            <li class="menu__item" data-confirm="1"><span class="menu__name" data-i18n="s.colore">Colore senza ammoniaca</span><span class="menu__dur">75 min</span><span class="menu__dots"></span><span class="menu__price">da €35</span></li>
+            <li class="menu__item" data-confirm="1"><span class="menu__name" data-i18n="s.schiariture">Schiariture / balayage</span><span class="menu__dur">150 min</span><span class="menu__dots"></span><span class="menu__price">da €70</span></li>
+            <li class="menu__item" data-confirm="1"><span class="menu__name" data-i18n="s.olaplex">Trattamento Olaplex</span><span class="menu__dur">20 min</span><span class="menu__dots"></span><span class="menu__price">da €20</span></li>
+            <li class="menu__item"><span class="menu__name" data-i18n="s.botox">Botox capelli</span><span class="menu__dur">60 min</span><span class="menu__dots"></span><span class="menu__price">€45–50</span></li>
+          </ul>
+        </div>
+
+        <a class="btn btn--line services__cta" href="https://www.treatwell.it/salone/style86/" target="_blank" rel="noopener" data-i18n="svc.cta">Listino completo e prenotazione</a>
+      </div>
+    </section>
+
+    <!-- ───────── Studio ───────── -->
+    <section class="section studio" id="studio">
+      <div class="wrap studio__grid">
+        <figure class="studio__photo">
+          <img src="media/studio.jpg" alt="Sami, titolare di Style86, al lavoro" loading="lazy" width="1600" height="2000">
+        </figure>
+        <div class="studio__copy">
+          <p class="eyebrow" data-i18n="studio.eyebrow">Lo studio</p>
+          <h2 class="section__title" data-i18n-html="studio.title">Un salone di quartiere,<br>con standard da centro.</h2>
+          <p data-i18n="studio.p1">Style86 è a Niguarda, in via Luigi Ornato. Uomini e donne entrano per un taglio veloce o per un cambio di colore completo, e ricevono la stessa attenzione.</p>
+          <p data-i18n="studio.p2">Sami e il suo staff lavorano con prodotti professionali Olaplex e Redken e con colori senza ammoniaca. I clienti tornano per il contorno preciso della barba, l'ambiente pulito e il prezzo onesto.</p>
+          <dl class="facts">
+            <div><dt>4,8</dt><dd data-i18n="facts.rating">valutazione media su Treatwell</dd></div>
+            <div><dt>460+</dt><dd data-i18n="facts.reviews">recensioni verificate</dd></div>
+            <div><dt>6</dt><dd data-i18n="facts.days">giorni aperti a settimana</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Work ───────── -->
+    <section class="section work" id="lavori">
+      <div class="wrap">
+        <header class="section__head section__head--row">
+          <div>
+            <p class="eyebrow" data-i18n="work.eyebrow">Lavori</p>
+            <h2 class="section__title" data-i18n="work.title">Dalla poltrona di Style86</h2>
+          </div>
+          <a class="link-arrow" href="https://www.instagram.com/stylesalone86/" target="_blank" rel="noopener">@stylesalone86 <span aria-hidden="true">→</span></a>
+        </header>
+        <div class="gallery">
+          <figure class="g g--tall"><img src="media/g-1.jpg" alt="Skin fade" loading="lazy" width="1200" height="1500"><figcaption data-i18n="g.1">Skin fade</figcaption></figure>
+          <figure class="g"><img src="media/g-2.jpg" alt="Barba a macchina" loading="lazy" width="1200" height="1200"><figcaption data-i18n="g.2">Barba a macchina</figcaption></figure>
+          <figure class="g g--tall"><img src="media/g-3.jpg" alt="Balayage" loading="lazy" width="1200" height="1500"><figcaption>Balayage</figcaption></figure>
+          <figure class="g"><img src="media/g-4.jpg" alt="Piega" loading="lazy" width="1200" height="1200"><figcaption data-i18n="g.4">Piega</figcaption></figure>
+          <figure class="g g--tall"><img src="media/g-5.jpg" alt="Interno del salone" loading="lazy" width="1200" height="1500"><figcaption data-i18n="g.5">Il salone</figcaption></figure>
+          <figure class="g"><img src="media/g-6.jpg" alt="Prodotti Olaplex e Redken" loading="lazy" width="1200" height="1200"><figcaption>Olaplex · Redken</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Reviews ───────── -->
+    <section class="section reviews" id="recensioni">
+      <div class="wrap reviews__grid">
+        <div class="reviews__score">
+          <p class="eyebrow" data-i18n="rev.eyebrow">Recensioni</p>
+          <p class="score"><span class="score__n">4,8</span><span class="score__stars" aria-label="4,8 stelle su 5">★★★★★</span></p>
+          <p class="score__meta" data-i18n="rev.meta">Media su oltre 460 recensioni verificate Treatwell</p>
+          <a class="link-arrow" href="https://www.treatwell.it/salone/style86/" target="_blank" rel="noopener"><span data-i18n="rev.read">Leggi le recensioni</span> <span aria-hidden="true">→</span></a>
+        </div>
+        <ul class="themes">
+          <li><h3 data-i18n="rev.t1">Taglio e barba curati</h3><p data-i18n="rev.p1">Il tema più ricorrente: contorni precisi e sfumature pulite.</p></li>
+          <li><h3 data-i18n="rev.t2">Ambiente pulito e accogliente</h3><p data-i18n="rev.p2">I clienti citano spesso l'ordine del salone e l'accoglienza.</p></li>
+          <li><h3 data-i18n="rev.t3">Staff gentile</h3><p data-i18n="rev.p3">Sami viene nominato in molte recensioni per la sua disponibilità.</p></li>
+          <li><h3 data-i18n="rev.t4">Prezzi onesti</h3><p data-i18n="rev.p4">Un servizio curato a prezzi da quartiere, non da centro.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───────── Visit ───────── -->
+    <section class="section visit" id="orari">
+      <div class="wrap visit__grid">
+        <div>
+          <p class="eyebrow" data-i18n="visit.eyebrow">Vieni a trovarci</p>
+          <h2 class="section__title" data-i18n="visit.title">Orari e indirizzo</h2>
+          <address class="address">
+            Via Luigi Ornato 59<br>20162 Milano · Niguarda
+          </address>
+          <div class="contact-row">
+            <a class="btn btn--line" href="https://www.google.com/maps/search/?api=1&amp;query=Style86+Via+Luigi+Ornato+59+Milano" target="_blank" rel="noopener" data-i18n="visit.map">Apri in Maps</a>
+            <a class="btn btn--line" href="tel:+393663057307">+39 366 305 7307</a>
+          </div>
+        </div>
+        <table class="hours" aria-label="Orari di apertura">
+          <tbody>
+            <tr data-day="1"><th data-i18n="d.1">Lunedì</th><td class="closed" data-i18n="d.closed">Chiuso</td></tr>
+            <tr data-day="2"><th data-i18n="d.2">Martedì</th><td>9:00 – 20:00</td></tr>
+            <tr data-day="3"><th data-i18n="d.3">Mercoledì</th><td>9:00 – 20:00</td></tr>
+            <tr data-day="4"><th data-i18n="d.4">Giovedì</th><td>9:00 – 20:00</td></tr>
+            <tr data-day="5"><th data-i18n="d.5">Venerdì</th><td>9:00 – 20:00</td></tr>
+            <tr data-day="6"><th data-i18n="d.6">Sabato</th><td>9:00 – 20:00</td></tr>
+            <tr data-day="0"><th data-i18n="d.0">Domenica</th><td>10:00 – 16:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ───────── Final CTA ───────── -->
+    <section class="final">
+      <div class="final__bg" aria-hidden="true"><img src="media/hero-5.jpg" alt="" loading="lazy"></div>
+      <div class="wrap final__inner">
+        <h2 class="final__title" data-i18n-html="final.title">La tua prossima<br><em>sedia è libera.</em></h2>
+        <p data-i18n="final.p">Scegli servizio e orario online in meno di un minuto. Paghi in salone.</p>
+        <div class="hero-actions">
+          <a class="btn btn--gold" href="https://www.treatwell.it/salone/style86/" target="_blank" rel="noopener" data-i18n="cta.bookOnline">Prenota online</a>
+          <a class="btn btn--line" href="https://wa.me/393663057307" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span class="wordmark wordmark--sm">Style<span>86</span></span>
+      <span>Via Luigi Ornato 59, 20162 Milano</span>
+      <a href="https://www.instagram.com/stylesalone86/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.treatwell.it/salone/style86/" target="_blank" rel="noopener">Treatwell</a>
+      <span>© <span id="year">2026</span> Style86</span>
+    </div>
+  </footer>
+
+  <!-- Phone booking bar -->
+  <div class="dock" id="dock">
+    <a class="btn btn--gold" href="https://www.treatwell.it/salone/style86/" target="_blank" rel="noopener" data-i18n="cta.book">Prenota</a>
+    <a class="btn btn--glass" href="tel:+393663057307" data-i18n="cta.call">Chiama</a>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
